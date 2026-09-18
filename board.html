@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Living World — Board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+      /* The observatory's tokens (index.html), verbatim: one look for both tabs. */
+      :root {
+        color-scheme: dark;
+        /* The look (docs/LOOK.md): parchment ink on iron, one cyan–magenta
+           neon pair, monospace numerals. The same block on all three pages. */
+        --bg: #07080b;
+        --panel: rgba(15, 17, 22, 0.9);
+        --line: #3a3d46;
+        --rule: #5a544b;
+        --rule-soft: #23252c;
+        --ink: #e9e3d4;
+        --dim: #9a978f;
+        --faint: #6f6c64;
+        --well: #0b0d12;
+        --well-a: rgba(11, 13, 18, 0.62);
+        --raise: #1c1f27;
+        --raise-hi: #262a34;
+        --raise-a: rgba(28, 31, 39, 0.6);
+        --neon: #5fe3f5;
+        --neon2: #f06ee6;
+        --glow: rgba(95, 227, 245, 0.35);
+        --glow2: rgba(240, 110, 230, 0.35);
+        --neon-line: rgba(95, 227, 245, 0.42);
+        --neon-well: rgba(95, 227, 245, 0.14);
+        --frame: rgba(95, 227, 245, 0.12);
+        --tick: rgba(95, 227, 245, 0.55);
+        --accent: var(--neon);
+        --warn: #ffb45c;
+        --warn-line: rgba(255, 180, 92, 0.45);
+        --crit: #ff7a6b;
+        --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+        --font-head: 'Cinzel', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 12px/1.5 var(--font-mono);
+      }
+    </style>
+    <script type="module" crossorigin src="/boz-city/assets/board-DUZXyW7E.js"></script>
+    <link rel="modulepreload" crossorigin href="/boz-city/assets/publicUrl-Ej0WDCa1.js">
+    <link rel="modulepreload" crossorigin href="/boz-city/assets/llmMind-CIUAeJND.js">
+    <link rel="modulepreload" crossorigin href="/boz-city/assets/holder-Sh4PNmLS.js">
+    <link rel="stylesheet" crossorigin href="/boz-city/assets/llmMind-D5yP0WKe.css">
+    <link rel="stylesheet" crossorigin href="/boz-city/assets/board-DTr2GXC-.css">
+  </head>
+  <body>
+    <div id="board">
+      <nav id="nav" aria-label="Board sections">
+        <div class="nav-title">BOARD <span>living world</span></div>
+        <button data-section="world" aria-pressed="true">World</button>
+        <button data-section="agents">Agents</button>
+        <button data-section="governance">Governance</button>
+        <button data-section="data">Data</button>
+        <button data-section="record">Record</button>
+        <button data-section="models">Models</button>
+        <div class="nav-foot">
+          <a href="index.html?view=2d" target="observatory">2D observatory ↗</a>
+          <a href="3d.html" target="map3d">the city (3D) ↗</a>
+        </div>
+      </nav>
+      <header id="status" aria-live="polite">
+        <span id="status-line">waiting for an observatory…</span>
+      </header>
+      <main id="sections">
+        <section id="sec-world" data-section="world"></section>
+        <section id="sec-agents" data-section="agents" hidden></section>
+        <section id="sec-governance" data-section="governance" hidden></section>
+        <section id="sec-data" data-section="data" hidden></section>
+        <section id="sec-record" data-section="record" hidden></section>
+        <section id="sec-models" data-section="models" hidden></section>
+      </main>
+    </div>
+  </body>
+</html>

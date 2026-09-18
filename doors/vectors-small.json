@@ -1,0 +1,3352 @@
+{
+  "about": "Test vectors for the three War Bay hire doors (src/sim/systems/hire.ts), the task, appeal, sanction, citation, chamber, co-founding and guild doors, presented through src/sim/systems/present.ts, recorded on the small layout: seed 42, size 96, population 100, layout small, mind declineFounding, the holder vectors-small:42 named governor at the founding, from tick 0. The 2,000-person world of vectors.json lays no Institute, so no credential can be earned there; here four holders admitted at tick 0 graduate together at tick 10,980, the first founds a firm (a foundFirm step, the fixture of tests/hire.test.ts), and then hire, acceptHire, a ticks step to the first Friday 17:00 payday (delivery by law), and evaluateHire follow in phase order, each with a wrong-realm refusal first; then one register/decide pair; then (D-10, 2026-09-17) a writeWork and its withdrawWork by the fourth holder; then setPolicy wageFloor1 (C-3) and the household task doors hireTask, acceptTask, deliverTask by a sixth holder admitted as a household, with a writeWork and an evaluateHire around them; then (C-1) a wrong-realm refusal at each appeal door; then (C-10, 2026-09-17) their landings: a second task by the client, passed, is the hired's third pass by signature at social:1 and the law grants social:2 at the settlement (credential:granted); the fourth holder founds a firm in the closed bakery's premise (a foundFirm step) and offers the client, jobless and not yet credentialed, a slot on social:1 with the evaluator evaluating; a ticks step to the client's graduation (tick 26,820), acceptHire by the client, a ticks step to the payday a week later (delivery by law), evaluateHire failed by the evaluator, appealHire by the client, and evaluateAppeal passed by the hired at social:2 (the split settles passed, overturned: 1, the client takes the slot). Then (C-13 and C-5, 2026-09-17, appended after #47 at the world's last recorded tick): a ticks step to Sunday 08:00 (tick 39,360) and one through that minute, in which no seat takes a job, nobody enrols and the law takes nobody (the 08:00 market rests as one); a task by the hired as a household hiring the client with the evaluator evaluating, seven days from Monday 08:01 so the deadline lands on a Sunday, accepted, still accepted one past the Sunday minute and failed by law with the fee refunded one past Monday's (dueAt); then the sanctions ladder: the evaluator complains of the fourth holder, the hired at social:2 imposes rung 1, the evaluator complains again, a ticks step of one day (a ladder in time: the next rung waits until the carrying one has run its course), rung 3 is refused by state (the ladder stands at 1; signed wrong-realm as #33/#34), rung 2 lands (a day without the work doors), the fourth holder's writeWork is refused by the bar, the fourth holder appeals, the hirer at social:1 passes the appeal (sanction:overturned, the bar lifts, the first decider's overturn count 1), and the fourth holder's writeWork lands. Then (C-8, 2026-09-17, PLAN-C6-C9 step 1, appended after #67 at the same tick): the evaluator cites that last work by the sha256 of its text, a wrong-realm refusal then the landing (work:cited; the count of citations a work carries is a count of such signed rows, read by no rule). Then (C-9, 2026-09-17, PLAN-C6-C9 step 2, appended after #69 at the same tick — the residents' chamber, the seed of Parliament (D-11): rung-2 parameters only, not lawmaking): the hired proposes wageFloor1 2300 inside its band, a wrong-realm refusal then the landing (chamber:proposed, open 72 hours); the evaluator vetoes, a wrong-realm refusal then the landing (chamber:vetoed: one veto of five credentialed holders, and a tenth of five rounds up to one); a ticks step through the window's close and the pass after it (chamber:blocked by law; the floor stays 2200); the fourth holder proposes welcomeCreditMonths 1.5 and nobody vetoes; a ticks step through that window (Friday 08:05 to Monday 08:05; a window ending on a Sunday would end Monday by dueAt, C-13, but neither here does), in which the law passes it (chamber:passed, then policy:changed with law: chamber and nobody's signature, the same write path as the governor's door; the governor's sequence advanced). Then (C-7, 2026-09-17, PLAN-C6-C9 step 6, appended after #76 at the same tick): the fourth holder invites the evaluator to co-found the bakery firm, a wrong-realm refusal then the landing (firm:founderInvited); the evaluator accepts, a wrong-realm refusal then the landing (firm:founderJoined: founders [D, C], founder still D, no money moved - equal shares regardless of what each put in, no buy-in); a ticks step through the next Monday 00:00, the dormancy law's minute, in which both founded firms hold a resident in a slot and neither is quiet, no mark written and no firm:struckOff. Then (C-6, 2026-09-17, PLAN-C6-C9 step 7, appended after #81 at the same tick): the hirer founds the social guild, a wrong-realm refusal then the landing (guild:forming; a bond of one week of the L1 wage floor, 2200 x 40 = 88,000 cents, from the hirer's household into the task-fee escrow); the hired joins, a wrong-realm refusal then the landing (two members, forming); a seventh key, the novice, applies at the registration door, a wrong-realm refusal then the landing (registration:received, pending); the hirer's sponsorship of it is refused by state while the guild is forming (signed wrong-realm as the earlier state refusals are); the evaluator joins (the third bond is the founding act: guild:joined then guild:founded, standing) and the fourth holder joins (four bonds in escrow); the fourth holder leaves, a wrong-realm refusal then the landing (its bond back from escrow: guild:bondReturned, guild:left; three members, still standing); the hirer sponsors the novice's registration, a wrong-realm refusal then the landing (registration:decided signed by the guild, approved, revision 1, sponsor 0, because \"sponsored by guild #0\", written through the registrations module's own approveBySponsor - the governor's decision is not needed); the novice is admitted on it (the existing admit kind; its household forms); the client hires the hired for a task naming the guild in place of an evaluator (hireTask with guild 0 and evaluator -1; the body carries guild only because the act does, so every earlier hireTask body keeps its bytes); the evaluator names itself evaluator for the guild, a wrong-realm refusal then the landing (hire:evaluatorNamed); and the hired accepts the task on the offer's own bytes (the fee into escrow). The bond is slashed by law on three rows only - a member's hire verdict overturned on appeal, a member's sanction overturned, a holder the guild sponsored expelled - against the guild bound at the act (Hire.guild, Sanction.guild, Registration.sponsor: on the record, never on a row) - the overturn, deliberately not Kleros's incoherence trigger; a guild acts only while its pool holds a bond per member; none lands here (tests/guilds.test.ts has the three). The ticks step to the first payday crosses the 08:00 at which the city firm hires the jobless credentialed holders by law (D-10 (lx)). Since C-4 (tenancy, 2026-09-17) the holders' households pay a deposit of one week's rent into escrow at each rent tick (tenancy:deposit); the rent tick at 540 sits inside the first ticks step, so every hash from #6 (the founding) on carries it (regenerated 2026-09-17; the start hash and vectors.json did not move). Replayed top to bottom by tests/present.test.ts beside vectors.json. Then (C-11, 2026-09-17, PLAN-C11-C12 step 4a, appended after #99 at the same tick): the hirer, as governor, signs transactionLevy 0.02, a wrong-realm refusal then the landing (from this minute every sale's receipt is cut; Economy.levy opens on the first cent with five accounts, the fifth the mutual fund for the jobless); a ticks step to the first midnight roll (levy:mutual: one percent of the day's take off the top into the fund, one row a day at most); a ticks step to Saturday day 55 12:00 (tick 78,480; five rolls and a payday, which writes wages8 on every holder seat); the novice, a jobless student since day 50 08:00, claims relief, a wrong-realm refusal then the landing (relief:claimed: the fund's whole balance paid at the door toward a week of half the L1 floor, 2200 x 40 / 2 = 44,000 cents, the shortfall on the row, the fund at 0); a second claim the same minute is refused by state, claimed on day 55 and the next open on day 111 (signed wrong-realm as the earlier state refusals are). Then (jarvis11's read of C-6, the guilds' sixth door) fundGuild is refused for the client, not a member, and for the hirer, the pool whole - both signed wrong-realm; a landing needs a slashed guild and none is on the file, so the landing is pinned pending in tests/conform.test.ts (the C-1 precedent). A ticks step through Friday day 61 17:01: the month's turn at 09:00 (levy:month with mutual, the four shares of the base net of it) and the payday, where the relief law closes relief 0 seat employed - the Institute graduated the novice and the city's law hire took the seat on Tuesday day 58 08:00 - a landing of the law, not of a door. Then (C-12, step 4b): the hirer offers the hired credit at exactly the cap, two weeks of the hired's average gross wage on file, a wrong-realm refusal then the landing (credit:offered, no money moved); one cent over the cap is refused by state (signed wrong-realm); the hired accepts on the offer's own bytes, a wrong-realm refusal then the landing (credit:accepted: the cents from the hirer's household to the hired's); a ticks step to the next payday, where the hired's wage lands whole and a quarter of the net goes back to the hirer by law (credit:repaid with remaining; credit:cleared would follow the payday that repays the last cent). The wages8 field (C-12) is written on every holder seat at each payday, and the first payday sits inside the first ticks step, so every recorded hash from #6 (the founding) on moved once when it landed (regenerated 2026-09-17 with the landing-by-landing check, no verdict flipped; the start hash did not move). Regenerate with `npx tsx bench/doors-vectors-small.ts`. The key seeds are public; these DIDs are test identities and must never hold value.",
+  "entries": [
+    {
+      "act": {
+        "kind": "admit",
+        "opening": {
+          "draft": {
+            "agent": 100,
+            "cap": {
+              "currency": "NHK",
+              "perTx": 22500,
+              "total": 90000
+            },
+            "cart": null,
+            "expiresAt": 43200,
+            "issuedAt": 0,
+            "kind": "intent",
+            "parent": null,
+            "principal": 100,
+            "refundable": true,
+            "scope": {
+              "categories": [
+                "grocery"
+              ],
+              "countries": "domestic",
+              "crossBorderIfCheaperBy": 0.15,
+              "merchants": "*"
+            },
+            "singleUse": false
+          },
+          "id": 95,
+          "signature": "ed25519:uMgdtLj6yB_-2nD-HdekEKytjibk2AJoNIFjo-As_dmHX_fcOLDFE_D1zQ-PMyCHh5TdcFnK8JIkmtcHAP5PAg"
+        },
+        "passport": {
+          "age": 32,
+          "city": "Halvik",
+          "did": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+          "name": "Gwen Hirer",
+          "posture": 3,
+          "signature": "ed25519:pd8BZEvqNc6mxeFx0m83BSW-N9mMMkYtP9AKfTSLz2ByIO6ONvapDLdvZQva-WO-KU4FcjaT0h5DubyyZOXNBA",
+          "values": {
+            "civic": 0.7,
+            "frugality": 0.5,
+            "risk": 0.4,
+            "trust": 0.6
+          }
+        }
+      },
+      "body": {
+        "opening": "{\"agent\":100,\"cap\":{\"currency\":\"NHK\",\"perTx\":22500,\"total\":90000},\"cart\":null,\"expiresAt\":43200,\"id\":95,\"issuedAt\":0,\"kind\":\"intent\",\"parent\":null,\"principal\":100,\"realm\":\"nordholm:Halvik:42\",\"refundable\":true,\"scope\":{\"categories\":[\"grocery\"],\"countries\":\"domestic\",\"crossBorderIfCheaperBy\":0.15,\"merchants\":\"*\"},\"singleUse\":false}",
+        "passport": "{\"age\":32,\"city\":\"Halvik\",\"did\":\"did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq\",\"name\":\"Gwen Hirer\",\"posture\":3,\"values\":{\"civic\":0.7,\"frugality\":0.5,\"risk\":0.4,\"trust\":0.6}}"
+      },
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the opening mandate's signature does not verify under"
+      },
+      "holder": "hirer",
+      "kind": "admit",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "72634628faf93840",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 0
+      }
+    },
+    {
+      "act": {
+        "kind": "admit",
+        "opening": {
+          "draft": {
+            "agent": 100,
+            "cap": {
+              "currency": "NHK",
+              "perTx": 22500,
+              "total": 90000
+            },
+            "cart": null,
+            "expiresAt": 43200,
+            "issuedAt": 0,
+            "kind": "intent",
+            "parent": null,
+            "principal": 100,
+            "refundable": true,
+            "scope": {
+              "categories": [
+                "grocery"
+              ],
+              "countries": "domestic",
+              "crossBorderIfCheaperBy": 0.15,
+              "merchants": "*"
+            },
+            "singleUse": false
+          },
+          "id": 95,
+          "signature": "ed25519:FbS6_zw35M0aJ-zvyvoPSBZbh3HvNErsynz9B4eAsgri3AsLQ6ZWhWOuOMrV9bPzKU04w23L2xmscuC-GN2gBw"
+        },
+        "passport": {
+          "age": 32,
+          "city": "Halvik",
+          "did": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+          "name": "Gwen Hirer",
+          "posture": 3,
+          "signature": "ed25519:pd8BZEvqNc6mxeFx0m83BSW-N9mMMkYtP9AKfTSLz2ByIO6ONvapDLdvZQva-WO-KU4FcjaT0h5DubyyZOXNBA",
+          "values": {
+            "civic": 0.7,
+            "frugality": 0.5,
+            "risk": 0.4,
+            "trust": 0.6
+          }
+        }
+      },
+      "body": {
+        "opening": "{\"agent\":100,\"cap\":{\"currency\":\"NHK\",\"perTx\":22500,\"total\":90000},\"cart\":null,\"expiresAt\":43200,\"id\":95,\"issuedAt\":0,\"kind\":\"intent\",\"parent\":null,\"principal\":100,\"realm\":\"nordholm:Halvik:42\",\"refundable\":true,\"scope\":{\"categories\":[\"grocery\"],\"countries\":\"domestic\",\"crossBorderIfCheaperBy\":0.15,\"merchants\":\"*\"},\"singleUse\":false}",
+        "passport": "{\"age\":32,\"city\":\"Halvik\",\"did\":\"did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq\",\"name\":\"Gwen Hirer\",\"posture\":3,\"values\":{\"civic\":0.7,\"frugality\":0.5,\"risk\":0.4,\"trust\":0.6}}"
+      },
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "agent:personal:created",
+          "admission:resident:admitted",
+          "mandate:intent:issued",
+          "welcome credit"
+        ]
+      },
+      "holder": "hirer",
+      "kind": "admit",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "72634628faf93840",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 0
+      }
+    },
+    {
+      "act": {
+        "kind": "admit",
+        "opening": {
+          "draft": {
+            "agent": 101,
+            "cap": {
+              "currency": "NHK",
+              "perTx": 22500,
+              "total": 90000
+            },
+            "cart": null,
+            "expiresAt": 43200,
+            "issuedAt": 0,
+            "kind": "intent",
+            "parent": null,
+            "principal": 101,
+            "refundable": true,
+            "scope": {
+              "categories": [
+                "grocery"
+              ],
+              "countries": "domestic",
+              "crossBorderIfCheaperBy": 0.15,
+              "merchants": "*"
+            },
+            "singleUse": false
+          },
+          "id": 96,
+          "signature": "ed25519:EgWvqnhzwWCI2Sd3ThpuQY7R5nu-T4PJIChOTWQ8561Bd3hxDKgW5muui9oJ6mpYtaT0Cu6uv8hHj3H5zEjkDw"
+        },
+        "passport": {
+          "age": 32,
+          "city": "Halvik",
+          "did": "did:key:z6MkjjVbPyzbj4JU3pK7PmzqWE2x9KrUcQpcsncEUVuv7fGS",
+          "name": "Hal Hired",
+          "posture": 3,
+          "signature": "ed25519:9n2cU2O1BBL3cFDqiNYjcxqQ3pQuUI9JZc2StFnHFKQQsy2WEC041zXK7ivF7Di8n0yti4lEuXbX0kvFG108CA",
+          "values": {
+            "civic": 0.7,
+            "frugality": 0.5,
+            "risk": 0.4,
+            "trust": 0.6
+          }
+        }
+      },
+      "body": {
+        "opening": "{\"agent\":101,\"cap\":{\"currency\":\"NHK\",\"perTx\":22500,\"total\":90000},\"cart\":null,\"expiresAt\":43200,\"id\":96,\"issuedAt\":0,\"kind\":\"intent\",\"parent\":null,\"principal\":101,\"realm\":\"nordholm:Halvik:42\",\"refundable\":true,\"scope\":{\"categories\":[\"grocery\"],\"countries\":\"domestic\",\"crossBorderIfCheaperBy\":0.15,\"merchants\":\"*\"},\"singleUse\":false}",
+        "passport": "{\"age\":32,\"city\":\"Halvik\",\"did\":\"did:key:z6MkjjVbPyzbj4JU3pK7PmzqWE2x9KrUcQpcsncEUVuv7fGS\",\"name\":\"Hal Hired\",\"posture\":3,\"values\":{\"civic\":0.7,\"frugality\":0.5,\"risk\":0.4,\"trust\":0.6}}"
+      },
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "agent:personal:created",
+          "admission:resident:admitted",
+          "mandate:intent:issued",
+          "welcome credit"
+        ]
+      },
+      "holder": "hired",
+      "kind": "admit",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "a8baabbc889e9548",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 0
+      }
+    },
+    {
+      "act": {
+        "kind": "admit",
+        "opening": {
+          "draft": {
+            "agent": 102,
+            "cap": {
+              "currency": "NHK",
+              "perTx": 22500,
+              "total": 90000
+            },
+            "cart": null,
+            "expiresAt": 43200,
+            "issuedAt": 0,
+            "kind": "intent",
+            "parent": null,
+            "principal": 102,
+            "refundable": true,
+            "scope": {
+              "categories": [
+                "grocery"
+              ],
+              "countries": "domestic",
+              "crossBorderIfCheaperBy": 0.15,
+              "merchants": "*"
+            },
+            "singleUse": false
+          },
+          "id": 97,
+          "signature": "ed25519:MpnT1aJOMP-puY-LkoV96cIaQaVKODvmY_ttExxxrIUrKldkSTzWlKbifeB4w2fSOQua6agMrU3eaPjxl4vtAA"
+        },
+        "passport": {
+          "age": 32,
+          "city": "Halvik",
+          "did": "did:key:z6MkszrGwDFtYZtDKzTwtucMdXjbfvo1G9zAPZpC6tAuSzz6",
+          "name": "Eve Evaluator",
+          "posture": 3,
+          "signature": "ed25519:fKEzFtp8gi7DLhlYVLNvoBnWbEGFFr-5HpvNZHaLl1Q6VdNnjCYR9oSRpBlXRiahMvD-aHtfXppOOuKGuByzBg",
+          "values": {
+            "civic": 0.7,
+            "frugality": 0.5,
+            "risk": 0.4,
+            "trust": 0.6
+          }
+        }
+      },
+      "body": {
+        "opening": "{\"agent\":102,\"cap\":{\"currency\":\"NHK\",\"perTx\":22500,\"total\":90000},\"cart\":null,\"expiresAt\":43200,\"id\":97,\"issuedAt\":0,\"kind\":\"intent\",\"parent\":null,\"principal\":102,\"realm\":\"nordholm:Halvik:42\",\"refundable\":true,\"scope\":{\"categories\":[\"grocery\"],\"countries\":\"domestic\",\"crossBorderIfCheaperBy\":0.15,\"merchants\":\"*\"},\"singleUse\":false}",
+        "passport": "{\"age\":32,\"city\":\"Halvik\",\"did\":\"did:key:z6MkszrGwDFtYZtDKzTwtucMdXjbfvo1G9zAPZpC6tAuSzz6\",\"name\":\"Eve Evaluator\",\"posture\":3,\"values\":{\"civic\":0.7,\"frugality\":0.5,\"risk\":0.4,\"trust\":0.6}}"
+      },
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "agent:personal:created",
+          "admission:resident:admitted",
+          "mandate:intent:issued",
+          "welcome credit"
+        ]
+      },
+      "holder": "evaluator",
+      "kind": "admit",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "bca7069d2e6373bf",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 0
+      }
+    },
+    {
+      "act": {
+        "kind": "admit",
+        "opening": {
+          "draft": {
+            "agent": 103,
+            "cap": {
+              "currency": "NHK",
+              "perTx": 22500,
+              "total": 90000
+            },
+            "cart": null,
+            "expiresAt": 43200,
+            "issuedAt": 0,
+            "kind": "intent",
+            "parent": null,
+            "principal": 103,
+            "refundable": true,
+            "scope": {
+              "categories": [
+                "grocery"
+              ],
+              "countries": "domestic",
+              "crossBorderIfCheaperBy": 0.15,
+              "merchants": "*"
+            },
+            "singleUse": false
+          },
+          "id": 98,
+          "signature": "ed25519:rGIgRUguGzt3qSFUcLF1oE2-D8HucoJiZ7Gg_5mTt-4LOCQWTERcOvxUbT0aweBwK9Nx8ylvL8WS4yu82ZkrDA"
+        },
+        "passport": {
+          "age": 32,
+          "city": "Halvik",
+          "did": "did:key:z6MkggTXEdAPiKsqymry2UGy8Vt3nFe7Jf9KFCutjXNkPPr5",
+          "name": "Otto Other",
+          "posture": 3,
+          "signature": "ed25519:Y9v807xDOaZ1GcENHcxcP8wNpUWtOStW3JgBtBIJ2O074M3oBycUre83FkfRtuzSr5ldpw8RjiI_DMX8mevYCg",
+          "values": {
+            "civic": 0.7,
+            "frugality": 0.5,
+            "risk": 0.4,
+            "trust": 0.6
+          }
+        }
+      },
+      "body": {
+        "opening": "{\"agent\":103,\"cap\":{\"currency\":\"NHK\",\"perTx\":22500,\"total\":90000},\"cart\":null,\"expiresAt\":43200,\"id\":98,\"issuedAt\":0,\"kind\":\"intent\",\"parent\":null,\"principal\":103,\"realm\":\"nordholm:Halvik:42\",\"refundable\":true,\"scope\":{\"categories\":[\"grocery\"],\"countries\":\"domestic\",\"crossBorderIfCheaperBy\":0.15,\"merchants\":\"*\"},\"singleUse\":false}",
+        "passport": "{\"age\":32,\"city\":\"Halvik\",\"did\":\"did:key:z6MkggTXEdAPiKsqymry2UGy8Vt3nFe7Jf9KFCutjXNkPPr5\",\"name\":\"Otto Other\",\"posture\":3,\"values\":{\"civic\":0.7,\"frugality\":0.5,\"risk\":0.4,\"trust\":0.6}}"
+      },
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "agent:personal:created",
+          "admission:resident:admitted",
+          "mandate:intent:issued",
+          "welcome credit"
+        ]
+      },
+      "holder": "other",
+      "kind": "admit",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "8c4e03aeb5ef9a16",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 0
+      }
+    },
+    {
+      "n": 10980,
+      "step": "ticks",
+      "tick": 0
+    },
+    {
+      "building": 27,
+      "close": {
+        "because": "a closing (the hire fixture)",
+        "firm": 20
+      },
+      "expect": {
+        "firm": 28,
+        "hash": "93561a1cece74b6b",
+        "mandate": 551
+      },
+      "holder": "hirer",
+      "stake": {
+        "because": "a stake (the hire fixture)",
+        "cents": 5000000
+      },
+      "step": "foundFirm",
+      "tick": 10980
+    },
+    {
+      "act": {
+        "by": 100,
+        "kind": "hire",
+        "signature": "ed25519:6fgxt0gmS78_WO8xHAsMzPhgw7-Z63owy492VaVqLwb17wwLx8KPwjmEfphZ3V_Mwvxc2Ofe9oM6NjLQrPDRBQ",
+        "terms": {
+          "credential": "social:1",
+          "days": 7,
+          "evaluator": 102,
+          "firm": 27,
+          "hired": 101,
+          "slot": 41
+        }
+      },
+      "body": "{\"action\":\"hire\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":102,\"firm\":27,\"hired\":101,\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"slot\":41,\"tick\":10980,\"wage\":2545}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the hire's signature does not verify under"
+      },
+      "holder": "hirer",
+      "kind": "hire",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "93561a1cece74b6b",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 10980
+      }
+    },
+    {
+      "act": {
+        "by": 100,
+        "kind": "hire",
+        "signature": "ed25519:87V7YGGCEe6D7MQ5fSRJkwmLJqtC_lvy-dFT1M05FCN-V18z4zXGMf7SVA3PA7ry7Q6WKGM5JabsDrmI9nGsBw",
+        "terms": {
+          "credential": "social:1",
+          "days": 7,
+          "evaluator": 102,
+          "firm": 27,
+          "hired": 101,
+          "slot": 41
+        }
+      },
+      "body": "{\"action\":\"hire\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":102,\"firm\":27,\"hired\":101,\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"slot\":41,\"tick\":10980,\"wage\":2545}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:offered"
+        ]
+      },
+      "holder": "hirer",
+      "kind": "hire",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "93561a1cece74b6b",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 10980
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "hire": 0,
+        "kind": "acceptHire",
+        "signature": "ed25519:ENsXezItiLXNJT_qBXNWglVnI-fHoHXrUXQVnu8jlmud-TtjFzuaFWcodfNY5A08-UFk1NhUntqTjDsVq3LRDg"
+      },
+      "body": "{\"action\":\"hire\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":102,\"firm\":27,\"hired\":101,\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"slot\":41,\"tick\":10980,\"wage\":2545}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the acceptance's signature does not verify under"
+      },
+      "holder": "hired",
+      "kind": "acceptHire",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "06f776fe5d911647",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 10980
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "hire": 0,
+        "kind": "acceptHire",
+        "signature": "ed25519:1_N0m8z02NB4Y5rzNjU5s3Juy3wr1wTklv7zo_p23L0e9XLkqIJNNwTvQAdbDJGMw1uOqIBrYd0hrFUNN_RhDA"
+      },
+      "body": "{\"action\":\"hire\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":102,\"firm\":27,\"hired\":101,\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"slot\":41,\"tick\":10980,\"wage\":2545}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:accepted"
+        ]
+      },
+      "holder": "hired",
+      "kind": "acceptHire",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "06f776fe5d911647",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 10980
+      }
+    },
+    {
+      "n": 5881,
+      "step": "ticks",
+      "tick": 10980
+    },
+    {
+      "act": {
+        "because": "showed up every day and the shelves were full",
+        "by": 102,
+        "hire": 0,
+        "kind": "evaluateHire",
+        "signature": "ed25519:2cqfkqpTaK_1CMCRabgL-JB94DeohonYaB-pyOyshUTIo_ioZgF8-BPKZ2p1IjNDsxQDSzI9Fd7JcoCPl08TAQ",
+        "verdict": "passed"
+      },
+      "body": "{\"action\":\"evaluateHire\",\"because\":\"showed up every day and the shelves were full\",\"hire\":0,\"realm\":\"nordholm:Halvik:42\",\"tick\":16861,\"verdict\":\"passed\"}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the evaluation's signature does not verify under"
+      },
+      "holder": "evaluator",
+      "kind": "evaluateHire",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "bde0cf0c3ea7e14c",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "because": "showed up every day and the shelves were full",
+        "by": 102,
+        "hire": 0,
+        "kind": "evaluateHire",
+        "signature": "ed25519:H0aMf_LuPMt-J81Mzhju4HfRd4jJJs1yv5nwEFdw69EQ1GC_3iysiHW19D2n4E7ELKCNdUxuOY0xuoaxaJ-lAw",
+        "verdict": "passed"
+      },
+      "body": "{\"action\":\"evaluateHire\",\"because\":\"showed up every day and the shelves were full\",\"hire\":0,\"realm\":\"nordholm:Halvik:42\",\"tick\":16861,\"verdict\":\"passed\"}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:evaluated",
+          "hire:settled"
+        ]
+      },
+      "holder": "evaluator",
+      "kind": "evaluateHire",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "bde0cf0c3ea7e14c",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "kind": "register",
+        "request": {
+          "did": "did:key:z6MkqpRPYctN6qC3VTjfJb6Vx2py8DK1LuMWfSuyniZ2ViYf",
+          "interests": [
+            "craft",
+            "community"
+          ],
+          "introduction": "a key from outside, here to learn a craft and to work",
+          "name": "Eli Applicant",
+          "requestId": "vectors-small-42-applicant-1",
+          "rules": "living-world-conduct-2026-09-15",
+          "runner": "bench/doors-vectors-small.ts"
+        },
+        "signature": "ed25519:7CpYcS9XvYVK_22d17dx212C6EceHfSvZjXvGN0x_JFxpJJzLLyhwnB1KpC6bqZqVY3iZloZOe7NkzFyG_tHBw"
+      },
+      "body": "{\"did\":\"did:key:z6MkqpRPYctN6qC3VTjfJb6Vx2py8DK1LuMWfSuyniZ2ViYf\",\"interests\":[\"craft\",\"community\"],\"introduction\":\"a key from outside, here to learn a craft and to work\",\"name\":\"Eli Applicant\",\"realm\":\"nordholm:Halvik:42\",\"requestId\":\"vectors-small-42-applicant-1\",\"rules\":\"living-world-conduct-2026-09-15\",\"runner\":\"bench/doors-vectors-small.ts\",\"tick\":16861}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the application's signature does not verify under"
+      },
+      "holder": "applicant",
+      "kind": "register",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "703ca2e685f7681f",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "kind": "register",
+        "request": {
+          "did": "did:key:z6MkqpRPYctN6qC3VTjfJb6Vx2py8DK1LuMWfSuyniZ2ViYf",
+          "interests": [
+            "craft",
+            "community"
+          ],
+          "introduction": "a key from outside, here to learn a craft and to work",
+          "name": "Eli Applicant",
+          "requestId": "vectors-small-42-applicant-1",
+          "rules": "living-world-conduct-2026-09-15",
+          "runner": "bench/doors-vectors-small.ts"
+        },
+        "signature": "ed25519:hJdzNv62hAQy3HussfNXPlKCaJrKnTSwXwSQNyzeOIrusKPoYxQscvvUaJ7V-bR_k9hRuS1oBK1hTqyJWMSLAA"
+      },
+      "body": "{\"did\":\"did:key:z6MkqpRPYctN6qC3VTjfJb6Vx2py8DK1LuMWfSuyniZ2ViYf\",\"interests\":[\"craft\",\"community\"],\"introduction\":\"a key from outside, here to learn a craft and to work\",\"name\":\"Eli Applicant\",\"realm\":\"nordholm:Halvik:42\",\"requestId\":\"vectors-small-42-applicant-1\",\"rules\":\"living-world-conduct-2026-09-15\",\"runner\":\"bench/doors-vectors-small.ts\",\"tick\":16861}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "registration:received"
+        ]
+      },
+      "holder": "applicant",
+      "kind": "register",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "703ca2e685f7681f",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "because": "read the conduct; welcome",
+        "by": 100,
+        "kind": "decide",
+        "registration": 0,
+        "signature": "ed25519:OLD6vme6SskaA7kaU5k1RWzsrdDXo1N2LLHU77r329DJBPGJegcTd5NH0kIJ_WgoKb7EgIORIbITar5GBd1ODw",
+        "status": "approved"
+      },
+      "body": "{\"action\":\"decide\",\"because\":\"read the conduct; welcome\",\"realm\":\"nordholm:Halvik:42\",\"registration\":0,\"revision\":0,\"status\":\"approved\",\"tick\":16861}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the decision's signature does not verify under"
+      },
+      "holder": "hirer",
+      "kind": "decide",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "91146d50dba760a9",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "because": "read the conduct; welcome",
+        "by": 100,
+        "kind": "decide",
+        "registration": 0,
+        "signature": "ed25519:ypWciNm-OXVoe15gOq1AIRDZeZM5wMTmalQTaqtNeIQRXbHyWMzQS16AU3n4zbp_cF9g7ldAkoH0IHaayG8LAw",
+        "status": "approved"
+      },
+      "body": "{\"action\":\"decide\",\"because\":\"read the conduct; welcome\",\"realm\":\"nordholm:Halvik:42\",\"registration\":0,\"revision\":0,\"status\":\"approved\",\"tick\":16861}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "registration:decided"
+        ]
+      },
+      "holder": "hirer",
+      "kind": "decide",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "91146d50dba760a9",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 103,
+        "kind": "writeWork",
+        "signature": "ed25519:BdFw2BoBx88qTF_IqP2PH2thhdoTI6whd9G0jtaBf1imsmBarDeSok9Ks6wMCIvAnhywiIyO4SqI-qAewjPDAA",
+        "text": "Eight days at the Institute, a credential, and a slot at a city firm by law. The shelves at the grocer were full.",
+        "title": "A first week in the city"
+      },
+      "body": "{\"action\":\"writeWork\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"text\":\"Eight days at the Institute, a credential, and a slot at a city firm by law. The shelves at the grocer were full.\",\"tick\":16861,\"title\":\"A first week in the city\"}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the work's signature does not verify under"
+      },
+      "holder": "other",
+      "kind": "writeWork",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "38b9a3b4da7cf225",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 103,
+        "kind": "writeWork",
+        "signature": "ed25519:iOgXtdfm6qARGq1kw4kAJQiDn6746Ka7UlV5bL6R2LG-yoQjuPJ_HNcvMgR8q570TJL6AyxUio4V3lNq8DszDg",
+        "text": "Eight days at the Institute, a credential, and a slot at a city firm by law. The shelves at the grocer were full.",
+        "title": "A first week in the city"
+      },
+      "body": "{\"action\":\"writeWork\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"text\":\"Eight days at the Institute, a credential, and a slot at a city firm by law. The shelves at the grocer were full.\",\"tick\":16861,\"title\":\"A first week in the city\"}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "work:written"
+        ]
+      },
+      "holder": "other",
+      "kind": "writeWork",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "38b9a3b4da7cf225",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 103,
+        "kind": "withdrawWork",
+        "signature": "ed25519:SjTMbKtE-5sOhYR2agyvWe20NIiPo8bjopP089qM_qkvRD9lt_f9G_hiy6ir48M2eUTQibg-28imvXaIJlrEBw",
+        "work": 0
+      },
+      "body": "{\"action\":\"withdrawWork\",\"realm\":\"nordholm:Halvik:42\",\"tick\":16861,\"work\":0}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the withdrawal's signature does not verify under"
+      },
+      "holder": "other",
+      "kind": "withdrawWork",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "08162c7cae7491a5",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 103,
+        "kind": "withdrawWork",
+        "signature": "ed25519:-dJ_u_TrR7a5IChoqbejpOn2IYmt_EUebHdd5noEenBVSyf5ktyS_LX_xbo8cw7cIab6rGUaJl_m80zFxx8QBA",
+        "work": 0
+      },
+      "body": "{\"action\":\"withdrawWork\",\"realm\":\"nordholm:Halvik:42\",\"tick\":16861,\"work\":0}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "work:withdrawn"
+        ]
+      },
+      "holder": "other",
+      "kind": "withdrawWork",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "08162c7cae7491a5",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 100,
+        "field": "wageFloor1",
+        "kind": "setPolicy",
+        "signature": "ed25519:Y17OHmyaZBq0NBwwvytKqfxaAKcfl_K7-8cCDC0lzWbKHCcYaDlb1nmAeZffAdfFqHJlZKl4ALP5qRrnNjTNAw",
+        "value": 2200
+      },
+      "body": "{\"action\":\"setPolicy\",\"field\":\"wageFloor1\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":16861,\"value\":2200}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the policy's signature does not verify under"
+      },
+      "holder": "hirer",
+      "kind": "setPolicy",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "fdf7cc160d7369c8",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 100,
+        "field": "wageFloor1",
+        "kind": "setPolicy",
+        "signature": "ed25519:eQdlyzlQt3B30poOBLdFSpU71HRVcvqSzXN4KXAXgfcHP1TgaCWy2QteaNLkesf9kV9T0xOo5Ie5IRaDBJZoAA",
+        "value": 2200
+      },
+      "body": "{\"action\":\"setPolicy\",\"field\":\"wageFloor1\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":16861,\"value\":2200}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "policy:changed"
+        ]
+      },
+      "holder": "hirer",
+      "kind": "setPolicy",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "fdf7cc160d7369c8",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "kind": "admit",
+        "opening": {
+          "draft": {
+            "agent": 105,
+            "cap": {
+              "currency": "NHK",
+              "perTx": 22500,
+              "total": 90000
+            },
+            "cart": null,
+            "expiresAt": 60061,
+            "issuedAt": 16861,
+            "kind": "intent",
+            "parent": null,
+            "principal": 104,
+            "refundable": true,
+            "scope": {
+              "categories": [
+                "grocery"
+              ],
+              "countries": "domestic",
+              "crossBorderIfCheaperBy": 0.15,
+              "merchants": "*"
+            },
+            "singleUse": false
+          },
+          "id": 764,
+          "signature": "ed25519:Yy-UFPlrXGI10fDUjAI8bFXrJJ2uzIvmZ3uGY7-Yn0YyUDnBu9JRTJ4Cha6Vj9f6jiqilJsfBPviFNMxDGBPDg"
+        },
+        "passport": {
+          "age": 32,
+          "city": "Halvik",
+          "did": "did:key:z6MkiuB5gs3xntzqSaVXhSYr1WDfxBsxgm33BkjfgEZS2hyU",
+          "name": "Fay Client",
+          "posture": 3,
+          "signature": "ed25519:ZnwF1_FOcrhiSLq7TskOtPGsliWeTYf1MZxA3vCDCxr8MmIl-TZ1f4QR0pR9GoF1TzRvQl7YtYZ7mLRYd1NmAQ",
+          "values": {
+            "civic": 0.7,
+            "frugality": 0.5,
+            "risk": 0.4,
+            "trust": 0.6
+          }
+        }
+      },
+      "body": {
+        "opening": "{\"agent\":105,\"cap\":{\"currency\":\"NHK\",\"perTx\":22500,\"total\":90000},\"cart\":null,\"expiresAt\":60061,\"id\":764,\"issuedAt\":16861,\"kind\":\"intent\",\"parent\":null,\"principal\":104,\"realm\":\"nordholm:Halvik:42\",\"refundable\":true,\"scope\":{\"categories\":[\"grocery\"],\"countries\":\"domestic\",\"crossBorderIfCheaperBy\":0.15,\"merchants\":\"*\"},\"singleUse\":false}",
+        "passport": "{\"age\":32,\"city\":\"Halvik\",\"did\":\"did:key:z6MkiuB5gs3xntzqSaVXhSYr1WDfxBsxgm33BkjfgEZS2hyU\",\"name\":\"Fay Client\",\"posture\":3,\"values\":{\"civic\":0.7,\"frugality\":0.5,\"risk\":0.4,\"trust\":0.6}}"
+      },
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "agent:personal:created",
+          "admission:resident:admitted",
+          "mandate:intent:issued",
+          "welcome credit"
+        ]
+      },
+      "holder": "client",
+      "kind": "admit",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "c175ed41522d9eb9",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 104,
+        "kind": "hireTask",
+        "signature": "ed25519:YcjeY6k0hENIcCeePOc5VfOIYsnpffdEd7D7J3hJWx_BlaGMCkRDSmjfPoyFnAJW_6e4vk3dVY6vBRBGDvt3Dg",
+        "terms": {
+          "credential": "social:1",
+          "days": 7,
+          "evaluator": 102,
+          "fee": 50000,
+          "hired": 101
+        }
+      },
+      "body": "{\"action\":\"hireTask\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":102,\"fee\":50000,\"hired\":101,\"realm\":\"nordholm:Halvik:42\",\"seq\":4,\"tick\":16861}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the task's signature does not verify under"
+      },
+      "holder": "client",
+      "kind": "hireTask",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "c31e1514d6635dd9",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 104,
+        "kind": "hireTask",
+        "signature": "ed25519:39no8QtNf_QCWcP1ADroPRs7VLztdlaIZc7d8AKPtbOKoBMHdTfXdBe-1G8PWICrJ4hC-cv9hvyAHPo3X17MBg",
+        "terms": {
+          "credential": "social:1",
+          "days": 7,
+          "evaluator": 102,
+          "fee": 50000,
+          "hired": 101
+        }
+      },
+      "body": "{\"action\":\"hireTask\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":102,\"fee\":50000,\"hired\":101,\"realm\":\"nordholm:Halvik:42\",\"seq\":4,\"tick\":16861}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:offered"
+        ]
+      },
+      "holder": "client",
+      "kind": "hireTask",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "c31e1514d6635dd9",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "hire": 4,
+        "kind": "acceptTask",
+        "signature": "ed25519:WcKqTxNe-3mkbmFKzoCUEP2OuR7Q97AXUYnKbcWhHxfz75bbku8X_WJBdoLJDzZTx9e6zB_PIskSTgtZcQiwAQ"
+      },
+      "body": "{\"action\":\"hireTask\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":102,\"fee\":50000,\"hired\":101,\"realm\":\"nordholm:Halvik:42\",\"seq\":4,\"tick\":16861}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the acceptance's signature does not verify under"
+      },
+      "holder": "hired",
+      "kind": "acceptTask",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "f9338df264448e3e",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "hire": 4,
+        "kind": "acceptTask",
+        "signature": "ed25519:Yk9XaXns280Re1bv104sCSmxre6ZgZ1w_V0qXR003fyUxB1HETZJCUIV-YbGJJAIuXbtk5C89YWCbfyY8tC2Cg"
+      },
+      "body": "{\"action\":\"hireTask\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":102,\"fee\":50000,\"hired\":101,\"realm\":\"nordholm:Halvik:42\",\"seq\":4,\"tick\":16861}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "task fee escrowed",
+          "hire:accepted"
+        ]
+      },
+      "holder": "hired",
+      "kind": "acceptTask",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "f9338df264448e3e",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "kind": "writeWork",
+        "signature": "ed25519:8dLasx3S_J93tM-bU2V4EdeP4eXqGcaNRlX8UzEv3vswRDFza8SlUyqzHO2R-WOhoFMV-kvVNA1bCliNmfCqBg",
+        "text": "A count of every shelf in the grocer, written for the client that asked for it.",
+        "title": "The shelves, counted"
+      },
+      "body": "{\"action\":\"writeWork\",\"realm\":\"nordholm:Halvik:42\",\"seq\":1,\"text\":\"A count of every shelf in the grocer, written for the client that asked for it.\",\"tick\":16861,\"title\":\"The shelves, counted\"}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "work:written"
+        ]
+      },
+      "holder": "hired",
+      "kind": "writeWork",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "6c017557e82794b6",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "hire": 4,
+        "kind": "deliverTask",
+        "signature": "ed25519:J9SKmoQMRQKMjTtS0lZsGKfI9CM2cM6zQZLGFFWvBYhOYnd6PR69W3fsF68957QXF4Ah4WkjRwYUfqUQP-pxCQ",
+        "work": 1
+      },
+      "body": "{\"action\":\"deliverTask\",\"hire\":4,\"realm\":\"nordholm:Halvik:42\",\"tick\":16861,\"work\":1}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the delivery's signature does not verify under"
+      },
+      "holder": "hired",
+      "kind": "deliverTask",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "37e0ff2ce2efd0bf",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "hire": 4,
+        "kind": "deliverTask",
+        "signature": "ed25519:rV7SvEJHbcw9bjOzwm8fp1AitFm285S9PVNBg-iU_kv7NJteX_WkMZO0q1Kq05aruFVW1EskTPSCCZ8rLIwtBw",
+        "work": 1
+      },
+      "body": "{\"action\":\"deliverTask\",\"hire\":4,\"realm\":\"nordholm:Halvik:42\",\"tick\":16861,\"work\":1}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:delivered"
+        ]
+      },
+      "holder": "hired",
+      "kind": "deliverTask",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "37e0ff2ce2efd0bf",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "because": "the count was right",
+        "by": 102,
+        "hire": 4,
+        "kind": "evaluateHire",
+        "signature": "ed25519:scS4izhQAB6Y8fl4tdvkB5vy0-giv93qznfIDO1gWmQFYdcHoiXM5oGVNC4zS5uVyjsqd6L_HQeGTDl3u9msAA",
+        "verdict": "passed"
+      },
+      "body": "{\"action\":\"evaluateHire\",\"because\":\"the count was right\",\"hire\":4,\"realm\":\"nordholm:Halvik:42\",\"tick\":16861,\"verdict\":\"passed\"}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:evaluated",
+          "task fee",
+          "hire:settled"
+        ]
+      },
+      "holder": "evaluator",
+      "kind": "evaluateHire",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "8f6df8a7d3cb5902",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "hire": 4,
+        "kind": "appealHire",
+        "signature": "ed25519:JwbFa3Dq_lVtZZHhvnO1vvMz4Nya6eHM-r9mtcMgWNRctYr2Ir_-hxtSdHKZrSlOnLEPFvkxDNhnLdi9EDZkAg"
+      },
+      "body": "{\"action\":\"appealHire\",\"hire\":4,\"realm\":\"nordholm:Halvik:42\",\"tick\":16861}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: task #4 is not appealable; a task's failed evaluation refunds the fee at once and is final (C-1)"
+      },
+      "holder": "hired",
+      "kind": "appealHire",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "5ec6dd09ad07d266",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "because": "the count was right",
+        "by": 103,
+        "hire": 4,
+        "kind": "evaluateAppeal",
+        "signature": "ed25519:fHNetAQbJfMFv3mjIOyLQJV0G01NfzFfwrj6s0pw20SKWDc98QTx7P_lWm2RYwa8BlWR_UDCKQNuHtKoOvaEBA",
+        "verdict": "passed"
+      },
+      "body": "{\"action\":\"evaluateAppeal\",\"because\":\"the count was right\",\"hire\":4,\"realm\":\"nordholm:Halvik:42\",\"tick\":16861,\"verdict\":\"passed\"}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: hire #4 is passed, not appealed"
+      },
+      "holder": "other",
+      "kind": "evaluateAppeal",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "5ec6dd09ad07d266",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 104,
+        "kind": "hireTask",
+        "signature": "ed25519:cclFbuxifF3KAHeuuTsAews4Nn1uNOo97H3-d-WdLGhxuLbuF-zEHzaSmXwPRwl8ChgwRLnWcQlw6bqgZwL1Cw",
+        "terms": {
+          "credential": "social:1",
+          "days": 7,
+          "evaluator": 102,
+          "fee": 50000,
+          "hired": 101
+        }
+      },
+      "body": "{\"action\":\"hireTask\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":102,\"fee\":50000,\"hired\":101,\"realm\":\"nordholm:Halvik:42\",\"seq\":5,\"tick\":16861}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:offered"
+        ]
+      },
+      "holder": "client",
+      "kind": "hireTask",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "5ec6dd09ad07d266",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "hire": 5,
+        "kind": "acceptTask",
+        "signature": "ed25519:t1jn3X4fG6mcy9IDMm87q-Xn6BTFa4I1tKnims63gcCPOypg6tUkTWwQFRqWv2xhghQxqqeDHj6wWpPsdjLsAA"
+      },
+      "body": "{\"action\":\"hireTask\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":102,\"fee\":50000,\"hired\":101,\"realm\":\"nordholm:Halvik:42\",\"seq\":5,\"tick\":16861}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "task fee escrowed",
+          "hire:accepted"
+        ]
+      },
+      "holder": "hired",
+      "kind": "acceptTask",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "a2fb22763d5546f0",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "kind": "writeWork",
+        "signature": "ed25519:LgXGvqZw-TOzk30iAC6hTErdQAkh6Cmjcqbf9jZ677pNxszTUWeEYE7d8t6UjBVq4DcJu5qoqmZnc4Bc68HfCw",
+        "text": "A second count of every shelf in the grocer, written for the same client.",
+        "title": "The shelves, counted again"
+      },
+      "body": "{\"action\":\"writeWork\",\"realm\":\"nordholm:Halvik:42\",\"seq\":2,\"text\":\"A second count of every shelf in the grocer, written for the same client.\",\"tick\":16861,\"title\":\"The shelves, counted again\"}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "work:written"
+        ]
+      },
+      "holder": "hired",
+      "kind": "writeWork",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "27ba328a1bdeb3a2",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "hire": 5,
+        "kind": "deliverTask",
+        "signature": "ed25519:btrqiDoiDKdaRxQYSW5vV95e-uWt9dv1LFr7tQhxVB-JGYyskPoCuavHIwsgAzOz7NWrZprRXH88-ZJzKZK2AQ",
+        "work": 2
+      },
+      "body": "{\"action\":\"deliverTask\",\"hire\":5,\"realm\":\"nordholm:Halvik:42\",\"tick\":16861,\"work\":2}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:delivered"
+        ]
+      },
+      "holder": "hired",
+      "kind": "deliverTask",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "694c9b2fb6767c46",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "act": {
+        "because": "the second count was right too",
+        "by": 102,
+        "hire": 5,
+        "kind": "evaluateHire",
+        "signature": "ed25519:AIelYVpRzYqy3b-lBaplv-tNu1-7T6SDGvBokI-Diy3LD139sWS2JSg0waMsjT4fhQCLkUXpv55geFpVhe1yDA",
+        "verdict": "passed"
+      },
+      "body": "{\"action\":\"evaluateHire\",\"because\":\"the second count was right too\",\"hire\":5,\"realm\":\"nordholm:Halvik:42\",\"tick\":16861,\"verdict\":\"passed\"}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:evaluated",
+          "task fee",
+          "hire:settled",
+          "credential:granted"
+        ]
+      },
+      "holder": "evaluator",
+      "kind": "evaluateHire",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "2896fc839f56e442",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "building": 29,
+      "close": {
+        "because": "a closing (the hire fixture)",
+        "firm": 21
+      },
+      "expect": {
+        "firm": 29,
+        "hash": "fa8135cf16e70c35",
+        "mandate": 765
+      },
+      "holder": "other",
+      "stake": {
+        "because": "a stake (the hire fixture)",
+        "cents": 5000000
+      },
+      "step": "foundFirm",
+      "tick": 16861
+    },
+    {
+      "act": {
+        "by": 103,
+        "kind": "hire",
+        "signature": "ed25519:3X88bmUyrLmctAH7JzIcs4PYp473FOxFHsxkSKpNbUWoKTdDWULxgJNSMpz6cCVAqrUsn6pOcGJpQ2wobXa-Bg",
+        "terms": {
+          "credential": "social:1",
+          "days": 21,
+          "evaluator": 102,
+          "firm": 29,
+          "hired": 104,
+          "slot": 42
+        }
+      },
+      "body": "{\"action\":\"hire\",\"credential\":\"social:1\",\"days\":21,\"evaluator\":102,\"firm\":29,\"hired\":104,\"realm\":\"nordholm:Halvik:42\",\"seq\":6,\"slot\":42,\"tick\":16861,\"wage\":2720}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:offered"
+        ]
+      },
+      "holder": "other",
+      "kind": "hire",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "fa8135cf16e70c35",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 16861
+      }
+    },
+    {
+      "n": 9959,
+      "step": "ticks",
+      "tick": 16861
+    },
+    {
+      "act": {
+        "by": 104,
+        "hire": 6,
+        "kind": "acceptHire",
+        "signature": "ed25519:4D-tVmYCNK9d44IewZJ46TiWI6nRAuGU6Ucdu-eIy_HpYfo-EiBZYZTlRwRJNyN4Ir-pl9JY-sC2GwH95oCtCg"
+      },
+      "body": "{\"action\":\"hire\",\"credential\":\"social:1\",\"days\":21,\"evaluator\":102,\"firm\":29,\"hired\":104,\"realm\":\"nordholm:Halvik:42\",\"seq\":6,\"slot\":42,\"tick\":16861,\"wage\":2720}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:accepted"
+        ]
+      },
+      "holder": "client",
+      "kind": "acceptHire",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "cb86bde6e557185c",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 26820
+      }
+    },
+    {
+      "n": 10201,
+      "step": "ticks",
+      "tick": 26820
+    },
+    {
+      "act": {
+        "because": "the count was wrong",
+        "by": 102,
+        "hire": 6,
+        "kind": "evaluateHire",
+        "signature": "ed25519:jhVIW5foNy9qrPPYZ4SySV-hcj-1ZkfEpFupwTqrgQsT48JwzPXmCfsBex_5ifNPEkrHhMf8IAUjIqXr5h6gBw",
+        "verdict": "failed"
+      },
+      "body": "{\"action\":\"evaluateHire\",\"because\":\"the count was wrong\",\"hire\":6,\"realm\":\"nordholm:Halvik:42\",\"tick\":37021,\"verdict\":\"failed\"}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:evaluated",
+          "hire:settled"
+        ]
+      },
+      "holder": "evaluator",
+      "kind": "evaluateHire",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "322a874e5ef383b5",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 37021
+      }
+    },
+    {
+      "act": {
+        "by": 104,
+        "hire": 6,
+        "kind": "appealHire",
+        "signature": "ed25519:WEecNfkWNv95XQa24DubzVP6biCFGVQ0GNuR4Dpx-9BsxDDvF-AjuInkXLbj9-sFwH2vyqkMrftT_68BLQW9CA"
+      },
+      "body": "{\"action\":\"appealHire\",\"hire\":6,\"realm\":\"nordholm:Halvik:42\",\"tick\":37021}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:appealed"
+        ]
+      },
+      "holder": "client",
+      "kind": "appealHire",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "ee618d1fadaf5071",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 37021
+      }
+    },
+    {
+      "act": {
+        "because": "the count was right on a second look",
+        "by": 101,
+        "hire": 6,
+        "kind": "evaluateAppeal",
+        "signature": "ed25519:ZxG7OBEVoXLM8NcgLVrthkoNiC1FlsdTDUALieYM2OJPnoFHMThkmBgoQipgD9OF3wI9J7TuZoJWoBdAI0_ABg",
+        "verdict": "passed"
+      },
+      "body": "{\"action\":\"evaluateAppeal\",\"because\":\"the count was right on a second look\",\"hire\":6,\"realm\":\"nordholm:Halvik:42\",\"tick\":37021,\"verdict\":\"passed\"}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:appealEvaluated",
+          "hire:settled"
+        ]
+      },
+      "holder": "hired",
+      "kind": "evaluateAppeal",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "95a67b1989b3d52c",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 37021
+      }
+    },
+    {
+      "n": 2339,
+      "step": "ticks",
+      "tick": 37021
+    },
+    {
+      "n": 1,
+      "step": "ticks",
+      "tick": 39360
+    },
+    {
+      "act": {
+        "by": 101,
+        "kind": "hireTask",
+        "signature": "ed25519:Q3kmyRmrJKi1NHJcIbfhvImjkzyzzYDIl03Pnphn6xGVhMm75V-6zbGdSCt3lqz8D0vdlWVOcyz4FuZg7n0CCQ",
+        "terms": {
+          "credential": "social:1",
+          "days": 7,
+          "evaluator": 102,
+          "fee": 50000,
+          "hired": 104
+        }
+      },
+      "body": "{\"action\":\"hireTask\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":102,\"fee\":50000,\"hired\":104,\"realm\":\"nordholm:Halvik:42\",\"seq\":13,\"tick\":39361}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:offered"
+        ]
+      },
+      "holder": "hired",
+      "kind": "hireTask",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "c8a99a92c80bb188",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 39361
+      }
+    },
+    {
+      "act": {
+        "by": 104,
+        "hire": 13,
+        "kind": "acceptTask",
+        "signature": "ed25519:fuH5A2ssf9LB41CbgSmtiDKwHlZmkBU_Q5dWPzb-nER7lBwXcw5KKd0NFDg21nV6EUcpRM_k7R_TwWTERnqPAQ"
+      },
+      "body": "{\"action\":\"hireTask\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":102,\"fee\":50000,\"hired\":104,\"realm\":\"nordholm:Halvik:42\",\"seq\":13,\"tick\":39361}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "task fee escrowed",
+          "hire:accepted"
+        ]
+      },
+      "holder": "client",
+      "kind": "acceptTask",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "9afb9e1c1329f8f0",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 39361
+      }
+    },
+    {
+      "n": 10081,
+      "step": "ticks",
+      "tick": 39361
+    },
+    {
+      "n": 1441,
+      "step": "ticks",
+      "tick": 49442
+    },
+    {
+      "act": {
+        "against": 103,
+        "because": "the bakery shorted the count it was asked for",
+        "by": 102,
+        "kind": "complain",
+        "signature": "ed25519:YhFNHREy2Sz0T9fhm0_Qj8chVreS0btpEGooeLa0NYcbKS-fKdHRCbpYZLC6EZxt1VK472XBTPwDXOxT7qNxAg"
+      },
+      "body": "{\"action\":\"complain\",\"against\":103,\"because\":\"the bakery shorted the count it was asked for\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":50883}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the complaint's signature does not verify under"
+      },
+      "holder": "evaluator",
+      "kind": "complain",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "b5691f42d043d4aa",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 50883
+      }
+    },
+    {
+      "act": {
+        "against": 103,
+        "because": "the bakery shorted the count it was asked for",
+        "by": 102,
+        "kind": "complain",
+        "signature": "ed25519:0SY0ulcLDQbYqZ0mJ_Koi8Ae8sIFAoF8z6HMmE4oENLUSHd1S5WgAjGKANrT_pHuA-8Wa9_5ETLlZaAKgxNjAA"
+      },
+      "body": "{\"action\":\"complain\",\"against\":103,\"because\":\"the bakery shorted the count it was asked for\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":50883}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "sanction:complained"
+        ]
+      },
+      "holder": "evaluator",
+      "kind": "complain",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "b5691f42d043d4aa",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 50883
+      }
+    },
+    {
+      "act": {
+        "because": "a first warning on the record",
+        "by": 101,
+        "complaint": 0,
+        "kind": "sanction",
+        "rung": 1,
+        "signature": "ed25519:uMJS1uRVrBe4PF3vJf5mGQOR3FybXha6qU5ipiAhFBvOs_Nfd2gpj2ayuT_ztJ9S4ogD7VeYFnENt2FHrODtDA"
+      },
+      "body": "{\"action\":\"sanction\",\"because\":\"a first warning on the record\",\"complaint\":0,\"realm\":\"nordholm:Halvik:42\",\"rung\":1,\"tick\":50883}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the sanction's signature does not verify under"
+      },
+      "holder": "hired",
+      "kind": "sanction",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "889dfb7badd86ccf",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 50883
+      }
+    },
+    {
+      "act": {
+        "because": "a first warning on the record",
+        "by": 101,
+        "complaint": 0,
+        "kind": "sanction",
+        "rung": 1,
+        "signature": "ed25519:l5mOGor8IKDod-rMjOjI3asuoK_XYysqdAptm3R1kKt8IX7Y2t51etBCtDjsov0_p0XAKRcKbJQi2IVqSsf9DQ"
+      },
+      "body": "{\"action\":\"sanction\",\"because\":\"a first warning on the record\",\"complaint\":0,\"realm\":\"nordholm:Halvik:42\",\"rung\":1,\"tick\":50883}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "sanction:imposed"
+        ]
+      },
+      "holder": "hired",
+      "kind": "sanction",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "889dfb7badd86ccf",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 50883
+      }
+    },
+    {
+      "act": {
+        "against": 103,
+        "because": "the count was short a second time",
+        "by": 102,
+        "kind": "complain",
+        "signature": "ed25519:pZ69YYo55ATq5UXTuwoJbj7CVuxfPoJoUHyx6suy-6z_l2ubd_s4CgZ-fNJnNIRTAp9UXbIJbSEANHTsdud9Cg"
+      },
+      "body": "{\"action\":\"complain\",\"against\":103,\"because\":\"the count was short a second time\",\"realm\":\"nordholm:Halvik:42\",\"seq\":1,\"tick\":50883}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "sanction:complained"
+        ]
+      },
+      "holder": "evaluator",
+      "kind": "complain",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "943d6841ede14cbe",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 50883
+      }
+    },
+    {
+      "n": 1440,
+      "step": "ticks",
+      "tick": 50883
+    },
+    {
+      "act": {
+        "because": "straight to the War Bay bar",
+        "by": 101,
+        "complaint": 1,
+        "kind": "sanction",
+        "rung": 3,
+        "signature": "ed25519:W0mwNUntxOu-kY4-QyL_pRnypHtyJ5NRdDi03cFqEDk8LH1BJmVgcCurCdRgYGMBTO0a_Ez-SbDxlxrbRsPBBA"
+      },
+      "body": "{\"action\":\"sanction\",\"because\":\"straight to the War Bay bar\",\"complaint\":1,\"realm\":\"nordholm:Halvik:42\",\"rung\":3,\"tick\":52323}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the ladder against principal 103 stands at rung 1; the next rung is 2, not 3 (one rung at a time, C-5)"
+      },
+      "holder": "hired",
+      "kind": "sanction",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "e829ee9e4f5b97ed",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "act": {
+        "because": "a day without the work doors",
+        "by": 101,
+        "complaint": 1,
+        "kind": "sanction",
+        "rung": 2,
+        "signature": "ed25519:vObLS44nBwu9GqV2Xn3p0dXb76z4i9eMTISIuJd-aKbv2kpbD3iEeBY39L9h9xQx2YL3hN8G3Uh-1SggHROVAA"
+      },
+      "body": "{\"action\":\"sanction\",\"because\":\"a day without the work doors\",\"complaint\":1,\"realm\":\"nordholm:Halvik:42\",\"rung\":2,\"tick\":52323}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "sanction:imposed"
+        ]
+      },
+      "holder": "hired",
+      "kind": "sanction",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "e829ee9e4f5b97ed",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "act": {
+        "by": 103,
+        "kind": "writeWork",
+        "signature": "ed25519:xdaI6uX0cDPxSWsRkOCTTernxLDpoB075_7XaX8THQ5_0D8sIYaTiT5FHOZS3GlK0sddoys5TlLQTetf3ymaCw",
+        "text": "A line written while a rung 2 stands; the door must refuse it.",
+        "title": "Under the bar"
+      },
+      "body": "{\"action\":\"writeWork\",\"realm\":\"nordholm:Halvik:42\",\"seq\":3,\"text\":\"A line written while a rung 2 stands; the door must refuse it.\",\"tick\":52323,\"title\":\"Under the bar\"}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: principal 103 is under sanction #1 (rung 2, no work), until tick 53763; a work waits (C-5)"
+      },
+      "holder": "other",
+      "kind": "writeWork",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "ebd02f4651d635d9",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "act": {
+        "by": 103,
+        "kind": "appealSanction",
+        "sanction": 1,
+        "signature": "ed25519:cSH4EKvPDWlnOvYAqoPcMht1Y-Ca8_Q-7VlsBYWNJJ9wTqYMgBIxsx0wuUG6Pb1eT6hrhS6Q9p4Uq6PtJBYEAw"
+      },
+      "body": "{\"action\":\"appealSanction\",\"realm\":\"nordholm:Halvik:42\",\"sanction\":1,\"tick\":52323}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the appeal's signature does not verify under"
+      },
+      "holder": "other",
+      "kind": "appealSanction",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "ebd02f4651d635d9",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "act": {
+        "by": 103,
+        "kind": "appealSanction",
+        "sanction": 1,
+        "signature": "ed25519:s87DUbRvOqAByrgNO2AoMh7I0YHH3nRCQr8bZRoELxuac0gacJLb-d58ab5WEpGcnSQdmyhjL6bDISzmXDf7Cg"
+      },
+      "body": "{\"action\":\"appealSanction\",\"realm\":\"nordholm:Halvik:42\",\"sanction\":1,\"tick\":52323}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "sanction:appealed"
+        ]
+      },
+      "holder": "other",
+      "kind": "appealSanction",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "ebd02f4651d635d9",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "act": {
+        "because": "one short count is not a pattern",
+        "by": 100,
+        "kind": "evaluateSanctionAppeal",
+        "sanction": 1,
+        "signature": "ed25519:EJwrFL4H0p-ws-3i3D6Ub1JEpTwtDXY7aSfwh8Lbwa6kf0adYrcAmOVTaMK9OX7RH-Qdw9E4ENzd3pKV43KfCw",
+        "verdict": "passed"
+      },
+      "body": "{\"action\":\"evaluateSanctionAppeal\",\"because\":\"one short count is not a pattern\",\"realm\":\"nordholm:Halvik:42\",\"sanction\":1,\"tick\":52323,\"verdict\":\"passed\"}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the appeal verdict's signature does not verify under"
+      },
+      "holder": "hirer",
+      "kind": "evaluateSanctionAppeal",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "46b9ea061de58fa6",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "act": {
+        "because": "one short count is not a pattern",
+        "by": 100,
+        "kind": "evaluateSanctionAppeal",
+        "sanction": 1,
+        "signature": "ed25519:Zf8q5aMFqtIwBfhuScZZSn1NRXcTj4YT7sg4vbgL93ORyT-GZ2Y88AeRqtRFa5Ll4zzLDyWcDaXonWBMrxXXAA",
+        "verdict": "passed"
+      },
+      "body": "{\"action\":\"evaluateSanctionAppeal\",\"because\":\"one short count is not a pattern\",\"realm\":\"nordholm:Halvik:42\",\"sanction\":1,\"tick\":52323,\"verdict\":\"passed\"}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "sanction:appealEvaluated",
+          "sanction:overturned"
+        ]
+      },
+      "holder": "hirer",
+      "kind": "evaluateSanctionAppeal",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "46b9ea061de58fa6",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "act": {
+        "by": 103,
+        "kind": "writeWork",
+        "signature": "ed25519:ZSYtmgmncJQhu_2rfvcCbWMr1n7teU_Jn937Dz55qJ6ugw3spht9CimNW0vJ-7epKGnu2hVQzefl4eWyEVV7Cg",
+        "text": "The rung 2 was overturned on appeal; the door opens again.",
+        "title": "After the bar"
+      },
+      "body": "{\"action\":\"writeWork\",\"realm\":\"nordholm:Halvik:42\",\"seq\":3,\"text\":\"The rung 2 was overturned on appeal; the door opens again.\",\"tick\":52323,\"title\":\"After the bar\"}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "work:written"
+        ]
+      },
+      "holder": "other",
+      "kind": "writeWork",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "48c2ba8fa60e7c9b",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "act": {
+        "by": 102,
+        "hash": "cc25fca85bb42575c890022da9e0043517139152c52cd81a9b1ee62e676484f0",
+        "kind": "cite",
+        "signature": "ed25519:d0wtunxAsK4wyLn1PNYtNO6xT4ZbDhqIGBslEWzIS-LeVU2ud81MQCpsj546mx48WmnIx0sMeqINhsnOsi_NBw"
+      },
+      "body": "{\"action\":\"cite\",\"hash\":\"cc25fca85bb42575c890022da9e0043517139152c52cd81a9b1ee62e676484f0\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":52323}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the citation's signature does not verify under"
+      },
+      "holder": "evaluator",
+      "kind": "cite",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "bdd392f5cde12113",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "act": {
+        "by": 102,
+        "hash": "cc25fca85bb42575c890022da9e0043517139152c52cd81a9b1ee62e676484f0",
+        "kind": "cite",
+        "signature": "ed25519:sQEI-REvWt2NjZuo2saH7ka2c_awH3AgIHmNLPrEyOcdlPQCYdyLRn1CfcvTIbf6nziIE-aPDLwRIdbWNP0vBA"
+      },
+      "body": "{\"action\":\"cite\",\"hash\":\"cc25fca85bb42575c890022da9e0043517139152c52cd81a9b1ee62e676484f0\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":52323}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "work:cited"
+        ]
+      },
+      "holder": "evaluator",
+      "kind": "cite",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "bdd392f5cde12113",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "field": "wageFloor1",
+        "kind": "propose",
+        "signature": "ed25519:c3ndsZCSVrExsSn3SXDJOc80KzlXRMV1CLOApbZZl2rspqy2eJWLC8Ku7p65T2FBhGR9eAz8dJEV6NFaEiABBA",
+        "value": 2300
+      },
+      "body": "{\"action\":\"propose\",\"field\":\"wageFloor1\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":52323,\"value\":2300}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the proposal's signature does not verify under"
+      },
+      "holder": "hired",
+      "kind": "propose",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "f050a6226db31913",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "field": "wageFloor1",
+        "kind": "propose",
+        "signature": "ed25519:Q9_ASghsKIPy3xM75euzGxbwF_4gWrnDM99qBD9m8VxAmPCXZJ0DXkuFdzQEeel1lj-Lk_vjyBiAOHhTNgFVAA",
+        "value": 2300
+      },
+      "body": "{\"action\":\"propose\",\"field\":\"wageFloor1\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":52323,\"value\":2300}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "chamber:proposed"
+        ]
+      },
+      "holder": "hired",
+      "kind": "propose",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "f050a6226db31913",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "act": {
+        "by": 102,
+        "kind": "veto",
+        "proposal": 0,
+        "signature": "ed25519:2YxZjLSS0eUU2PQ7XYY6I_G3Pzt0QuJoS4kfqSq0zRXfhvw3qv_kjPVoORCdB-PAdlsiGTmCA-cO90HDTmGACQ"
+      },
+      "body": "{\"action\":\"veto\",\"proposal\":0,\"realm\":\"nordholm:Halvik:42\",\"tick\":52323}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the veto's signature does not verify under"
+      },
+      "holder": "evaluator",
+      "kind": "veto",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "7c4b879add4ef561",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "act": {
+        "by": 102,
+        "kind": "veto",
+        "proposal": 0,
+        "signature": "ed25519:_zSuAhQyAn-8hhFuDHmxAI_5L6zY-w85pabwJk5QstOC8xqmAtQPG8EbmB3uA1yx6lqLGgF1f4PV4t4wPSJwCQ"
+      },
+      "body": "{\"action\":\"veto\",\"proposal\":0,\"realm\":\"nordholm:Halvik:42\",\"tick\":52323}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "chamber:vetoed"
+        ]
+      },
+      "holder": "evaluator",
+      "kind": "veto",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "7c4b879add4ef561",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 52323
+      }
+    },
+    {
+      "n": 4322,
+      "step": "ticks",
+      "tick": 52323
+    },
+    {
+      "act": {
+        "by": 103,
+        "field": "welcomeCreditMonths",
+        "kind": "propose",
+        "signature": "ed25519:HEC4zHVqzN2HdgEonVDMIM_HIK86liqr4Gsogg5H4HVaX2U-39o1VqxBZevoHWEv6KkfzgBhAao4y7PNVcSADg",
+        "value": 1.5
+      },
+      "body": "{\"action\":\"propose\",\"field\":\"welcomeCreditMonths\",\"realm\":\"nordholm:Halvik:42\",\"seq\":1,\"tick\":56645,\"value\":1.5}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "chamber:proposed"
+        ]
+      },
+      "holder": "other",
+      "kind": "propose",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "cf4f2190de6d2987",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 56645
+      }
+    },
+    {
+      "n": 4322,
+      "step": "ticks",
+      "tick": 56645
+    },
+    {
+      "act": {
+        "by": 103,
+        "firm": 29,
+        "kind": "inviteFounder",
+        "principal": 102,
+        "signature": "ed25519:I0hkJv-xVvquDc4jBHOwdXMg8wlSNi_6SO0iuDVG8uxWWP_9iLuqvaJwUhParL1GPK7L_-N7vOTo8yKiGHNsAQ"
+      },
+      "body": "{\"action\":\"inviteFounder\",\"firm\":29,\"principal\":102,\"realm\":\"nordholm:Halvik:42\",\"tick\":60967}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the invitation's signature does not verify under"
+      },
+      "holder": "other",
+      "kind": "inviteFounder",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "3a7db7a8a58bd4c7",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 60967
+      }
+    },
+    {
+      "act": {
+        "by": 103,
+        "firm": 29,
+        "kind": "inviteFounder",
+        "principal": 102,
+        "signature": "ed25519:dAdBn9n_UfaCfSIi2BxRmihoTWQgU-fG6ay0LZBbBz1nmNWz0PlyVjyUfS2HSWcN-EjQ7XFjtsEXybj3lkWnCA"
+      },
+      "body": "{\"action\":\"inviteFounder\",\"firm\":29,\"principal\":102,\"realm\":\"nordholm:Halvik:42\",\"tick\":60967}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "firm:founderInvited"
+        ]
+      },
+      "holder": "other",
+      "kind": "inviteFounder",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "3a7db7a8a58bd4c7",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 60967
+      }
+    },
+    {
+      "act": {
+        "by": 102,
+        "firm": 29,
+        "kind": "acceptFounding",
+        "signature": "ed25519:OuEj6LojU6Ej-77IlT8z7eBWIUJ7QZs2WwzGikaHsBvmefaMilGs4R6T7EtDo0yerTb4h49l9qHU0Ysp5FzHBA"
+      },
+      "body": "{\"action\":\"acceptFounding\",\"firm\":29,\"realm\":\"nordholm:Halvik:42\",\"tick\":60967}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the co-founding's signature does not verify under"
+      },
+      "holder": "evaluator",
+      "kind": "acceptFounding",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "f57c8cb52dd1a522",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 60967
+      }
+    },
+    {
+      "act": {
+        "by": 102,
+        "firm": 29,
+        "kind": "acceptFounding",
+        "signature": "ed25519:Ue8AZSWlkGZPwaEsoPWZxNVubLPVazwQVyAfDfA1Z1j4igM-ErfUGAzAmUi7mzhTn26uoARrwM8G7PgZRURaAg"
+      },
+      "body": "{\"action\":\"acceptFounding\",\"firm\":29,\"realm\":\"nordholm:Halvik:42\",\"tick\":60967}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "firm:founderJoined"
+        ]
+      },
+      "holder": "evaluator",
+      "kind": "acceptFounding",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "f57c8cb52dd1a522",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 60967
+      }
+    },
+    {
+      "n": 9594,
+      "step": "ticks",
+      "tick": 60967
+    },
+    {
+      "act": {
+        "by": 100,
+        "kind": "foundGuild",
+        "name": "The Social Guild",
+        "signature": "ed25519:9O_1j14RyhddOzd8-3Gcb5P7UquCocI2h-arM2cSzAppCL3hlanpznEuFcZ0c0-z7Q5ezRnkpkPJ0L55gfi1Ag",
+        "skill": "social"
+      },
+      "body": "{\"action\":\"foundGuild\",\"name\":\"The Social Guild\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"skill\":\"social\",\"tick\":70561}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the founding's signature does not verify under"
+      },
+      "holder": "hirer",
+      "kind": "foundGuild",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "bcaf2014df9dd904",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 100,
+        "kind": "foundGuild",
+        "name": "The Social Guild",
+        "signature": "ed25519:6L9CDeDxv4lh2rXLJE9_ANk7lVwGjkp6z6md6MpMKZbLx1GhLLLlpQfWoIFtTzIRsrf720U7Vm-lrq-XKZOeBg",
+        "skill": "social"
+      },
+      "body": "{\"action\":\"foundGuild\",\"name\":\"The Social Guild\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"skill\":\"social\",\"tick\":70561}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "guild bond into escrow",
+          "guild:forming"
+        ]
+      },
+      "holder": "hirer",
+      "kind": "foundGuild",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "bcaf2014df9dd904",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "guild": 0,
+        "kind": "joinGuild",
+        "signature": "ed25519:c4t6vT1LijawXcKhpU_nxzZdkrUEwkPpVghTs2jcHorD_aZeOQ6w7Am4HJeKCWSXjeRZJ6194S1x6xlsBMWBAA"
+      },
+      "body": "{\"action\":\"joinGuild\",\"guild\":0,\"realm\":\"nordholm:Halvik:42\",\"tick\":70561}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the joining's signature does not verify under"
+      },
+      "holder": "hired",
+      "kind": "joinGuild",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "39a7c3cf3e27891e",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "guild": 0,
+        "kind": "joinGuild",
+        "signature": "ed25519:Tun4NqjunVRlz9gD1qdq37IWwbLouHajl-aBwJbb78D_VOYETt0YYFw2B5mSlqC0Bzz80aCeaa4Bu3jWZdMkAg"
+      },
+      "body": "{\"action\":\"joinGuild\",\"guild\":0,\"realm\":\"nordholm:Halvik:42\",\"tick\":70561}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "guild bond into escrow",
+          "guild:joined"
+        ]
+      },
+      "holder": "hired",
+      "kind": "joinGuild",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "39a7c3cf3e27891e",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "kind": "register",
+        "request": {
+          "did": "did:key:z6MkgKFTfzyjyTFRtvnRMRa5kxxnStsgWXHNbCfv84TAHasz",
+          "interests": [
+            "community",
+            "craft"
+          ],
+          "introduction": "a key from outside, here on a guild's word to learn the social trade",
+          "name": "Nell Novice",
+          "requestId": "vectors-small-42-novice-1",
+          "rules": "living-world-conduct-2026-09-15",
+          "runner": "bench/doors-vectors-small.ts"
+        },
+        "signature": "ed25519:B4Hhf5apJF63Z8TCmXJsprPFsnwr3VyzdZQqWOLxLixrbrhS7FZN9SryBkRtDjBH0zK18Bx8TLdh2pXq8lcBDg"
+      },
+      "body": "{\"did\":\"did:key:z6MkgKFTfzyjyTFRtvnRMRa5kxxnStsgWXHNbCfv84TAHasz\",\"interests\":[\"community\",\"craft\"],\"introduction\":\"a key from outside, here on a guild's word to learn the social trade\",\"name\":\"Nell Novice\",\"realm\":\"nordholm:Halvik:42\",\"requestId\":\"vectors-small-42-novice-1\",\"rules\":\"living-world-conduct-2026-09-15\",\"runner\":\"bench/doors-vectors-small.ts\",\"tick\":70561}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the application's signature does not verify under"
+      },
+      "holder": "novice",
+      "kind": "register",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "522522dd29c84ac4",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "kind": "register",
+        "request": {
+          "did": "did:key:z6MkgKFTfzyjyTFRtvnRMRa5kxxnStsgWXHNbCfv84TAHasz",
+          "interests": [
+            "community",
+            "craft"
+          ],
+          "introduction": "a key from outside, here on a guild's word to learn the social trade",
+          "name": "Nell Novice",
+          "requestId": "vectors-small-42-novice-1",
+          "rules": "living-world-conduct-2026-09-15",
+          "runner": "bench/doors-vectors-small.ts"
+        },
+        "signature": "ed25519:o8BJ63HctTMGLt8mfVdML9g2Y1lksUUGB7q902dPBmcPOHLa9-qOWiFAMYUHMad5h3HYL8wpPh78TYkUtAS1AA"
+      },
+      "body": "{\"did\":\"did:key:z6MkgKFTfzyjyTFRtvnRMRa5kxxnStsgWXHNbCfv84TAHasz\",\"interests\":[\"community\",\"craft\"],\"introduction\":\"a key from outside, here on a guild's word to learn the social trade\",\"name\":\"Nell Novice\",\"realm\":\"nordholm:Halvik:42\",\"requestId\":\"vectors-small-42-novice-1\",\"rules\":\"living-world-conduct-2026-09-15\",\"runner\":\"bench/doors-vectors-small.ts\",\"tick\":70561}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "registration:received"
+        ]
+      },
+      "holder": "novice",
+      "kind": "register",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "522522dd29c84ac4",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 100,
+        "guild": 0,
+        "kind": "sponsorAdmission",
+        "registration": 1,
+        "signature": "ed25519:frSpJqK_OGowu32-JEwK1qD701_8VNXifwhVvbCFLEq5YJKGLpi9XttX6TavJYaC6qFaP-BLVkpnqPIJ6QNDCw"
+      },
+      "body": "{\"action\":\"sponsorAdmission\",\"guild\":0,\"realm\":\"nordholm:Halvik:42\",\"registration\":1,\"revision\":0,\"tick\":70561}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: guild #0 \"The Social Guild\" is forming with 2 of 3 members; only a standing guild with every bond in place sponsors"
+      },
+      "holder": "hirer",
+      "kind": "sponsorAdmission",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "07755a3ff231d2a0",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 102,
+        "guild": 0,
+        "kind": "joinGuild",
+        "signature": "ed25519:b6eWFvyM58BtMzcfeWjEGqPCdjVOOwx6Ob4ZBOm5ioLmXsicHu05HA5_ApLJlFuTGQFZvfhUvkecAqiMtl6oBw"
+      },
+      "body": "{\"action\":\"joinGuild\",\"guild\":0,\"realm\":\"nordholm:Halvik:42\",\"tick\":70561}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "guild bond into escrow",
+          "guild:joined",
+          "guild:founded"
+        ]
+      },
+      "holder": "evaluator",
+      "kind": "joinGuild",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "07755a3ff231d2a0",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 103,
+        "guild": 0,
+        "kind": "joinGuild",
+        "signature": "ed25519:-R0txS2_GzO-B9gi2_PggGoxiaEABdyaT41VWMmxMCV7pTmWwZdZGU6UQoDC7y0vFzTICVAhPmYYIc3CwqQSCQ"
+      },
+      "body": "{\"action\":\"joinGuild\",\"guild\":0,\"realm\":\"nordholm:Halvik:42\",\"tick\":70561}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "guild bond into escrow",
+          "guild:joined"
+        ]
+      },
+      "holder": "other",
+      "kind": "joinGuild",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "9f1f80136f28ff96",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 103,
+        "guild": 0,
+        "kind": "leaveGuild",
+        "signature": "ed25519:Al4GwgXH-_SaAxtggpbB9oNGQQgtNSJNaGVf6JVryiBSLR6StLVOTREmFQNT0BJdXgjjOXjU8AsasbUWLe5vDg"
+      },
+      "body": "{\"action\":\"leaveGuild\",\"guild\":0,\"realm\":\"nordholm:Halvik:42\",\"tick\":70561}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the leaving's signature does not verify under"
+      },
+      "holder": "other",
+      "kind": "leaveGuild",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "da8c501a6eedd193",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 103,
+        "guild": 0,
+        "kind": "leaveGuild",
+        "signature": "ed25519:6Daw-GCZJp3zK7YdhmRzZGcx7k0UPOkdn2AdUYlTOdF0qSXEcPWpE6u8NsoBIVJlQ7THDnzbLH70i-1nanqRAg"
+      },
+      "body": "{\"action\":\"leaveGuild\",\"guild\":0,\"realm\":\"nordholm:Halvik:42\",\"tick\":70561}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "guild bond returned",
+          "guild:bondReturned",
+          "guild:left"
+        ]
+      },
+      "holder": "other",
+      "kind": "leaveGuild",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "da8c501a6eedd193",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 100,
+        "guild": 0,
+        "kind": "sponsorAdmission",
+        "registration": 1,
+        "signature": "ed25519:frSpJqK_OGowu32-JEwK1qD701_8VNXifwhVvbCFLEq5YJKGLpi9XttX6TavJYaC6qFaP-BLVkpnqPIJ6QNDCw"
+      },
+      "body": "{\"action\":\"sponsorAdmission\",\"guild\":0,\"realm\":\"nordholm:Halvik:42\",\"registration\":1,\"revision\":0,\"tick\":70561}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the sponsorship's signature does not verify under"
+      },
+      "holder": "hirer",
+      "kind": "sponsorAdmission",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "9371ca4cd73380c7",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 100,
+        "guild": 0,
+        "kind": "sponsorAdmission",
+        "registration": 1,
+        "signature": "ed25519:o4LJQopzIrucHKzyEwMuh7Zb-JY_BWq3q0KDHTiPANh7q53EABkOBoKXHmw4ta6yeCHbJrvGmBy0CMnUMlbvDA"
+      },
+      "body": "{\"action\":\"sponsorAdmission\",\"guild\":0,\"realm\":\"nordholm:Halvik:42\",\"registration\":1,\"revision\":0,\"tick\":70561}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "registration:decided"
+        ]
+      },
+      "holder": "hirer",
+      "kind": "sponsorAdmission",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "9371ca4cd73380c7",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "kind": "admit",
+        "opening": {
+          "draft": {
+            "agent": 107,
+            "cap": {
+              "currency": "NHK",
+              "perTx": 22500,
+              "total": 90000
+            },
+            "cart": null,
+            "expiresAt": 113761,
+            "issuedAt": 70561,
+            "kind": "intent",
+            "parent": null,
+            "principal": 105,
+            "refundable": true,
+            "scope": {
+              "categories": [
+                "grocery"
+              ],
+              "countries": "domestic",
+              "crossBorderIfCheaperBy": 0.15,
+              "merchants": "*"
+            },
+            "singleUse": false
+          },
+          "id": 3431,
+          "signature": "ed25519:BV7-jt82bWrdq2ZUYm3Gldytjkuo3Oz2aUCRPHVw4MmTGVV_PnS_HUjNSqmLBZ5eGL4v3uNGV1-WKLt5wL6RBw"
+        },
+        "passport": {
+          "age": 32,
+          "city": "Halvik",
+          "did": "did:key:z6MkgKFTfzyjyTFRtvnRMRa5kxxnStsgWXHNbCfv84TAHasz",
+          "name": "Nell Novice",
+          "posture": 3,
+          "signature": "ed25519:OIRSQZOVRBuc2j0j9oxhV5u9rPlusweqH5vTCRMJDxpjRU7QLE34AlK_jWiwC63yvDg1U27DGwngVwUukcvVCA",
+          "values": {
+            "civic": 0.7,
+            "frugality": 0.5,
+            "risk": 0.4,
+            "trust": 0.6
+          }
+        }
+      },
+      "body": {
+        "opening": "{\"agent\":107,\"cap\":{\"currency\":\"NHK\",\"perTx\":22500,\"total\":90000},\"cart\":null,\"expiresAt\":113761,\"id\":3431,\"issuedAt\":70561,\"kind\":\"intent\",\"parent\":null,\"principal\":105,\"realm\":\"nordholm:Halvik:42\",\"refundable\":true,\"scope\":{\"categories\":[\"grocery\"],\"countries\":\"domestic\",\"crossBorderIfCheaperBy\":0.15,\"merchants\":\"*\"},\"singleUse\":false}",
+        "passport": "{\"age\":32,\"city\":\"Halvik\",\"did\":\"did:key:z6MkgKFTfzyjyTFRtvnRMRa5kxxnStsgWXHNbCfv84TAHasz\",\"name\":\"Nell Novice\",\"posture\":3,\"values\":{\"civic\":0.7,\"frugality\":0.5,\"risk\":0.4,\"trust\":0.6}}"
+      },
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "agent:personal:created",
+          "admission:resident:admitted",
+          "mandate:intent:issued",
+          "welcome credit"
+        ]
+      },
+      "holder": "novice",
+      "kind": "admit",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "291f0a5c0bcdef04",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 104,
+        "kind": "hireTask",
+        "signature": "ed25519:C3ns8v1E2du_b3PpUMzhVQiJ2_DO6_aiD1ITvMJc1FgS8ywelSmYR9k47djQIlew8AUPCYHvgLggMOKlbRnwCw",
+        "terms": {
+          "credential": "social:1",
+          "days": 7,
+          "evaluator": -1,
+          "fee": 10000,
+          "guild": 0,
+          "hired": 101
+        }
+      },
+      "body": "{\"action\":\"hireTask\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":-1,\"fee\":10000,\"guild\":0,\"hired\":101,\"realm\":\"nordholm:Halvik:42\",\"seq\":23,\"tick\":70561}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:offered"
+        ]
+      },
+      "holder": "client",
+      "kind": "hireTask",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "657241a2ea402582",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 102,
+        "evaluator": 102,
+        "hire": 23,
+        "kind": "nameEvaluator",
+        "signature": "ed25519:YJ4iyk-03wSyLL9ywZME7eTT99goTufNWOCy-wTd5O7Tjzpq_qVKfvkMm2KjsE3peP8p9nf_cfEB3GYiA9luBA"
+      },
+      "body": "{\"action\":\"nameEvaluator\",\"evaluator\":102,\"hire\":23,\"realm\":\"nordholm:Halvik:42\",\"tick\":70561}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the naming's signature does not verify under"
+      },
+      "holder": "evaluator",
+      "kind": "nameEvaluator",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "f349c463c6ec9564",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 102,
+        "evaluator": 102,
+        "hire": 23,
+        "kind": "nameEvaluator",
+        "signature": "ed25519:_TQPl8kCaJaX5htbj0fFFy_XeWSlzIZd_sFw8wsxyV1bKKB7oggCG4T_tWC6q1Wd8NyxQonbNFK5YFVl7U4qDQ"
+      },
+      "body": "{\"action\":\"nameEvaluator\",\"evaluator\":102,\"hire\":23,\"realm\":\"nordholm:Halvik:42\",\"tick\":70561}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "hire:evaluatorNamed"
+        ]
+      },
+      "holder": "evaluator",
+      "kind": "nameEvaluator",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "f349c463c6ec9564",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "hire": 23,
+        "kind": "acceptTask",
+        "signature": "ed25519:pPUuRzGkjT1hw4I2gprCJAUI_jCKLaNjJ--yNvMdgrA9JGDj9gZ73dhjp67jIg-ZxnNbgzfGina9jdq7D8PZAg"
+      },
+      "body": "{\"action\":\"hireTask\",\"credential\":\"social:1\",\"days\":7,\"evaluator\":-1,\"fee\":10000,\"guild\":0,\"hired\":101,\"realm\":\"nordholm:Halvik:42\",\"seq\":23,\"tick\":70561}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "task fee escrowed",
+          "hire:accepted"
+        ]
+      },
+      "holder": "hired",
+      "kind": "acceptTask",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "5715b84533c44ffe",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 100,
+        "field": "transactionLevy",
+        "kind": "setPolicy",
+        "signature": "ed25519:PoMiM3oYppM3U-U8AD3bx_IYX2HUOdTwdi0KQVVTRJK4aokNcr0DV_5-PDRtqJ6FW8z2Ejd_J6tXf-PHlZ7lDg",
+        "value": 0.02
+      },
+      "body": "{\"action\":\"setPolicy\",\"field\":\"transactionLevy\",\"realm\":\"nordholm:Halvik:42\",\"seq\":2,\"tick\":70561,\"value\":0.02}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the policy's signature does not verify under"
+      },
+      "holder": "hirer",
+      "kind": "setPolicy",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "472998c2f1ac1dc5",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "act": {
+        "by": 100,
+        "field": "transactionLevy",
+        "kind": "setPolicy",
+        "signature": "ed25519:A3kmMvTp-5EuSCha0b1n-ZtAvohFPtGMIUdlkBePHMZYEgkeT5FIRfyCSlnuSlidd8oUhO2evAmk6CBADvgyCA",
+        "value": 0.02
+      },
+      "body": "{\"action\":\"setPolicy\",\"field\":\"transactionLevy\",\"realm\":\"nordholm:Halvik:42\",\"seq\":2,\"tick\":70561,\"value\":0.02}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "policy:changed"
+        ]
+      },
+      "holder": "hirer",
+      "kind": "setPolicy",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "472998c2f1ac1dc5",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 70561
+      }
+    },
+    {
+      "n": 1440,
+      "step": "ticks",
+      "tick": 70561
+    },
+    {
+      "n": 6479,
+      "step": "ticks",
+      "tick": 72001
+    },
+    {
+      "act": {
+        "by": 105,
+        "kind": "claimRelief",
+        "signature": "ed25519:lLasJ0YFyw0FuHDQXkjqGJU7TyBxlYZd-lmv19amQQ4IYyDcv29TNSvqFvh8dWcx2Lmzf64If3A726ga1-_7Bg"
+      },
+      "body": "{\"action\":\"claimRelief\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":78480}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the claim's signature does not verify under"
+      },
+      "holder": "novice",
+      "kind": "claimRelief",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "f5c7e277d05a312f",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 78480
+      }
+    },
+    {
+      "act": {
+        "by": 105,
+        "kind": "claimRelief",
+        "signature": "ed25519:H8xo9ybR7kphmQg6QzYGPtJOF3kLi5yZpnUFaZ35PXOhVDoog_1hX-w38pYWBtv4vUew9MZXuRtL8q84RRSJCQ"
+      },
+      "body": "{\"action\":\"claimRelief\",\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":78480}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "relief",
+          "relief:claimed"
+        ]
+      },
+      "holder": "novice",
+      "kind": "claimRelief",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "f5c7e277d05a312f",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 78480
+      }
+    },
+    {
+      "act": {
+        "by": 105,
+        "kind": "claimRelief",
+        "signature": "ed25519:fSMxm5zIYXjmS5RnFfnIGnMozH-ca-QEHmuC_5ybl64XlBTNrILI3KNhku_9WVODQN0ZvZ6m51wv54S11UpEDA"
+      },
+      "body": "{\"action\":\"claimRelief\",\"realm\":\"nordholm:Halvik:42\",\"seq\":1,\"tick\":78480}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: principal 105 claimed on day 55; the next is open on day 111 (once per 56 days)"
+      },
+      "holder": "novice",
+      "kind": "claimRelief",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "870d5a27ed1ec427",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 78480
+      }
+    },
+    {
+      "act": {
+        "by": 104,
+        "guild": 0,
+        "kind": "fundGuild",
+        "signature": "ed25519:K7wPVO9r9BPJqmLZcGbsttH8A11bLcl8QrsfhqQcZzO92ZI8FtFy2KN1fusmvNNvn3MlGWDocRvL6AjDOVozDw"
+      },
+      "body": "{\"action\":\"fundGuild\",\"guild\":0,\"realm\":\"nordholm:Halvik:42\",\"tick\":78480}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: principal 104 is not a member of guild #0 \"The Social Guild\""
+      },
+      "holder": "client",
+      "kind": "fundGuild",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "870d5a27ed1ec427",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 78480
+      }
+    },
+    {
+      "act": {
+        "by": 100,
+        "guild": 0,
+        "kind": "fundGuild",
+        "signature": "ed25519:dR37fRE3xssF0He5ZjhMKCN_6yMxQ1090cwVOEkznGSLfazguAHkFsdct8Gq4XZwSsxelOK7GXpYiAFHEdLvAg"
+      },
+      "body": "{\"action\":\"fundGuild\",\"guild\":0,\"realm\":\"nordholm:Halvik:42\",\"tick\":78480}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: guild #0 \"The Social Guild\"'s pool is whole: $2640.00 for 3 members' bonds of $2640.00; nothing to fund"
+      },
+      "holder": "hirer",
+      "kind": "fundGuild",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "870d5a27ed1ec427",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 78480
+      }
+    },
+    {
+      "n": 8941,
+      "step": "ticks",
+      "tick": 78480
+    },
+    {
+      "act": {
+        "borrower": 101,
+        "by": 100,
+        "cents": 103694,
+        "kind": "offerCredit",
+        "signature": "ed25519:nZs0gSTKF_2Evb9-zQytl--D9zeM0wwOJg2deIH3vdAG2KqablcjeN74PMyTuTM5u9AA7FByuzG9vKEUvAu2Dg"
+      },
+      "body": "{\"action\":\"offerCredit\",\"borrower\":101,\"cents\":103694,\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":87421}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the credit offer's signature does not verify under"
+      },
+      "holder": "hirer",
+      "kind": "offerCredit",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "8dcbac2d1381ec08",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 87421
+      }
+    },
+    {
+      "act": {
+        "borrower": 101,
+        "by": 100,
+        "cents": 103694,
+        "kind": "offerCredit",
+        "signature": "ed25519:XPx6rWzxu-nZxpqHBdSKvCXqYAgU2C_uuIr6yBsePxu6m1r6YtzYJ2kxb8VAsxjvxdY3IL1hxNfqyQxfAtB-AA"
+      },
+      "body": "{\"action\":\"offerCredit\",\"borrower\":101,\"cents\":103694,\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":87421}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "credit:offered"
+        ]
+      },
+      "holder": "hirer",
+      "kind": "offerCredit",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "8dcbac2d1381ec08",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 87421
+      }
+    },
+    {
+      "act": {
+        "borrower": 101,
+        "by": 100,
+        "cents": 103695,
+        "kind": "offerCredit",
+        "signature": "ed25519:-NeK80EeodAb0gvQ9xZiMvKhFeSnv2JR3ZUSuJgiadxxPIWoRHS_iU1ZwBEXWIkAOHQAKhGY9pIu-8WtnYgbBQ"
+      },
+      "body": "{\"action\":\"offerCredit\",\"borrower\":101,\"cents\":103695,\"realm\":\"nordholm:Halvik:42\",\"seq\":1,\"tick\":87421}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: $1036.95 is over the cap: 2 weeks of the $518.47 on file is $1036.94 (C-12)"
+      },
+      "holder": "hirer",
+      "kind": "offerCredit",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "b52a12065c55359e",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 87421
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "kind": "acceptCredit",
+        "loan": 0,
+        "signature": "ed25519:_VLjlday_rR9kpgkj2U67JEFe_P2f1nGp2QsA4bc2BNHXLvuUyHZwTeI4YrdGdfFWnT21I_suBef2qpYNNLMAQ"
+      },
+      "body": "{\"action\":\"offerCredit\",\"borrower\":101,\"cents\":103694,\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":87421}",
+      "expect": {
+        "ok": false,
+        "reasonPrefix": "refused: the credit acceptance's signature does not verify under"
+      },
+      "holder": "hired",
+      "kind": "acceptCredit",
+      "negative": "wrong-realm",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "b52a12065c55359e",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 87421
+      }
+    },
+    {
+      "act": {
+        "by": 101,
+        "kind": "acceptCredit",
+        "loan": 0,
+        "signature": "ed25519:VKAoVJ0xox8_lI3J9LP8_Z8umkG8x_8dhhYS1hpnNF2vVNEWGdYMQ5ckD2d1giFn1JXIV2EYRy7DnZ3p2bRDAA"
+      },
+      "body": "{\"action\":\"offerCredit\",\"borrower\":101,\"cents\":103694,\"realm\":\"nordholm:Halvik:42\",\"seq\":0,\"tick\":87421}",
+      "expect": {
+        "ok": true,
+        "subjects": [
+          "credit",
+          "credit:accepted"
+        ]
+      },
+      "holder": "hired",
+      "kind": "acceptCredit",
+      "world": {
+        "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+        "hash": "b52a12065c55359e",
+        "layout": "small",
+        "mind": "declineFounding",
+        "population": 100,
+        "realm": "nordholm:Halvik:42",
+        "seed": 42,
+        "size": 96,
+        "tick": 87421
+      }
+    },
+    {
+      "n": 10080,
+      "step": "ticks",
+      "tick": 87421
+    }
+  ],
+  "holders": {
+    "applicant": {
+      "did": "did:key:z6MkqpRPYctN6qC3VTjfJb6Vx2py8DK1LuMWfSuyniZ2ViYf",
+      "keySeed": "vectors-small:42:applicant"
+    },
+    "client": {
+      "did": "did:key:z6MkiuB5gs3xntzqSaVXhSYr1WDfxBsxgm33BkjfgEZS2hyU",
+      "keySeed": "vectors-small:42:client"
+    },
+    "evaluator": {
+      "did": "did:key:z6MkszrGwDFtYZtDKzTwtucMdXjbfvo1G9zAPZpC6tAuSzz6",
+      "keySeed": "vectors-small:42:evaluator"
+    },
+    "hired": {
+      "did": "did:key:z6MkjjVbPyzbj4JU3pK7PmzqWE2x9KrUcQpcsncEUVuv7fGS",
+      "keySeed": "vectors-small:42:hired"
+    },
+    "hirer": {
+      "did": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+      "keySeed": "vectors-small:42"
+    },
+    "novice": {
+      "did": "did:key:z6MkgKFTfzyjyTFRtvnRMRa5kxxnStsgWXHNbCfv84TAHasz",
+      "keySeed": "vectors-small:42:novice"
+    },
+    "other": {
+      "did": "did:key:z6MkggTXEdAPiKsqymry2UGy8Vt3nFe7Jf9KFCutjXNkPPr5",
+      "keySeed": "vectors-small:42:other"
+    }
+  },
+  "start": {
+    "governor": "did:key:z6MkuLgKBCaZMEgn43iETiEqRcZKvUBb9zqzGDEU8Kt9u1Hq",
+    "hash": "72634628faf93840",
+    "layout": "small",
+    "mind": "declineFounding",
+    "population": 100,
+    "realm": "nordholm:Halvik:42",
+    "seed": 42,
+    "size": 96,
+    "tick": 0
+  }
+}

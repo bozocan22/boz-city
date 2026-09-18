@@ -1,0 +1,106 @@
+{
+  "provider": "fake/echo",
+  "promptVersion": "4fec4864eb94ec4d",
+  "seed": 42,
+  "country": "veyra",
+  "city": "Dorsk",
+  "population": 2000,
+  "spotlights": 8,
+  "days": 2,
+  "federate": true,
+  "generation": {
+    "temperature": 0,
+    "maxOutputTokens": 120,
+    "thinkingBudget": null
+  },
+  "verified": {
+    "hash": "494d30c5a5e2a0b2",
+    "ticks": 2880
+  },
+  "entries": [
+    {
+      "key": "09a29cbb6d962e69",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "18fb72e49eef6e0d",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "20c00bccf41dbb80",
+      "value": "DENY fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "3423f8625a080d19",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "438e529c9137b0ac",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "4bf94b3c58d03e22",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "4e897f050fba9fca",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "545e8e998816ea5a",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "63e0a9ec700b496b",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "70eee8e0a1694147",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "712a49e45e82e0ae",
+      "value": "DENY fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "79b2ed95a48c3ca7",
+      "value": "DENY fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "857b4a19f0576b21",
+      "value": "DEFER fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "945dd11748c976c4",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "9cdf0a917d3acdf9",
+      "value": "DENY fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "a34e9b91b8b12a45",
+      "value": "DENY fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "a861abf42159dbbc",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "b189fe9ce7e65b4c",
+      "value": "DENY fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "c0e7c6f6a4c642de",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "eca9c2ba66bf7309",
+      "value": "DENY fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "f5dc650cd6a4967f",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    }
+  ]
+}

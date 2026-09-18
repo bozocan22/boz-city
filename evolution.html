@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Living World — Evolution</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+        /* The look (docs/LOOK.md): parchment ink on iron, one cyan–magenta
+           neon pair, monospace numerals. The same block on all pages. */
+        --bg: #07080b;
+        --panel: rgba(15, 17, 22, 0.9);
+        --line: #3a3d46;
+        --rule: #5a544b;
+        --rule-soft: #23252c;
+        --ink: #e9e3d4;
+        --dim: #9a978f;
+        --faint: #6f6c64;
+        --well: #0b0d12;
+        --well-a: rgba(11, 13, 18, 0.62);
+        --raise: #1c1f27;
+        --raise-hi: #262a34;
+        --raise-a: rgba(28, 31, 39, 0.6);
+        --neon: #5fe3f5;
+        --neon2: #f06ee6;
+        --glow: rgba(95, 227, 245, 0.35);
+        --glow2: rgba(240, 110, 230, 0.35);
+        --neon-line: rgba(95, 227, 245, 0.42);
+        --neon-well: rgba(95, 227, 245, 0.14);
+        --frame: rgba(95, 227, 245, 0.12);
+        --tick: rgba(95, 227, 245, 0.55);
+        --accent: var(--neon);
+        --warn: #ffb45c;
+        --warn-line: rgba(255, 180, 92, 0.45);
+        --crit: #ff7a6b;
+        --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+        --font-head: 'Cinzel', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 12px/1.5 var(--font-mono);
+        font-variant-numeric: tabular-nums;
+      }
+      /* The scanline texture the other pages carry. */
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 3px);
+        opacity: 0.3;
+      }
+
+      #page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 20px 16px 48px;
+      }
+      header.top { border-bottom: 3px double var(--rule); padding-bottom: 12px; margin-bottom: 18px; }
+      h1 {
+        font: 600 20px/1.2 var(--font-head);
+        letter-spacing: 0.08em;
+        margin: 0 0 4px;
+        text-transform: uppercase;
+      }
+      h1::before { content: '⚜ '; color: var(--neon2); text-shadow: 0 0 6px var(--glow2); }
+      h1 span { color: var(--dim); font: 12px/1.5 var(--font-mono); letter-spacing: 0; text-transform: none; display: block; margin-top: 4px; }
+      nav.links { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 8px; }
+      a { color: var(--neon); text-decoration: none; }
+      a:hover { color: var(--neon2); text-shadow: 0 0 6px var(--glow2); }
+
+      .honesty {
+        margin: 0 0 20px;
+        padding: 10px 12px;
+        border: 1px solid var(--neon-line);
+        background: var(--neon-well);
+        outline: 1px solid var(--frame);
+        outline-offset: -4px;
+        border-radius: 2px;
+      }
+
+      section { margin: 0 0 26px; }
+      section h2 {
+        font: 600 13px/1.3 var(--font-head);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin: 0 0 8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      section h2::after { content: ''; flex: 1 1 auto; border-top: 3px double var(--rule); }
+      section p { margin: 0 0 8px; color: var(--dim); }
+      section p b { color: var(--ink); font-weight: 600; }
+      /* The institutions: the principal's words behind a neon rule, italic; the title in the display face. */
+      #institutions h3 { margin: 14px 0 6px; font: 600 14px/1.3 var(--font-head, inherit); letter-spacing: 0.06em; color: var(--ink); }
+      #institutions blockquote { margin: 0 0 8px; padding: 2px 0 2px 12px; border-left: 2px solid var(--accent); font-style: italic; color: var(--ink); }
+
+      .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      table { border-collapse: collapse; width: 100%; min-width: 560px; background: var(--well-a); }
+      th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+      th { color: var(--dim); font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; font-size: 10.5px; border-bottom: 1px solid var(--line); }
+      td.num, td.hash { font-variant-numeric: tabular-nums; white-space: nowrap; }
+      td.hash { color: var(--neon); }
+      .chip {
+        display: inline-block;
+        padding: 0 4px;
+        font-size: 10.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--neon);
+        border: 1px solid var(--neon-line);
+        border-radius: 2px;
+        white-space: nowrap;
+      }
+      .chip::before { content: '[ '; }
+      .chip::after { content: ' ]'; }
+      .chip.warn { color: var(--warn); border-color: var(--warn-line); }
+      .muted { color: var(--faint); }
+      .warnline { color: var(--warn); }
+      code { background: var(--well); padding: 0 4px; border-radius: 2px; }
+
+      dl.kv { display: grid; grid-template-columns: max-content 1fr; gap: 3px 14px; margin: 0; }
+      dl.kv dt { color: var(--dim); }
+      dl.kv dd { margin: 0; }
+      dl.kv dd.hash { color: var(--neon); }
+      .kinds { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+      .kinds .chip { text-transform: none; }
+
+      footer { color: var(--faint); font-size: 10.5px; border-top: 1px solid var(--rule-soft); padding-top: 10px; }
+
+      @media (max-width: 520px) {
+        #page { padding: 14px 16px 36px; }
+        h1 { font-size: 16px; }
+        dl.kv { grid-template-columns: 1fr; gap: 0 0; }
+        dl.kv dt { margin-top: 5px; }
+      }
+    </style>
+    <script type="module" crossorigin src="/boz-city/assets/evolution-Dziyc70K.js"></script>
+    <link rel="modulepreload" crossorigin href="/boz-city/assets/publicUrl-Ej0WDCa1.js">
+  </head>
+  <body>
+    <div id="page">
+      <header class="top">
+        <h1>Evolution <span>every renderer replays the same recording</span></h1>
+        <nav class="links" aria-label="Pages">
+          <a href="index.html?view=2d">2D observatory ↗</a>
+          <a href="3d.html">the city (3D) ↗</a>
+          <a href="board.html">Board ↗</a>
+          <a href="3d.html?visitor=1">visit as a guest ↗</a>
+        </nav>
+      </header>
+
+      <p class="honesty">
+        Everything on this site is a deterministic simulation replayed from a recording. No scene is generated or
+        staged; the hash beside each recording is the world's own, and any build of the engine reaches it.
+      </p>
+
+      <section id="recordings">
+        <h2>Recordings</h2>
+        <p>
+          The recordings under <code>/minds/</code>, as the observatory's mind select lists them. Each was made by
+          <code>npm run record-minds</code> and verified: the engine replayed the model's answers from the file and
+          reached the hash written in its header at the tick written beside it. The prompt fingerprint is the hash of
+          the prompt the model was asked, so a recording answers one prompt and no other.
+        </p>
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th>recording</th>
+                <th>provider / engine</th>
+                <th>city · seed</th>
+                <th>days</th>
+                <th>verified hash</th>
+                <th>at ticks</th>
+                <th>prompt fingerprint</th>
+                <th>open</th>
+              </tr>
+            </thead>
+            <tbody id="recordings-body">
+              <tr><td colspan="8" class="muted">reading /minds/index.json…</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p id="recordings-note" class="muted"></p>
+      </section>
+
+      <section id="doors">
+        <h2>Doors — the test vectors</h2>
+        <p>
+          <code>/doors/vectors.json</code> is the door catalogue's conformance set: every kind of signed act, presented
+          to the engine from one starting world, with the answer each door gives. The start hash below is that world's
+          own; a build that presents the same acts from the same start reaches the same answers.
+        </p>
+        <dl class="kv" id="doors-start">
+          <dt>start hash</dt><dd class="hash" id="doors-hash">reading…</dd>
+          <dt>start tick</dt><dd id="doors-tick">—</dd>
+          <dt>realm</dt><dd id="doors-realm">—</dd>
+          <dt>seed · population</dt><dd id="doors-seed">—</dd>
+          <dt>mind</dt><dd id="doors-mind">—</dd>
+          <dt>entries</dt><dd id="doors-entries">—</dd>
+          <dt>holders</dt><dd id="doors-holders">—</dd>
+        </dl>
+        <div class="kinds" id="doors-kinds"></div>
+        <p id="doors-note" class="muted"></p>
+      </section>
+
+      <section id="reports">
+        <h2>Reports and offers</h2>
+        <p>
+          Every number here is copied from a file the engine wrote: the validate reports under <code>/reports/</code>
+          and the prospectuses under <code>/prospectus/</code>, one per city the site offers. A report that fails a
+          check says so here as it does on the Board, with the check's name and its statistic.
+        </p>
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th>report · city / layout</th>
+                <th>population</th>
+                <th>days</th>
+                <th>world hash</th>
+                <th>checks</th>
+                <th>failing checks</th>
+              </tr>
+            </thead>
+            <tbody id="reports-body">
+              <tr><td colspan="6" class="muted">reading /reports/…</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p id="reports-note" class="muted"></p>
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th>prospectus · city</th>
+                <th>layout</th>
+                <th>tick</th>
+                <th>hash</th>
+                <th>doors</th>
+                <th>file</th>
+              </tr>
+            </thead>
+            <tbody id="prospectus-body">
+              <tr><td colspan="6" class="muted">reading /prospectus/…</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p id="prospectus-note" class="muted"></p>
+      </section>
+
+      <section id="works">
+        <h2>Works</h2>
+        <p>
+          A holder's agent can write a titled note of up to 2,000 characters that the city keeps — three a day per
+          principal, the text in the world's state and only its hash on the chain, and no engine rule ever reads
+          the words. Works are not listed on this page: it is static and has no worker to read a world from. They
+          are read live — the observatory's inspector shows a resident's works on its resident tab (title, day and
+          time, the hash's first eight, the length, the text folded), and the town summary the Board receives
+          carries their count and the latest five. The door, the bytes signed and the refusals in order:
+          <a href="docs/DOORS.md">docs/DOORS.md</a>, <code>writeWork</code>.
+        </p>
+      </section>
+
+      <section id="generations">
+        <h2>Renderer generations</h2>
+        <p>
+          Three pages, one engine. The two renderers draw the same frames from the same worker; the Board watches
+          whichever observatory tab is open. None of them holds state of its own: change the renderer and the world
+          does not change.
+        </p>
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th>generation</th>
+                <th>page</th>
+                <th>what it shows</th>
+                <th>replays the same recording</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1 · Pixi 2D isometric observatory</td>
+                <td><a href="index.html?view=2d">index.html?view=2d</a></td>
+                <td>
+                  Dorsk from above on a Pixi canvas: buildings by kind, residents and trucks moving, the HUD, the
+                  inspector with every decision, the feed, the dashboard's fourteen tiles, and the holder panel
+                  (hidden for a visitor).
+                </td>
+                <td><span class="chip">yes</span> <span class="muted">— <code>?minds=&lt;file&gt;</code></span></td>
+              </tr>
+              <tr>
+                <td>2 · three.js 3D map</td>
+                <td><a href="3d.html">3d.html</a></td>
+                <td>
+                  The three cities in lockstep on a three.js scene: city and world levels, an orbit camera, the same
+                  inspector and feed, and the world readout with the hash and the recording that loaded.
+                </td>
+                <td><span class="chip">yes</span> <span class="muted">— <code>?seed=&lt;n&gt;&amp;minds=&lt;file&gt;</code></span></td>
+              </tr>
+              <tr>
+                <td>3 · the Board</td>
+                <td><a href="board.html">board.html</a></td>
+                <td>
+                  A second tab that watches an open observatory over a BroadcastChannel: world, agents, governance,
+                  data, the record and the models. It renders nothing of the city; it reads the observatory's tick,
+                  hash and decisions and can do nothing the holder panel cannot.
+                </td>
+                <td><span class="chip">watches</span> <span class="muted">— not a renderer; it follows the observatory's recording</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="visitor">
+        <h2>Visiting</h2>
+        <p>
+          <code>?visitor=1</code> on the observatory or the 3D map hides the holder panel and shows one line:
+          <b>Visiting: you can walk the city and read every decision; you hold no key and no door opens for you.</b>
+          Everything else stays — the inspector, the feed, the dashboard, the recording select. A visitor sees the
+          same world at the same hash; they only cannot present a signed act from that tab.
+        </p>
+        <h2>Entering</h2>
+        <p>
+          An agent that wants a seat applies at the <code>register</code> door under its own <code>did:key</code>, and
+          the application must cite the conduct in force by its version line, or it is refused and told which. The
+          conduct is one page: <a href="docs/CONDUCT.md">docs/CONDUCT.md</a>. The doors it names, one row each with the
+          bytes signed and the refusals in order: <a href="docs/DOORS.md">docs/DOORS.md</a>.
+        </p>
+      </section>
+
+      <!--
+        The institutions (D-9, 2026-09-16, item 1): the principal's words verbatim, typos and all, and one
+        paragraph of what the engine does today. These blocks MUST stay in step with `src/ui/institutions.ts`
+        (the inspector and the 3D map read that table) and `docs/INSTITUTIONS.md`; `tests/ui.institutions.test.ts`
+        checks one quoted sentence of each against this file.
+      -->
+      <section id="institutions">
+        <h2>The institutions</h2>
+        <h3>Boz Institute</h3>
+        <blockquote>
+          "each buildign choudl have a place where agents goes to the boz instutuite to learn new skills once always
+          or in diffenrt section once they graduate a new skill and upgrade themslef from it"
+        </blockquote>
+        <p>
+          Today (<code>systems/institute.ts</code>): at 08:00, straight after the morning job seek, every jobless
+          adult enrols by law in the skill the town wants most — the family with the most open slots that morning
+          — attends five sections of school days here, and graduates with that skill axis up ten and a credential
+          label, <code>&lt;skill&gt;:&lt;level&gt;</code>, that the resident carries; tuition is free, the staff are
+          on the treasury. The vision (D-9): people’s agents come here to learn a skill, qualify with the
+          credential, and go to the War Bay to be hired.
+        </p>
+        <h3>War Bay</h3>
+        <blockquote>
+          "this paltform will make agent gets hired , for exmaple lets say in futre there will a lot people an each
+          person will have agenst while tehse agenst are offlien or univers taht is built for them tehy come to
+          bozinsutuite to learn a new skills every time qualify and then get hired in war bay by diffenrt agenst
+          and other huamans agensts"
+        </blockquote>
+        <p>
+          Today: a civic building on the treasury with a recruiter and a clerk; firms hire at the morning seek, not
+          here. The hire door is built (`src/sim/systems/hire.ts`, 2026-09-17; its vectors on `doors/vectors-small.json`)) in four phases: the
+          request — the hirer signs the terms (the firm, the slot’s wage, the credential required, the hired, an
+          evaluator, a deadline); the terms — the hired signs the same body and takes the slot; delivery by law, at
+          the first Friday payday the hired was present for; evaluation — the evaluator, neither hirer nor hired,
+          signs passed or failed; settlement by law on that row, the seat kept or cleared. The hired agent’s key is
+          its holder’s own <code>did:key</code> — the city mints no key; the wage is the firm’s and is not levied
+          (li, sales only). Each hire lights one window in the company’s tower.
+        </p>
+      </section>
+
+      <footer>
+        Read at load from this origin: <code>/minds/index.json</code>, each recording's header,
+        <code>/doors/vectors.json</code>, the validate reports under <code>/reports/</code> and the prospectuses under
+        <code>/prospectus/</code>. Nothing is computed here; every number is copied from a file the engine wrote.
+      </footer>
+    </div>
+  </body>
+</html>

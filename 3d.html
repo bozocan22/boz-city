@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Living World — 3D</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+        /* Star Wars register (2026-09-16) — DECISIONS 2026-09-16, "the 3D
+           page's UI with a Star Wars vibe": deep space navy/black ground,
+           holo-blue panels with cyan-blue lines and a soft blue glow, the
+           crawl's yellow as the ONE warm accent (the title, active states),
+           red-orange only for warnings and errors. The same token names as
+           the other pages, so nothing else changes. Legibility is still the
+           constraint — numerals first. */
+        --bg: #050810;
+        --panel: rgba(10, 30, 60, 0.85);
+        --line: #4fc3f7;
+        --rule: rgba(79, 195, 247, 0.45);
+        --rule-soft: rgba(79, 195, 247, 0.18);
+        --ink: #dfeefc;
+        --dim: #8fb3d9;
+        --faint: #5f7fa3;
+        --well: #050810;
+        --well-a: rgba(5, 8, 16, 0.62);
+        --raise: rgba(12, 36, 68, 0.9);
+        --raise-hi: rgba(20, 52, 92, 0.95);
+        --raise-a: rgba(12, 36, 68, 0.6);
+        --neon: #4fc3f7;
+        --neon2: #ffe81f;
+        --glow: rgba(79, 195, 247, 0.35);
+        --glow2: rgba(255, 232, 31, 0.35);
+        --neon-line: rgba(79, 195, 247, 0.55);
+        --neon-well: rgba(79, 195, 247, 0.14);
+        --frame: rgba(79, 195, 247, 0.22);
+        --tick: rgba(79, 195, 247, 0.7);
+        --scan: rgba(79, 195, 247, 0.03);
+        --accent: var(--neon2);
+        --warn: #ff5c3a;
+        --warn-line: rgba(255, 92, 58, 0.5);
+        --crit: #ff5c3a;
+        --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+        --font-head: 'Orbitron', Impact, 'Arial Black', sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font: 12px/1.5 var(--font-mono);
+      }
+      #stage { position: fixed; inset: 0; }
+      #stage canvas { display: block; }
+      #labels { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+      .label {
+        position: absolute;
+        left: 0;
+        top: 0;
+        white-space: nowrap;
+        color: var(--ink);
+        text-shadow: 0 0 3px #000, 0 0 6px #000;
+        pointer-events: none;
+        letter-spacing: 0.02em;
+      }
+      .label-landmark { font-size: 11px; }
+      .label-landmark::after {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 10px;
+        margin: 2px auto 0;
+        background: var(--ink);
+        opacity: 0.7;
+      }
+      .label-city {
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .label-click { pointer-events: auto; cursor: pointer; }
+      .panel {
+        position: fixed;
+        background: var(--panel);
+        backdrop-filter: blur(6px);
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        padding: 10px 12px;
+        user-select: none;
+      }
+      #controls { top: 12px; left: 12px; width: 250px; }
+      #readout { top: 12px; right: 12px; width: 280px; }
+      #help { bottom: 12px; left: 12px; color: var(--dim); max-width: 460px; }
+
+      /* The observatory's two panels. Their *insides* are not styled here —
+         `inspector.ts` and `feed.ts` bring their own stylesheet, the same one
+         the 2D page uses, so the two pages cannot drift into showing the same
+         decision two ways. What is left is page layout: where the two panels
+         sit on this page, and what steps aside for them. The three overrides
+         below (padding, user-select, the flex column) are undoing *this*
+         page's own `.panel` rule, not reaching into the component. */
+      #inspector {
+        top: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: 336px;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        user-select: text;
+      }
+      #inspector[hidden] { display: none; }
+      /* The inspector owns the right edge; the readout steps aside rather than
+         being covered. `#help` is bottom-left on this page, so it does not have
+         to move — the 2D page shifts it only because it sits bottom-right there. */
+      body.inspecting #readout { right: 360px; }
+
+      /* The feed is the left column beside the controls: 250 px of controls
+         plus the 12 px gutter. No dashboard strip on this page, so it stops
+         above the help line instead of above `--dash-h`. */
+      #feed {
+        top: 12px;
+        left: 274px;
+        width: 300px;
+        /* The help line is five rows tall in the Star Wars face; stop above it (2026-09-16). */
+        max-height: calc(100vh - 168px);
+        display: flex;
+        flex-direction: column;
+        padding: 7px 0 0;
+        user-select: text;
+      }
+      #feed.feed-closed { max-height: none; }
+      h1 { margin: 0 0 8px; font-size: 12px; letter-spacing: 0.08em; font-weight: 600; }
+      h1 span { color: var(--dim); font-weight: 400; letter-spacing: 0; }
+      h2 { margin: 0 0 6px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+      label { display: block; color: var(--dim); margin-bottom: 3px; }
+      .row { margin-bottom: 8px; }
+      .row:last-child { margin-bottom: 0; }
+      button {
+        padding: 4px 9px;
+        margin: 0 3px 3px 0;
+        background: var(--raise);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        color: var(--ink);
+        font: inherit;
+        cursor: pointer;
+      }
+      button:hover { border-color: var(--accent); }
+      button[aria-pressed='true'] { background: var(--accent); color: var(--well); border-color: var(--accent); }
+      dl { margin: 0; display: grid; grid-template-columns: 78px 1fr; gap: 2px 8px; }
+      dt { color: var(--dim); }
+      dd { margin: 0; overflow-wrap: anywhere; }
+      .muted { color: var(--dim); }
+      .warn { color: var(--warn); }
+      #gpu { font-size: 10px; }
+      /* ------------------------------------- the Star Wars register (2026-09-16)
+         A holo-console: chamfered holo-blue frames, a cyan edge, a faint inner
+         scanline, blocky display type in caps, the crawl's yellow once. Tokens,
+         fonts, shapes and small ornaments only: every id, class and layout rule
+         above is as it was. */
+      body { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+      * { scrollbar-width: thin; scrollbar-color: var(--rule) transparent; }
+      ::selection { background: var(--neon2); color: var(--well); }
+      /* the console's scanlines, at an opacity the smallest numeral survives */
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 2147483647;
+        background: repeating-linear-gradient(180deg, transparent 0 2px, rgba(0, 0, 0, 0.16) 2px 3px);
+        opacity: 0.3;
+      }
+      /* holo panel: chamfered on two opposite corners (12 px off top-left and
+         bottom-right), a 1px cyan edge drawn by the border, a soft blue glow,
+         a faint inner scanline that drifts slowly. `clip-path` clips an outer
+         box-shadow, so the glow is an inset one. */
+      .panel {
+        border-radius: 0;
+        border-color: var(--line);
+        clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+        box-shadow: inset 0 0 0 1px rgba(79, 195, 247, 0.18), inset 0 0 22px var(--glow);
+        outline: 0;
+        background:
+          repeating-linear-gradient(180deg, var(--scan) 0 1px, transparent 1px 3px) 0 0 / 100% 600px,
+          linear-gradient(var(--line), var(--line)) top left / 40px 1px no-repeat,
+          linear-gradient(var(--line), var(--line)) bottom right / 40px 1px no-repeat,
+          var(--panel);
+        animation: holo-mount 120ms steps(1, end) 1, holo-scan 6s linear infinite;
+      }
+      /* the two corners the chamfer cuts: a short cyan line across each */
+      .panel::before, .panel::after {
+        content: '';
+        position: absolute;
+        width: 17px;
+        height: 1px;
+        background: var(--line);
+        pointer-events: none;
+      }
+      .panel::before { top: 5.5px; left: -2.5px; transform: rotate(-45deg); }
+      .panel::after { bottom: 5.5px; right: -2.5px; transform: rotate(-45deg); }
+      /* motion, restrained: a hologram flicker on mount (0.6 → 1 with one 40 ms
+         dip), a slow 6 s scanline drift; both off under prefers-reduced-motion */
+      @keyframes holo-mount {
+        0% { opacity: 0.6; }
+        33% { opacity: 0.9; }
+        66% { opacity: 0.6; }
+        100% { opacity: 1; }
+      }
+      @keyframes holo-scan {
+        from { background-position: 0 0, top left, bottom right, 0 0; }
+        to { background-position: 0 600px, top left, bottom right, 0 0; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .panel { animation: none; }
+        button { transition: none; }
+      }
+      /* the title: the display face, all caps, tracked wide, the crawl's yellow,
+         a small four-point star ahead of it */
+      h1 {
+        font-family: var(--font-head);
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--neon2);
+        text-shadow: 0 0 8px var(--glow2);
+        display: flex;
+        align-items: baseline;
+        gap: 7px;
+        min-width: 0;
+      }
+      h1::before { content: '✦'; flex: 0 0 auto; font-size: 11px; color: var(--neon2); text-shadow: 0 0 6px var(--glow2); }
+      h1 span {
+        font-family: var(--font-mono);
+        font-weight: 400;
+        font-size: 11px;
+        letter-spacing: 0;
+        color: var(--dim);
+        text-shadow: none;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      /* section heads: the display face in caps, a thin bracket ornament either
+         side, a rule running out to the edge */
+      .panel h2 { font-family: var(--font-head); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--neon); text-shadow: 0 0 6px var(--glow); }
+      .panel > h2 { display: flex; align-items: center; gap: 6px; }
+      .panel > h2::before { content: '['; color: var(--dim); font-family: var(--font-mono); font-weight: 400; text-shadow: none; }
+      .panel > h2::after {
+        content: ']';
+        color: var(--dim);
+        font-family: var(--font-mono);
+        font-weight: 400;
+        text-shadow: none;
+        flex: 1 1 auto;
+        background: linear-gradient(90deg, transparent 0 14px, var(--rule) 14px, transparent 100%) center / 100% 1px no-repeat;
+      }
+      /* the row labels: the display face, small caps, tracked */
+      #controls label { font-family: var(--font-head); font-weight: 700; font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
+      /* controls: angular tabs with one corner chamfered; blue on hover; the
+         active one in yellow text on a dark fill with a yellow underline —
+         never a yellow fill */
+      button, input[type='text'], select, textarea { border-radius: 0; }
+      button {
+        background: var(--raise);
+        border-color: var(--rule);
+        clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+        transition: box-shadow 120ms, border-color 120ms, color 120ms;
+      }
+      button:hover { border-color: var(--neon); color: var(--neon); }
+      button[aria-pressed='true'] {
+        background: var(--well);
+        color: var(--neon2);
+        border-color: var(--neon2);
+        box-shadow: inset 0 -2px 0 var(--neon2), inset 0 0 10px var(--glow2);
+      }
+      input[type='text'], select, textarea { background: var(--well); border-color: var(--rule); }
+      input:focus, select:focus, textarea:focus { outline: none; border-color: var(--neon); box-shadow: 0 0 10px var(--glow); }
+      /* bracketed status chips: [ RUN ] [ PAUSE ] in the display face */
+      #run, #pause { font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: 9px; }
+      #run::before, #pause::before { content: '[ '; color: var(--dim); }
+      #run::after, #pause::after { content: ' ]'; color: var(--dim); }
+      .prov-full { border: 0; padding: 2px 0; letter-spacing: 0.06em; clip-path: none; }
+      .prov-full::before { content: '[ '; }
+      .prov-full::after { content: ' ]'; }
+      #following.live { color: var(--neon2); text-shadow: 0 0 6px var(--glow2); }
+      /* `DAY 1 · 04:30`: a holo-blue pill */
+      #clock {
+        display: inline-block;
+        padding: 0 8px;
+        border: 1px solid var(--neon-line);
+        border-radius: 999px;
+        background: var(--neon-well);
+        color: var(--neon);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        line-height: 16px;
+        box-shadow: 0 0 8px var(--glow);
+      }
+      /* `01 / HALVIK`: the display face with a blue glow */
+      .label-city { font-family: var(--font-head); font-weight: 700; letter-spacing: 0.18em; color: var(--ink); text-shadow: 0 0 3px #000, 0 0 6px #000, 0 0 10px var(--glow), 0 0 26px var(--glow); }
+      .label-landmark::after { background: var(--neon); opacity: 0.6; }
+      /* the help line's links: blue, yellow under the pointer */
+      #help a { color: var(--neon); text-decoration: none; border-bottom: 1px solid var(--rule); }
+      #help a:hover { color: var(--neon2); border-bottom-color: var(--neon2); }
+      #help b { color: var(--ink); }
+      /* the error line: red-orange, the only place the warm-red appears */
+      #error:not(:empty)::before { content: '[ ! ] '; letter-spacing: 0.08em; }
+      /* `?visitor=1`: the one line a visitor sees; the holder panel is not mounted. */
+      #visitor-banner {
+        position: fixed;
+        /* No dashboard strip here; the help line is bottom-left, so this sits bottom-right. */
+        right: 12px;
+        bottom: 12px;
+        max-width: min(560px, calc(100vw - 24px));
+        padding: 5px 12px;
+        background: var(--panel);
+        border: 1px solid var(--neon-line);
+        border-radius: 0;
+        clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        color: var(--ink);
+        font-size: 11px;
+        letter-spacing: 0.03em;
+        text-align: center;
+        box-shadow: inset 0 0 12px var(--glow);
+        z-index: 40;
+        pointer-events: none;
+      }
+      #visitor-banner::before { content: '[ VISITOR ] '; color: var(--neon2); font-family: var(--font-head); font-size: 9px; letter-spacing: 0.18em; }
+    </style>
+
+    <script type="module" crossorigin src="/boz-city/assets/3d-BAFRTGfo.js"></script>
+    <link rel="modulepreload" crossorigin href="/boz-city/assets/publicUrl-Ej0WDCa1.js">
+    <link rel="modulepreload" crossorigin href="/boz-city/assets/llmMind-CIUAeJND.js">
+    <link rel="modulepreload" crossorigin href="/boz-city/assets/client-C4VP7AK3.js">
+    <link rel="stylesheet" crossorigin href="/boz-city/assets/llmMind-D5yP0WKe.css">
+  </head>
+  <body>
+    <div id="stage"></div>
+    <div id="labels"></div>
+    <div class="panel" id="inspector" hidden></div>
+    <div class="panel" id="feed"></div>
+
+    <div class="panel" id="controls">
+      <h1>LIVING WORLD <span>— 3D</span></h1>
+      <div class="row">
+        <!-- the copy is set by the page mode in `app3d.ts` (`buildControls`): the one small city, or the three in lockstep -->
+        <label id="looking">looking at — the one small city</label>
+        <span id="cities"></span>
+      </div>
+      <div class="row">
+        <label>level</label>
+        <button id="tocity">city</button>
+        <button id="toworld">world</button>
+      </div>
+      <div class="row">
+        <label>run</label>
+        <button id="run">Run</button>
+        <button id="pause">Pause</button>
+        <button id="stephour">+1 h</button>
+        <button id="stepday">+1 day</button>
+      </div>
+      <div class="row">
+        <label>speed — sim ticks per real second</label>
+        <span id="speeds"></span>
+      </div>
+    </div>
+
+    <div class="panel" id="readout">
+      <h2>world</h2>
+      <dl>
+        <dt>seed</dt><dd id="seed">—</dd>
+        <dt>tick</dt><dd id="tick">0</dd>
+        <dt>clock</dt><dd id="clock">—</dd>
+        <dt>light</dt><dd id="light">—</dd>
+        <dt>sky</dt><dd id="weather">—</dd>
+        <dt>hash</dt><dd id="hash">—</dd>
+        <!-- `?minds=<name>`: the recording that loaded, or the reason it did
+             not. The 2D page keeps this on its own HUD line; here it is a
+             readout row, and refusals also write the error line below. -->
+        <dt>minds</dt><dd id="minds">—</dd>
+      </dl>
+      <h2 style="margin-top: 10px">render</h2>
+      <dl>
+        <dt>fps</dt><dd id="fps">—</dd>
+        <dt>gpu</dt><dd id="gpu">—</dd>
+        <dt>draw calls</dt><dd id="calls">—</dd>
+        <dt>triangles</dt><dd id="tris">—</dd>
+        <dt>distance</dt><dd id="distance">—</dd>
+        <dt>fade</dt><dd id="fade">—</dd>
+        <dt>drawn</dt><dd id="drawn">—</dd>
+        <dt>picked</dt><dd id="picked">—</dd>
+      </dl>
+      <div id="error" class="warn"></div>
+    </div>
+
+    <div class="panel" id="help">
+      drag to pan · right-drag or shift-drag to orbit · wheel to zoom ·
+      <b>WASD</b> pan · <b>Q/E</b> turn · <b>R/F</b> tilt (<b>F</b> follows while the inspector is open) ·
+      <b>+/−</b> zoom ·
+      <b>click</b> a building, a person or a truck — in any city; the observatory moves to it ·
+      zoom out past the fade band for the world ·
+      <a href="index.html?view=2d">2D observatory</a> · <a href="board.html">Board</a> · <a href="evolution.html">Evolution</a>
+    </div>
+
+  </body>
+</html>

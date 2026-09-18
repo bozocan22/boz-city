@@ -1,0 +1,2791 @@
+{
+ "seed": 42,
+ "country": "nordholm",
+ "population": 2000,
+ "days": 30,
+ "ticks": 43200,
+ "hash": "52b852f8589ae539",
+ "ok": true,
+ "checks": [
+  {
+   "name": "Engel's law — food share falls with income",
+   "pass": true,
+   "statistic": "r = -0.263 over 955 households; 4 of 5 quintile comparisons fall",
+   "tolerance": "r < 0 and at least 4 of 5 quintile comparisons falling",
+   "detail": "quintile mean food shares, poorest first: 39.0 %, 16.8 %, 47.4 %, 20.2 %, 12.6 %; median household spends 23.9 % of income on food. Read the levels with care: the calibrated *budget* share only binds where a household cannot afford the week of food, so the two bottom quintiles sit on the Engel curve and everybody above them is spending what the diet costs rather than what the curve allows. The law therefore emerges here rather than being imposed, which is the stronger result — and the reason the realised shares are below the budgeted ones."
+  },
+  {
+   "name": "Money conservation — Σ balances = initial + credit",
+   "pass": true,
+   "statistic": "$23701402.86 against $23701402.86 (drift 0 cents)",
+   "tolerance": "exactly equal, at every checked tick",
+   "detail": "asserted 720 times, every 60 ticks"
+  },
+  {
+   "name": "Determinism — two runs, one seed, one hash",
+   "pass": true,
+   "statistic": "52b852f8589ae539 vs 52b852f8589ae539",
+   "tolerance": "identical after the whole window",
+   "detail": "43200 ticks each, seed 42"
+  },
+  {
+   "name": "Rent-to-income — median in the brief §9 band",
+   "pass": true,
+   "statistic": "median 29.7 % over 232 renting households with an earner",
+   "tolerance": "20 % to 40 %",
+   "detail": "interquartile 20.2 % to 38.9 %; 723 renting households live on a pension or the dole alone, at a median of 74.3 % — reported, not judged"
+  },
+  {
+   "name": "Price stability — basket index inside ±25 % (sanity bound)",
+   "pass": true,
+   "statistic": "95.5 to 115.1, ending 98.5",
+   "tolerance": "75 to 125 (100 = the first day it was priced)",
+   "detail": "714 hourly samples. This is a sanity bound, not a stylized fact: no theory says a young city must stay inside a quarter of its opening prices, but a run that leaves the band has a runaway markup in it."
+  },
+  {
+   "name": "Provenance coverage — what the numbers rest on",
+   "pass": true,
+   "statistic": "19 calibrated, 64 assumed (0 derived)",
+   "tolerance": "reported, not judged — the badge on every metric in this report",
+   "detail": "7 further parameters are loaded and not yet acted on (Phase 3 trade)"
+  }
+ ],
+ "engel": {
+  "households": 955,
+  "correlation": -0.2634837094429071,
+  "quintiles": [
+   0.3903839164800655,
+   0.16758749126773292,
+   0.47367678837309163,
+   0.20180374451651226,
+   0.12600273402851597
+  ],
+  "deciles": [
+   0.2582837497771669,
+   0.521108039779809,
+   0.13990733944296074,
+   0.19497930817766362,
+   0.39849735806050585,
+   0.5480730996199209,
+   0.22774698953298836,
+   0.1761307416356244,
+   0.17814939095900384,
+   0.07439927144105392
+  ],
+  "fallingSteps": 4,
+  "medianShare": 0.23853234452369054
+ },
+ "rentToIncome": {
+  "households": 232,
+  "welfareOnly": 723,
+  "welfareMedian": 0.7425492125984252,
+  "median": 0.29721855399371466,
+  "p25": 0.20238868028002707,
+  "p75": 0.3891414913426531
+ },
+ "basket": {
+  "min": 95.54030874785592,
+  "max": 115.09433962264151,
+  "final": 98.45626072041166,
+  "samples": 714
+ },
+ "stockDays": [
+  {
+   "good": "Wheat",
+   "min": 4.686964077368934,
+   "minDay": 20,
+   "final": 6.362927927451399,
+   "daysWithoutDraw": 2,
+   "days": 30
+  },
+  {
+   "good": "Flour",
+   "min": 1.2951794884480479,
+   "minDay": 28,
+   "final": 1.8448497882146673,
+   "daysWithoutDraw": 1,
+   "days": 30
+  },
+  {
+   "good": "Bread",
+   "min": 0.014288569056598435,
+   "minDay": 7,
+   "final": 0.3402439066740433,
+   "daysWithoutDraw": 1,
+   "days": 30
+  },
+  {
+   "good": "Vegetables",
+   "min": 2.9510257542291036,
+   "minDay": 14,
+   "final": 3.528813327659514,
+   "daysWithoutDraw": 1,
+   "days": 30
+  },
+  {
+   "good": "Milk",
+   "min": 3.4884096526579413,
+   "minDay": 29,
+   "final": 3.58692737282648,
+   "daysWithoutDraw": 1,
+   "days": 30
+  }
+ ],
+ "boundary": [
+  {
+   "city": "Halvik",
+   "currency": "NHK",
+   "lone": true,
+   "serviceBill": true,
+   "balance": 651783334,
+   "opening": 691283840,
+   "movedPerDay": -1316683.5333333334,
+   "dumpPerDay": 46345.2,
+   "backstopPerDay": 35239.333333333336,
+   "serviceBillPerDay": 1305577.6666666667,
+   "wageBillPerDay": 1899131.4285714286,
+   "serviceBillShare": 0.6874604079659473,
+   "abroad": 0,
+   "residualPerDay": 0,
+   "days": 30
+  }
+ ],
+ "founding": [
+  {
+   "city": "Halvik",
+   "currency": "NHK",
+   "lone": true,
+   "population": 2000,
+   "mouthsFed": 2000,
+   "employedTarget": 1000,
+   "premisesSlots": 2442,
+   "foundedSlots": 363,
+   "idleShare": 0.637,
+   "wageScale": 1.693324281752706,
+   "firms": 39,
+   "closedFirms": 0,
+   "vacantPremises": 102,
+   "seeking": 0,
+   "shortFirms": 0,
+   "shortMax": 0,
+   "kinds": [
+    {
+     "kind": "grocer",
+     "premises": 10,
+     "founded": 2,
+     "closed": 0,
+     "slots": 10,
+     "staffed": 10,
+     "payer": "households",
+     "weeksOfWages": 1.1244040559772297,
+     "revenueToWages": 1.850812690059697,
+     "why": "the households' food budget (Engel 24.1 % of a weekly income of NHK 928.8k (363 founded slots at their ladder…",
+     "whyFull": "the households' food budget (Engel 24.1 % of a weekly income of NHK 928.8k (363 founded slots at their ladder wages, plus welfare of NHK 411.3k)) pays 5.0 % (fallback: the grocer's wage share of the food budget is a fallback; the ICIO loader (OECD ICIO 2025, value added over output) replaces it) of itself in shop wages; 83.3 % of the food shelves is this kind's: NHK 9311 a week buys 9.2 slot-weeks at NHK 1015",
+     "owner": "the city"
+    },
+    {
+     "kind": "bakery",
+     "premises": 7,
+     "founded": 2,
+     "closed": 0,
+     "slots": 6,
+     "staffed": 6,
+     "payer": "households",
+     "weeksOfWages": 8.337529806726907,
+     "revenueToWages": 2.5086595496923474,
+     "why": "bakes for 2,000 mouths: 2,800 loaf of bread a week at 13.5 loaf a worker-hour is 5.19 slots",
+     "whyFull": "bakes for 2,000 mouths: 2,800 loaf of bread a week at 13.5 loaf a worker-hour is 5.19 slots",
+     "owner": "the city"
+    },
+    {
+     "kind": "cafe",
+     "premises": 10,
+     "founded": 3,
+     "closed": 0,
+     "slots": 15,
+     "staffed": 15,
+     "payer": "households",
+     "weeksOfWages": 17.41599770021645,
+     "revenueToWages": 4.204629811670423,
+     "why": "the households' restaurants & hotels share 6.0 % of a weekly income of NHK 928.8k (363 founded slots at their…",
+     "whyFull": "the households' restaurants & hotels share 6.0 % of a weekly income of NHK 928.8k (363 founded slots at their ladder wages, plus welfare of NHK 411.3k); 37.3 % of the venues' room is this kind's: NHK 20.8k a week buys 21.1 slot-weeks at NHK 986; the structure's 4.0 % of 1,000 employed in accommodation food caps it at 14.9",
+     "owner": "the city"
+    },
+    {
+     "kind": "restaurant",
+     "premises": 7,
+     "founded": 2,
+     "closed": 0,
+     "slots": 14,
+     "staffed": 14,
+     "payer": "households",
+     "weeksOfWages": 12.555635044329186,
+     "revenueToWages": 2.9279139186785104,
+     "why": "the households' restaurants & hotels share 6.0 % of a weekly income of NHK 928.8k (363 founded slots at their…",
+     "whyFull": "the households' restaurants & hotels share 6.0 % of a weekly income of NHK 928.8k (363 founded slots at their ladder wages, plus welfare of NHK 411.3k); 34.8 % of the venues' room is this kind's: NHK 19.4k a week buys 17.4 slot-weeks at NHK 1116; the structure's 4.0 % of 1,000 employed in accommodation food caps it at 13.9",
+     "owner": "the city"
+    },
+    {
+     "kind": "bar",
+     "premises": 9,
+     "founded": 3,
+     "closed": 0,
+     "slots": 12,
+     "staffed": 12,
+     "payer": "households",
+     "weeksOfWages": 45.10182016480853,
+     "revenueToWages": 11.13392071892481,
+     "why": "the households' restaurants & hotels share 6.0 % of a weekly income of NHK 928.8k (363 founded slots at their…",
+     "whyFull": "the households' restaurants & hotels share 6.0 % of a weekly income of NHK 928.8k (363 founded slots at their ladder wages, plus welfare of NHK 411.3k); 28.0 % of the venues' room is this kind's: NHK 15.6k a week buys 15.1 slot-weeks at NHK 1031; the structure's 4.0 % of 1,000 employed in accommodation food caps it at 11.2",
+     "owner": "the city"
+    },
+    {
+     "kind": "pharmacy",
+     "premises": 6,
+     "founded": 1,
+     "closed": 0,
+     "slots": 2,
+     "staffed": 2,
+     "payer": "households",
+     "weeksOfWages": 28.872846977253374,
+     "revenueToWages": 8.485605451535157,
+     "why": "the households' health share 3.0 % of a weekly income of NHK 928.8k (363 founded slots at their ladder wages,…",
+     "whyFull": "the households' health share 3.0 % of a weekly income of NHK 928.8k (363 founded slots at their ladder wages, plus welfare of NHK 411.3k) — the 35.9 % of its wages, net of tax at the cap of 40.0 %, left after savings, rent and food, read over the 58.0 % of consumption that is not food or housing (welfare pays no bills) — of which the shop's wages are 35.0 %: NHK 2020 a week buys 1.2 slot-weeks at NHK 1644",
+     "owner": "the city"
+    },
+    {
+     "kind": "clothing_shop",
+     "premises": 5,
+     "founded": 1,
+     "closed": 0,
+     "slots": 3,
+     "staffed": 3,
+     "payer": "households",
+     "weeksOfWages": 11.22282510047971,
+     "revenueToWages": 2.5126240579253527,
+     "why": "the households' clothing share 4.5 % of a weekly income of NHK 928.8k (363 founded slots at their ladder wage…",
+     "whyFull": "the households' clothing share 4.5 % of a weekly income of NHK 928.8k (363 founded slots at their ladder wages, plus welfare of NHK 411.3k) — the 35.9 % of its wages, net of tax at the cap of 40.0 %, left after savings, rent and food, read over the 58.0 % of consumption that is not food or housing (welfare pays no bills) — of which the shop's wages are 30.0 %: NHK 2598 a week buys 2.5 slot-weeks at NHK 1035",
+     "owner": "the city"
+    },
+    {
+     "kind": "hardware_store",
+     "premises": 4,
+     "founded": 1,
+     "closed": 0,
+     "slots": 4,
+     "staffed": 4,
+     "payer": "households",
+     "weeksOfWages": 10.349194792233714,
+     "revenueToWages": 2.49422015345514,
+     "why": "the households' furnishings share 6.0 % of a weekly income of NHK 928.8k (363 founded slots at their ladder w…",
+     "whyFull": "the households' furnishings share 6.0 % of a weekly income of NHK 928.8k (363 founded slots at their ladder wages, plus welfare of NHK 411.3k) — the 35.9 % of its wages, net of tax at the cap of 40.0 %, left after savings, rent and food, read over the 58.0 % of consumption that is not food or housing (welfare pays no bills) — of which the shop's wages are 30.0 %: NHK 3463 a week buys 3.1 slot-weeks at NHK 1102",
+     "owner": "the city"
+    },
+    {
+     "kind": "market_stall",
+     "premises": 8,
+     "founded": 0,
+     "closed": 0,
+     "slots": 0,
+     "staffed": 0,
+     "payer": "none",
+     "weeksOfWages": null,
+     "revenueToWages": null,
+     "why": "no household buys at a stall — it sold nothing in thirty days in any of three cities (2026-09-09, measured); …",
+     "whyFull": "no household buys at a stall — it sold nothing in thirty days in any of three cities (2026-09-09, measured); founded when it has a shelf",
+     "owner": "—"
+    },
+    {
+     "kind": "fish_market",
+     "premises": 2,
+     "founded": 0,
+     "closed": 0,
+     "slots": 0,
+     "staffed": 0,
+     "payer": "none",
+     "weeksOfWages": null,
+     "revenueToWages": null,
+     "why": "no fish good and no budget line for it — not founded until one exists",
+     "whyFull": "no fish good and no budget line for it — not founded until one exists",
+     "owner": "—"
+    },
+    {
+     "kind": "office",
+     "premises": 18,
+     "founded": 1,
+     "closed": 0,
+     "slots": 26,
+     "staffed": 26,
+     "payer": "firms",
+     "weeksOfWages": 12.674809768616521,
+     "revenueToWages": 2.8688942644494686,
+     "why": "the firms pay 8.0 % of a private wage bill of NHK 84.1k a week for their books, and the households 35.5 % of …",
+     "whyFull": "the firms pay 8.0 % of a private wage bill of NHK 84.1k a week for their books, and the households 35.5 % of a weekly income of NHK 928.8k (363 founded slots at their ladder wages, plus welfare of NHK 411.3k) — the 35.9 % of its wages, net of tax at the cap of 40.0 %, left after savings, rent and food, read over the 58.0 % of consumption that is not food or housing (welfare pays no bills) — in transport, communication, recreation, education and misc, of which the office's wages are 60.0 %: NHK 47.7k a week buys 25.3 desks at NHK 1886",
+     "owner": "the city"
+    },
+    {
+     "kind": "sawmill",
+     "premises": 1,
+     "founded": 0,
+     "closed": 0,
+     "slots": 0,
+     "staffed": 0,
+     "payer": "none",
+     "weeksOfWages": null,
+     "revenueToWages": null,
+     "why": "no buyer for timber exists yet — construction will, when it exists",
+     "whyFull": "no buyer for timber exists yet — construction will, when it exists",
+     "owner": "—"
+    },
+    {
+     "kind": "brickworks",
+     "premises": 1,
+     "founded": 0,
+     "closed": 0,
+     "slots": 0,
+     "staffed": 0,
+     "payer": "none",
+     "weeksOfWages": null,
+     "revenueToWages": null,
+     "why": "no buyer for bricks exists yet — construction will, when it exists",
+     "whyFull": "no buyer for bricks exists yet — construction will, when it exists",
+     "owner": "—"
+    },
+    {
+     "kind": "textile_mill",
+     "premises": 2,
+     "founded": 0,
+     "closed": 0,
+     "slots": 0,
+     "staffed": 0,
+     "payer": "none",
+     "weeksOfWages": null,
+     "revenueToWages": null,
+     "why": "no buyer for cloth exists yet — the clothing shop will buy it when cloth is a good",
+     "whyFull": "no buyer for cloth exists yet — the clothing shop will buy it when cloth is a good",
+     "owner": "—"
+    },
+    {
+     "kind": "warehouse",
+     "premises": 8,
+     "founded": 0,
+     "closed": 0,
+     "slots": 0,
+     "staffed": 0,
+     "payer": "none",
+     "weeksOfWages": null,
+     "revenueToWages": null,
+     "why": "no buyer for storage exists yet — (B) of the routine choices, 2026-09-09",
+     "whyFull": "no buyer for storage exists yet — (B) of the routine choices, 2026-09-09",
+     "owner": "—"
+    },
+    {
+     "kind": "workshop",
+     "premises": 11,
+     "founded": 0,
+     "closed": 0,
+     "slots": 0,
+     "staffed": 0,
+     "payer": "none",
+     "weeksOfWages": null,
+     "revenueToWages": null,
+     "why": "no buyer for repairs exists yet — things will need mending when they wear out",
+     "whyFull": "no buyer for repairs exists yet — things will need mending when they wear out",
+     "owner": "—"
+    },
+    {
+     "kind": "farm_wheat",
+     "premises": 4,
+     "founded": 2,
+     "closed": 0,
+     "slots": 3,
+     "staffed": 3,
+     "payer": "households",
+     "weeksOfWages": 5.119886205939495,
+     "revenueToWages": 1.444589011474369,
+     "why": "feeds for 2,000 mouths: 2,661 kg of wheat a week at 60.0 kg a worker-hour is 1.11 slots, ×2 cover is 2.22; th…",
+     "whyFull": "feeds for 2,000 mouths: 2,661 kg of wheat a week at 60.0 kg a worker-hour is 1.11 slots, ×2 cover is 2.22; the floor of 2 farms spreads the slots over 2",
+     "owner": "the city"
+    },
+    {
+     "kind": "farm_vegetables",
+     "premises": 3,
+     "founded": 1,
+     "closed": 0,
+     "slots": 6,
+     "staffed": 6,
+     "payer": "households",
+     "weeksOfWages": 4.049134781109962,
+     "revenueToWages": 0.9355710206760028,
+     "why": "feeds for 2,000 mouths: 2,200 kg of vegetables a week at 18.0 kg a worker-hour is 3.06 slots, ×2 cover is 6.1…",
+     "whyFull": "feeds for 2,000 mouths: 2,200 kg of vegetables a week at 18.0 kg a worker-hour is 3.06 slots, ×2 cover is 6.11; the structure's 2.0 % of 1,000 employed in agriculture caps it at 5.2; the floor of 1 farm spreads the slots over 1",
+     "owner": "the city"
+    },
+    {
+     "kind": "farm_dairy",
+     "premises": 2,
+     "founded": 1,
+     "closed": 0,
+     "slots": 4,
+     "staffed": 4,
+     "payer": "households",
+     "weeksOfWages": 2.9656705976414153,
+     "revenueToWages": 0.5552881460967112,
+     "why": "feeds for 2,000 mouths: 2,400 litre of milk a week at 30.0 litre a worker-hour is 2.00 slots, ×2 cover is 4.0…",
+     "whyFull": "feeds for 2,000 mouths: 2,400 litre of milk a week at 30.0 litre a worker-hour is 2.00 slots, ×2 cover is 4.00; the structure's 2.0 % of 1,000 employed in agriculture caps it at 3.5; the floor of 1 farm spreads the slots over 1",
+     "owner": "the city"
+    },
+    {
+     "kind": "forestry_camp",
+     "premises": 2,
+     "founded": 0,
+     "closed": 0,
+     "slots": 0,
+     "staffed": 0,
+     "payer": "none",
+     "weeksOfWages": null,
+     "revenueToWages": null,
+     "why": "no buyer for logs exists yet — the sawmill will, when construction exists",
+     "whyFull": "no buyer for logs exists yet — the sawmill will, when construction exists",
+     "owner": "—"
+    },
+    {
+     "kind": "school",
+     "premises": 2,
+     "founded": 2,
+     "closed": 0,
+     "slots": 80,
+     "staffed": 80,
+     "payer": "treasury",
+     "weeksOfWages": 1.9991859112945494,
+     "revenueToWages": 1.1252632195434706,
+     "why": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated le…",
+     "whyFull": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated level (rents are per dwelling and do not follow the founding), less welfare of NHK 249.5k — is NHK 748.1k against a civic payroll of NHK 407.5k with upkeep; the cap does not bind",
+     "owner": "the city"
+    },
+    {
+     "kind": "clinic",
+     "premises": 1,
+     "founded": 1,
+     "closed": 0,
+     "slots": 25,
+     "staffed": 25,
+     "payer": "treasury",
+     "weeksOfWages": 2.1269500907949155,
+     "revenueToWages": 1.164050329212564,
+     "why": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated le…",
+     "whyFull": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated level (rents are per dwelling and do not follow the founding), less welfare of NHK 249.5k — is NHK 748.1k against a civic payroll of NHK 407.5k with upkeep; the cap does not bind",
+     "owner": "the city"
+    },
+    {
+     "kind": "police_post",
+     "premises": 1,
+     "founded": 1,
+     "closed": 0,
+     "slots": 12,
+     "staffed": 12,
+     "payer": "treasury",
+     "weeksOfWages": 2.2109588248901226,
+     "revenueToWages": 1.1754168180922502,
+     "why": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated le…",
+     "whyFull": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated level (rents are per dwelling and do not follow the founding), less welfare of NHK 249.5k — is NHK 748.1k against a civic payroll of NHK 407.5k with upkeep; the cap does not bind",
+     "owner": "the city"
+    },
+    {
+     "kind": "fire_station",
+     "premises": 1,
+     "founded": 1,
+     "closed": 0,
+     "slots": 12,
+     "staffed": 12,
+     "payer": "treasury",
+     "weeksOfWages": 2.2962943502824857,
+     "revenueToWages": 1.176840558169554,
+     "why": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated le…",
+     "whyFull": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated level (rents are per dwelling and do not follow the founding), less welfare of NHK 249.5k — is NHK 748.1k against a civic payroll of NHK 407.5k with upkeep; the cap does not bind",
+     "owner": "the city"
+    },
+    {
+     "kind": "library",
+     "premises": 1,
+     "founded": 1,
+     "closed": 0,
+     "slots": 10,
+     "staffed": 10,
+     "payer": "treasury",
+     "weeksOfWages": 1.949859813084112,
+     "revenueToWages": 1.1160126070640333,
+     "why": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated le…",
+     "whyFull": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated level (rents are per dwelling and do not follow the founding), less welfare of NHK 249.5k — is NHK 748.1k against a civic payroll of NHK 407.5k with upkeep; the cap does not bind",
+     "owner": "the city"
+    },
+    {
+     "kind": "park",
+     "premises": 4,
+     "founded": 4,
+     "closed": 0,
+     "slots": 8,
+     "staffed": 8,
+     "payer": "treasury",
+     "weeksOfWages": 2.0127269247594053,
+     "revenueToWages": 1.1269862443700576,
+     "why": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated le…",
+     "whyFull": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated level (rents are per dwelling and do not follow the founding), less welfare of NHK 249.5k — is NHK 748.1k against a civic payroll of NHK 407.5k with upkeep; the cap does not bind",
+     "owner": "the city"
+    },
+    {
+     "kind": "sports_field",
+     "premises": 2,
+     "founded": 2,
+     "closed": 0,
+     "slots": 8,
+     "staffed": 8,
+     "payer": "treasury",
+     "weeksOfWages": 1.9952921406411581,
+     "revenueToWages": 1.1259331810487914,
+     "why": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated le…",
+     "whyFull": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated level (rents are per dwelling and do not follow the founding), less welfare of NHK 249.5k — is NHK 748.1k against a civic payroll of NHK 407.5k with upkeep; the cap does not bind",
+     "owner": "the city"
+    },
+    {
+     "kind": "waste_depot",
+     "premises": 1,
+     "founded": 1,
+     "closed": 0,
+     "slots": 12,
+     "staffed": 12,
+     "payer": "treasury",
+     "weeksOfWages": 2.059843758901612,
+     "revenueToWages": 1.1482928837033919,
+     "why": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated le…",
+     "whyFull": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated level (rents are per dwelling and do not follow the founding), less welfare of NHK 249.5k — is NHK 748.1k against a civic payroll of NHK 407.5k with upkeep; the cap does not bind",
+     "owner": "the city"
+    },
+    {
+     "kind": "water_pump",
+     "premises": 1,
+     "founded": 1,
+     "closed": 0,
+     "slots": 5,
+     "staffed": 5,
+     "payer": "treasury",
+     "weeksOfWages": 2.2694529064345663,
+     "revenueToWages": 1.1605342125760327,
+     "why": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated le…",
+     "whyFull": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated level (rents are per dwelling and do not follow the founding), less welfare of NHK 249.5k — is NHK 748.1k against a civic payroll of NHK 407.5k with upkeep; the cap does not bind",
+     "owner": "the city"
+    },
+    {
+     "kind": "power_plant",
+     "premises": 1,
+     "founded": 1,
+     "closed": 0,
+     "slots": 25,
+     "staffed": 25,
+     "payer": "treasury",
+     "weeksOfWages": 2.1587651972250947,
+     "revenueToWages": 1.1633614058153612,
+     "why": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated le…",
+     "whyFull": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated level (rents are per dwelling and do not follow the founding), less welfare of NHK 249.5k — is NHK 748.1k against a civic payroll of NHK 407.5k with upkeep; the cap does not bind",
+     "owner": "the city"
+    },
+    {
+     "kind": "city_hall",
+     "premises": 1,
+     "founded": 1,
+     "closed": 0,
+     "slots": 30,
+     "staffed": 30,
+     "payer": "treasury",
+     "weeksOfWages": 1.9785235746932883,
+     "revenueToWages": 1.121448661245436,
+     "why": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated le…",
+     "whyFull": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated level (rents are per dwelling and do not follow the founding), less welfare of NHK 249.5k — is NHK 748.1k against a civic payroll of NHK 407.5k with upkeep; the cap does not bind",
+     "owner": "the city"
+    },
+    {
+     "kind": "mill",
+     "premises": 3,
+     "founded": 1,
+     "closed": 0,
+     "slots": 1,
+     "staffed": 1,
+     "payer": "households",
+     "weeksOfWages": 7.424507874015748,
+     "revenueToWages": 3.913994890744226,
+     "why": "feeds for 2,000 mouths: 2,016 kg of flour a week at 75.0 kg a worker-hour is 0.67 slots",
+     "whyFull": "feeds for 2,000 mouths: 2,016 kg of flour a week at 75.0 kg a worker-hour is 0.67 slots",
+     "owner": "the city"
+    },
+    {
+     "kind": "customs_yard",
+     "premises": 1,
+     "founded": 1,
+     "closed": 0,
+     "slots": 14,
+     "staffed": 14,
+     "payer": "treasury",
+     "weeksOfWages": 1.9779361260205235,
+     "revenueToWages": 1.1218608947132536,
+     "why": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated le…",
+     "whyFull": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated level (rents are per dwelling and do not follow the founding), less welfare of NHK 249.5k — is NHK 748.1k against a civic payroll of NHK 407.5k with upkeep; the cap does not bind",
+     "owner": "the city"
+    },
+    {
+     "kind": "border_depot",
+     "premises": 1,
+     "founded": 1,
+     "closed": 0,
+     "slots": 16,
+     "staffed": 16,
+     "payer": "treasury",
+     "weeksOfWages": 1.9459709473856746,
+     "revenueToWages": 1.115326813479498,
+     "why": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated le…",
+     "whyFull": "the treasury's budget — rent at 30.0 % and tax up to 40.0 % of NHK 1.43m of wages a week at the calibrated level (rents are per dwelling and do not follow the founding), less welfare of NHK 249.5k — is NHK 748.1k against a civic payroll of NHK 407.5k with upkeep; the cap does not bind",
+     "owner": "the city"
+    }
+   ],
+   "owners": [
+    {
+     "firm": "Northwestgreen Park",
+     "kind": "park",
+     "premise": "Northwestgreen Park",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Southside Park",
+     "kind": "park",
+     "premise": "Southside Park",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Southrow Park",
+     "kind": "park",
+     "premise": "Southrow Park",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Harbour Park",
+     "kind": "park",
+     "premise": "Harbour Park",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Northwestgreen Sports Field",
+     "kind": "sports_field",
+     "premise": "Northwestgreen Sports Field",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Southrow Sports Field",
+     "kind": "sports_field",
+     "premise": "Southrow Sports Field",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Harbour Power Plant",
+     "kind": "power_plant",
+     "premise": "Harbour Power Plant",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Stonebridge School",
+     "kind": "school",
+     "premise": "Stonebridge School",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Southside School",
+     "kind": "school",
+     "premise": "Southside School",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town City Hall",
+     "kind": "city_hall",
+     "premise": "Old Town City Hall",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Kilnbank Waste Depot",
+     "kind": "waste_depot",
+     "premise": "Kilnbank Waste Depot",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Millside Clinic",
+     "kind": "clinic",
+     "premise": "Millside Clinic",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Cobbleford Fire Station",
+     "kind": "fire_station",
+     "premise": "Cobbleford Fire Station",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Northwestgreen Library",
+     "kind": "library",
+     "premise": "Northwestgreen Library",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Police Post",
+     "kind": "police_post",
+     "premise": "Old Town Police Post",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Harbour Water Pump",
+     "kind": "water_pump",
+     "premise": "Harbour Water Pump",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Grocer",
+     "kind": "grocer",
+     "premise": "Old Town Grocer",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Grocer 2",
+     "kind": "grocer",
+     "premise": "Old Town Grocer 2",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Bakery",
+     "kind": "bakery",
+     "premise": "Old Town Bakery",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Bakery 2",
+     "kind": "bakery",
+     "premise": "Old Town Bakery 2",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Restaurant",
+     "kind": "restaurant",
+     "premise": "Old Town Restaurant",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Restaurant 2",
+     "kind": "restaurant",
+     "premise": "Old Town Restaurant 2",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Bar",
+     "kind": "bar",
+     "premise": "Old Town Bar",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Bar 2",
+     "kind": "bar",
+     "premise": "Old Town Bar 2",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Bar 3",
+     "kind": "bar",
+     "premise": "Old Town Bar 3",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Clothing Shop",
+     "kind": "clothing_shop",
+     "premise": "Old Town Clothing Shop",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Hardware Store",
+     "kind": "hardware_store",
+     "premise": "Old Town Hardware Store",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Café",
+     "kind": "cafe",
+     "premise": "Old Town Café",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Café 2",
+     "kind": "cafe",
+     "premise": "Old Town Café 2",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Café 3",
+     "kind": "cafe",
+     "premise": "Old Town Café 3",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Old Town Pharmacy",
+     "kind": "pharmacy",
+     "premise": "Old Town Pharmacy",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Stonebridge Offices",
+     "kind": "office",
+     "premise": "Stonebridge Offices",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Kilnbank Customs Yard",
+     "kind": "customs_yard",
+     "premise": "Kilnbank Customs Yard",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Kilnbank Border Depot",
+     "kind": "border_depot",
+     "premise": "Kilnbank Border Depot",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Kilnbank Flour Mill",
+     "kind": "mill",
+     "premise": "Kilnbank Flour Mill",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Southfields Wheat Farm",
+     "kind": "farm_wheat",
+     "premise": "Southfields Wheat Farm",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Southfields Wheat Farm 2",
+     "kind": "farm_wheat",
+     "premise": "Southfields Wheat Farm 2",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Southfields Vegetable Farm",
+     "kind": "farm_vegetables",
+     "premise": "Southfields Vegetable Farm",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    },
+    {
+     "firm": "Southfields Dairy Farm",
+     "kind": "farm_dairy",
+     "premise": "Southfields Dairy Farm",
+     "foundedDay": 0,
+     "founder": "the city",
+     "owner": "the city",
+     "ownerKind": "city",
+     "ownerWhy": "the firm carries no founder, and null is the city: it holds no principal, writes no mandate and takes no decision (the founder of last resort, 2026-09-10), and the day-zero town is the city’s by the same reading"
+    }
+   ],
+   "ownedByCity": 39,
+   "ownedByAgents": 0,
+   "orders": {
+    "standing": 0,
+    "differing": 0,
+    "asked": 0,
+    "ordered": 0,
+    "declined": 0
+   },
+   "closings": [],
+   "noClosingWhy": "no firm closed in 30 days (4 Fridays in the window) — a firm closes after four short Fridays in a row, and none has been short on one yet; on this run's own readings — each firm's bank against what it pays a Friday and takes a week — the first Friday a firm cannot make in full projects to day 75 (Southfields Dairy Farm, dairy farm), the fourth to day 96; 3 open firms pay out more than they take, 36 do not",
+   "recordClosings": null,
+   "recordFoundings": null
+  }
+ ],
+ "bills": [
+  {
+   "city": "Halvik",
+   "currency": "NHK",
+   "lone": true,
+   "paidAt": 37050,
+   "billedPerWeek": 7142016,
+   "undrawnPerWeek": 6581741,
+   "undrawnShare": 0.4795874045277835,
+   "booksPerWeek": 742931,
+   "booksDuePerWeek": 742931,
+   "booksShort": 0,
+   "households": 397,
+   "refused": 0,
+   "unaddressed": 0,
+   "payees": [
+    "pharmacy",
+    "clothing shop",
+    "hardware store",
+    "offices"
+   ],
+   "noPayee": []
+  }
+ ],
+ "treasury": [
+  {
+   "city": "Halvik",
+   "currency": "NHK",
+   "lone": true,
+   "days": 30,
+   "opening": 615722976,
+   "balance": 509841007,
+   "civic": {
+    "due": 174402407,
+    "paid": 174402407,
+    "paidTallied": 174402407,
+    "short": 0
+   },
+   "welfare": {
+    "due": 154105808,
+    "paid": 154105808,
+    "paidTallied": 154105808,
+    "short": 0
+   },
+   "rentCollected": 139364246,
+   "taxCollected": 83262000,
+   "closingsReceipts": 0,
+   "closingsToOwners": 0,
+   "foundingFees": 0,
+   "ownerDrawsCity": 0,
+   "ownerDrawsAgents": 0,
+   "dividendsOut": 0,
+   "ownerDrawsNet": 0,
+   "dividend": null,
+   "cityFounded": 0,
+   "agentFounded": 0,
+   "cityCapital": 0,
+   "otherIn": 0,
+   "otherOut": 0,
+   "otherSubjects": [],
+   "unaccounted": 0,
+   "auditDropped": 0,
+   "settles": 30,
+   "paydays": 4,
+   "tally": "filled"
+  }
+ ],
+ "rents": [
+  {
+   "city": "Halvik",
+   "currency": "NHK",
+   "lone": true,
+   "kinds": [
+    {
+     "kind": "detached",
+     "dwellings": 173,
+     "places": 173,
+     "households": 104,
+     "empty": 69,
+     "emptyPlaces": 69,
+     "emptyAMonth": 69,
+     "repricedDown": 0,
+     "repricedUp": 0,
+     "medianRent": 173848,
+     "openingMedianRent": 173848
+    },
+    {
+     "kind": "rowhouse",
+     "dwellings": 450,
+     "places": 450,
+     "households": 449,
+     "empty": 1,
+     "emptyPlaces": 1,
+     "emptyAMonth": 1,
+     "repricedDown": 0,
+     "repricedUp": 0,
+     "medianRent": 147118,
+     "openingMedianRent": 147118
+    },
+    {
+     "kind": "apartment_low",
+     "dwellings": 86,
+     "places": 344,
+     "households": 324,
+     "empty": 0,
+     "emptyPlaces": 20,
+     "emptyAMonth": 0,
+     "repricedDown": 0,
+     "repricedUp": 0,
+     "medianRent": 133311,
+     "openingMedianRent": 133311
+    },
+    {
+     "kind": "apartment_mid",
+     "dwellings": 15,
+     "places": 120,
+     "households": 97,
+     "empty": 0,
+     "emptyPlaces": 23,
+     "emptyAMonth": 0,
+     "repricedDown": 0,
+     "repricedUp": 0,
+     "medianRent": 127867,
+     "openingMedianRent": 127867
+    }
+   ],
+   "dwellings": 724,
+   "empty": 70,
+   "emptyAMonth": 70,
+   "repricedDown": 0,
+   "repricedUp": 0,
+   "vacancyMonths": 1,
+   "repriceShare": 0.02,
+   "rentToIncome": {
+    "households": 232,
+    "welfareOnly": 723,
+    "welfareMedian": 0.7425492125984252,
+    "median": 0.29721855399371466,
+    "p25": 0.20238868028002707,
+    "p75": 0.3891414913426531
+   }
+  }
+ ],
+ "shelf": [
+  {
+   "city": "Halvik",
+   "currency": "NHK",
+   "lone": true,
+   "days": 30,
+   "kinds": [
+    {
+     "kind": "Grocer",
+     "retail": true,
+     "producer": false,
+     "firms": 2,
+     "open": 2,
+     "books": {
+      "revenue": 7290155,
+      "costs": 6508752,
+      "wages": 3938894,
+      "marginAfterGoods": 781403
+     },
+     "goods": [
+      {
+       "good": "Bread",
+       "unitsSold": 8609.399999999823,
+       "unitsDayOld": 2098.1000000000104,
+       "revenue": 4194829,
+       "revenueDayOld": 697394,
+       "arrivals": 492,
+       "arrivalUnits": 9698.137634642302,
+       "arrivalsDayOld": 40,
+       "arrivalDayOldUnits": 418.85980311113656,
+       "binnedUnits": 1110.4848714807329,
+       "binnedValue": 425263
+      },
+      {
+       "good": "Vegetables",
+       "unitsSold": 7150.500000000262,
+       "unitsDayOld": 1042.6000000000004,
+       "revenue": 1788411,
+       "revenueDayOld": 157838,
+       "arrivals": 152,
+       "arrivalUnits": 8702.217764796278,
+       "arrivalsDayOld": 19,
+       "arrivalDayOldUnits": 1300.3320289837231,
+       "binnedUnits": 1356.4011143618104,
+       "binnedValue": 238107
+      },
+      {
+       "good": "Milk",
+       "unitsSold": 7344.700000000161,
+       "unitsDayOld": 0,
+       "revenue": 1306915,
+       "revenueDayOld": 0,
+       "arrivals": 154,
+       "arrivalUnits": 8031.139925176603,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 615.9857261097551,
+       "binnedValue": 66681
+      }
+     ],
+     "byFirm": [
+      {
+       "id": 16,
+       "name": "Old Town Grocer",
+       "open": true,
+       "books": {
+        "revenue": 3182825,
+        "costs": 3138170,
+        "wages": 3154673,
+        "marginAfterGoods": 44655
+       },
+       "unitsSold": 10844.300000000107,
+       "unitsDayOld": 1672.0000000000034,
+       "revenue": 3182825,
+       "revenueDayOld": 440910,
+       "arrivals": 520,
+       "arrivalUnits": 12843.896595077504,
+       "arrivalsDayOld": 41,
+       "arrivalDayOldUnits": 689.3170649960047,
+       "binnedUnits": 1909.0743339210103,
+       "binnedValue": 437026
+      },
+      {
+       "id": 17,
+       "name": "Old Town Grocer 2",
+       "open": true,
+       "books": {
+        "revenue": 4107330,
+        "costs": 3370582,
+        "wages": 784221,
+        "marginAfterGoods": 736748
+       },
+       "unitsSold": 12260.300000000138,
+       "unitsDayOld": 1468.7000000000075,
+       "revenue": 4107330,
+       "revenueDayOld": 414322,
+       "arrivals": 278,
+       "arrivalUnits": 13587.598729537678,
+       "arrivalsDayOld": 18,
+       "arrivalDayOldUnits": 1029.874767098855,
+       "binnedUnits": 1173.7973780312884,
+       "binnedValue": 293025
+      }
+     ],
+     "unitsSold": 23104.600000000246,
+     "unitsDayOld": 3140.700000000011,
+     "revenue": 7290155,
+     "revenueDayOld": 855232,
+     "arrivals": 798,
+     "arrivalUnits": 26431.495324615185,
+     "arrivalsDayOld": 59,
+     "arrivalDayOldUnits": 1719.1918320948598,
+     "binnedUnits": 3082.871711952298,
+     "binnedValue": 730051
+    },
+    {
+     "kind": "Bakery",
+     "retail": true,
+     "producer": true,
+     "firms": 2,
+     "open": 2,
+     "books": {
+      "revenue": 7706128,
+      "costs": 2121601,
+      "wages": 3071811,
+      "marginAfterGoods": 5584527
+     },
+     "goods": [
+      {
+       "good": "Flour",
+       "unitsSold": 0,
+       "unitsDayOld": 0,
+       "revenue": 0,
+       "revenueDayOld": 0,
+       "arrivals": 79,
+       "arrivalUnits": 13628,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 0,
+       "binnedValue": 0
+      },
+      {
+       "good": "Bread",
+       "unitsSold": 17493.13763464229,
+       "unitsDayOld": 7,
+       "revenue": 7706128,
+       "revenueDayOld": 2632,
+       "arrivals": 0,
+       "arrivalUnits": 0,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 729.6230218355215,
+       "binnedValue": 203025
+      }
+     ],
+     "byFirm": [
+      {
+       "id": 18,
+       "name": "Old Town Bakery",
+       "open": true,
+       "books": {
+        "revenue": 6728185,
+        "costs": 1857243,
+        "wages": 2608804,
+        "marginAfterGoods": 4870942
+       },
+       "unitsSold": 14750.290924097526,
+       "unitsDayOld": 7,
+       "revenue": 6728185,
+       "revenueDayOld": 2632,
+       "arrivals": 66,
+       "arrivalUnits": 11903.046,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 562.5931110133911,
+       "binnedValue": 164204
+      },
+      {
+       "id": 19,
+       "name": "Old Town Bakery 2",
+       "open": true,
+       "books": {
+        "revenue": 977943,
+        "costs": 264358,
+        "wages": 463007,
+        "marginAfterGoods": 713585
+       },
+       "unitsSold": 2742.846710544767,
+       "unitsDayOld": 0,
+       "revenue": 977943,
+       "revenueDayOld": 0,
+       "arrivals": 13,
+       "arrivalUnits": 1724.9540000000002,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 167.0299108221305,
+       "binnedValue": 38821
+      }
+     ],
+     "unitsSold": 17493.13763464229,
+     "unitsDayOld": 7,
+     "revenue": 7706128,
+     "revenueDayOld": 2632,
+     "arrivals": 79,
+     "arrivalUnits": 13628,
+     "arrivalsDayOld": 0,
+     "arrivalDayOldUnits": 0,
+     "binnedUnits": 729.6230218355215,
+     "binnedValue": 203025
+    },
+    {
+     "kind": "Café",
+     "retail": true,
+     "producer": false,
+     "firms": 3,
+     "open": 3,
+     "books": {
+      "revenue": 26540376,
+      "costs": 1028355,
+      "wages": 6312179,
+      "marginAfterGoods": 25512021
+     },
+     "goods": [
+      {
+       "good": "Bread",
+       "unitsSold": 0,
+       "unitsDayOld": 0,
+       "revenue": 0,
+       "revenueDayOld": 0,
+       "arrivals": 87,
+       "arrivalUnits": 675,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 0.6086549144656731,
+       "binnedValue": 330
+      },
+      {
+       "good": "Milk",
+       "unitsSold": 0,
+       "unitsDayOld": 0,
+       "revenue": 0,
+       "revenueDayOld": 0,
+       "arrivals": 24,
+       "arrivalUnits": 178,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 154,
+       "binnedValue": 26328
+      }
+     ],
+     "byFirm": [
+      {
+       "id": 27,
+       "name": "Old Town Café",
+       "open": true,
+       "books": {
+        "revenue": 7079117,
+        "costs": 400473,
+        "wages": 2831296,
+        "marginAfterGoods": 6678644
+       },
+       "unitsSold": 0,
+       "unitsDayOld": 0,
+       "revenue": 0,
+       "revenueDayOld": 0,
+       "arrivals": 37,
+       "arrivalUnits": 282,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 49.20288497148856,
+       "binnedValue": 7954
+      },
+      {
+       "id": 28,
+       "name": "Old Town Café 2",
+       "open": true,
+       "books": {
+        "revenue": 5217482,
+        "costs": 355157,
+        "wages": 2264100,
+        "marginAfterGoods": 4862325
+       },
+       "unitsSold": 0,
+       "unitsDayOld": 0,
+       "revenue": 0,
+       "revenueDayOld": 0,
+       "arrivals": 37,
+       "arrivalUnits": 282,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 49.20288497148856,
+       "binnedValue": 7954
+      },
+      {
+       "id": 29,
+       "name": "Old Town Café 3",
+       "open": true,
+       "books": {
+        "revenue": 14243777,
+        "costs": 272725,
+        "wages": 1216783,
+        "marginAfterGoods": 13971052
+       },
+       "unitsSold": 0,
+       "unitsDayOld": 0,
+       "revenue": 0,
+       "revenueDayOld": 0,
+       "arrivals": 37,
+       "arrivalUnits": 289,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 56.20288497148856,
+       "binnedValue": 10750
+      }
+     ],
+     "unitsSold": 0,
+     "unitsDayOld": 0,
+     "revenue": 0,
+     "revenueDayOld": 0,
+     "arrivals": 111,
+     "arrivalUnits": 853,
+     "arrivalsDayOld": 0,
+     "arrivalDayOldUnits": 0,
+     "binnedUnits": 154.60865491446566,
+     "binnedValue": 26658
+    },
+    {
+     "kind": "Wheat Farm",
+     "retail": false,
+     "producer": true,
+     "firms": 2,
+     "open": 2,
+     "books": {
+      "revenue": 1569936,
+      "costs": 86940,
+      "wages": 1086770,
+      "marginAfterGoods": 1482996
+     },
+     "goods": [
+      {
+       "good": "Wheat",
+       "unitsSold": 30676,
+       "unitsDayOld": 0,
+       "revenue": 1569936,
+       "revenueDayOld": 0,
+       "arrivals": 0,
+       "arrivalUnits": 0,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 0,
+       "binnedValue": 0
+      }
+     ],
+     "byFirm": [
+      {
+       "id": 35,
+       "name": "Southfields Wheat Farm",
+       "open": true,
+       "books": {
+        "revenue": 916320,
+        "costs": 57148,
+        "wages": 714366,
+        "marginAfterGoods": 859172
+       },
+       "unitsSold": 17860,
+       "unitsDayOld": 0,
+       "revenue": 916320,
+       "revenueDayOld": 0,
+       "arrivals": 0,
+       "arrivalUnits": 0,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 0,
+       "binnedValue": 0
+      },
+      {
+       "id": 36,
+       "name": "Southfields Wheat Farm 2",
+       "open": true,
+       "books": {
+        "revenue": 653616,
+        "costs": 29792,
+        "wages": 372404,
+        "marginAfterGoods": 623824
+       },
+       "unitsSold": 12816,
+       "unitsDayOld": 0,
+       "revenue": 653616,
+       "revenueDayOld": 0,
+       "arrivals": 0,
+       "arrivalUnits": 0,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 0,
+       "binnedValue": 0
+      }
+     ],
+     "unitsSold": 30676,
+     "unitsDayOld": 0,
+     "revenue": 1569936,
+     "revenueDayOld": 0,
+     "arrivals": 0,
+     "arrivalUnits": 0,
+     "arrivalsDayOld": 0,
+     "arrivalDayOldUnits": 0,
+     "binnedUnits": 0,
+     "binnedValue": 0
+    },
+    {
+     "kind": "Vegetable Farm",
+     "retail": false,
+     "producer": true,
+     "firms": 1,
+     "open": 1,
+     "books": {
+      "revenue": 2131460,
+      "costs": 182259,
+      "wages": 2278245,
+      "marginAfterGoods": 1949201
+     },
+     "goods": [
+      {
+       "good": "Vegetables",
+       "unitsSold": 12281.320001360855,
+       "unitsDayOld": 0,
+       "revenue": 2131460,
+       "revenueDayOld": 0,
+       "arrivals": 0,
+       "arrivalUnits": 0,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 6146.843144148073,
+       "binnedValue": 825555
+      }
+     ],
+     "byFirm": [
+      {
+       "id": 37,
+       "name": "Southfields Vegetable Farm",
+       "open": true,
+       "books": {
+        "revenue": 2131460,
+        "costs": 182259,
+        "wages": 2278245,
+        "marginAfterGoods": 1949201
+       },
+       "unitsSold": 12281.320001360855,
+       "unitsDayOld": 0,
+       "revenue": 2131460,
+       "revenueDayOld": 0,
+       "arrivals": 0,
+       "arrivalUnits": 0,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 6146.843144148073,
+       "binnedValue": 825555
+      }
+     ],
+     "unitsSold": 12281.320001360855,
+     "unitsDayOld": 0,
+     "revenue": 2131460,
+     "revenueDayOld": 0,
+     "arrivals": 0,
+     "arrivalUnits": 0,
+     "arrivalsDayOld": 0,
+     "arrivalDayOldUnits": 0,
+     "binnedUnits": 6146.843144148073,
+     "binnedValue": 825555
+    },
+    {
+     "kind": "Dairy Farm",
+     "retail": false,
+     "producer": true,
+     "firms": 1,
+     "open": 1,
+     "books": {
+      "revenue": 808238,
+      "costs": 116441,
+      "wages": 1455529,
+      "marginAfterGoods": 691797
+     },
+     "goods": [
+      {
+       "good": "Milk",
+       "unitsSold": 7484.951249994357,
+       "unitsDayOld": 0,
+       "revenue": 808238,
+       "revenueDayOld": 0,
+       "arrivals": 0,
+       "arrivalUnits": 0,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 11812.255826824357,
+       "binnedValue": 984945
+      }
+     ],
+     "byFirm": [
+      {
+       "id": 38,
+       "name": "Southfields Dairy Farm",
+       "open": true,
+       "books": {
+        "revenue": 808238,
+        "costs": 116441,
+        "wages": 1455529,
+        "marginAfterGoods": 691797
+       },
+       "unitsSold": 7484.951249994357,
+       "unitsDayOld": 0,
+       "revenue": 808238,
+       "revenueDayOld": 0,
+       "arrivals": 0,
+       "arrivalUnits": 0,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 11812.255826824357,
+       "binnedValue": 984945
+      }
+     ],
+     "unitsSold": 7484.951249994357,
+     "unitsDayOld": 0,
+     "revenue": 808238,
+     "revenueDayOld": 0,
+     "arrivals": 0,
+     "arrivalUnits": 0,
+     "arrivalsDayOld": 0,
+     "arrivalDayOldUnits": 0,
+     "binnedUnits": 11812.255826824357,
+     "binnedValue": 984945
+    },
+    {
+     "kind": "Flour Mill",
+     "retail": false,
+     "producer": true,
+     "firms": 1,
+     "open": 1,
+     "books": {
+      "revenue": 1873782,
+      "costs": 975836,
+      "wages": 478739,
+      "marginAfterGoods": 897946
+     },
+     "goods": [
+      {
+       "good": "Wheat",
+       "unitsSold": 0,
+       "unitsDayOld": 0,
+       "revenue": 0,
+       "revenueDayOld": 0,
+       "arrivals": 58,
+       "arrivalUnits": 18276,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 0,
+       "binnedValue": 0
+      },
+      {
+       "good": "Flour",
+       "unitsSold": 13620,
+       "unitsDayOld": 0,
+       "revenue": 1873782,
+       "revenueDayOld": 0,
+       "arrivals": 0,
+       "arrivalUnits": 0,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 0,
+       "binnedValue": 0
+      }
+     ],
+     "byFirm": [
+      {
+       "id": 34,
+       "name": "Kilnbank Flour Mill",
+       "open": true,
+       "books": {
+        "revenue": 1873782,
+        "costs": 975836,
+        "wages": 478739,
+        "marginAfterGoods": 897946
+       },
+       "unitsSold": 13620,
+       "unitsDayOld": 0,
+       "revenue": 1873782,
+       "revenueDayOld": 0,
+       "arrivals": 58,
+       "arrivalUnits": 18276,
+       "arrivalsDayOld": 0,
+       "arrivalDayOldUnits": 0,
+       "binnedUnits": 0,
+       "binnedValue": 0
+      }
+     ],
+     "unitsSold": 13620,
+     "unitsDayOld": 0,
+     "revenue": 1873782,
+     "revenueDayOld": 0,
+     "arrivals": 58,
+     "arrivalUnits": 18276,
+     "arrivalsDayOld": 0,
+     "arrivalDayOldUnits": 0,
+     "binnedUnits": 0,
+     "binnedValue": 0
+    }
+   ]
+  }
+ ],
+ "collusion": [
+  {
+   "city": "Halvik",
+   "currency": "NHK",
+   "days": 30,
+   "lines": [
+    {
+     "kind": "Grocer",
+     "good": "Flour",
+     "firms": 2,
+     "daysListed": 30,
+     "daysCompared": 29,
+     "daysAllUp": 0,
+     "daysAllDown": 10,
+     "daysAllStill": 19,
+     "sameDirection": 0.3448275862068966,
+     "cvMean": 0,
+     "cvLast": 0,
+     "spreadMean": 0,
+     "spreadLast": 0
+    },
+    {
+     "kind": "Grocer",
+     "good": "Bread",
+     "firms": 2,
+     "daysListed": 30,
+     "daysCompared": 29,
+     "daysAllUp": 12,
+     "daysAllDown": 2,
+     "daysAllStill": 0,
+     "sameDirection": 0.4827586206896552,
+     "cvMean": 0.017003116074046778,
+     "cvLast": 0.0035460992907801418,
+     "spreadMean": 0.03605961661322461,
+     "spreadLast": 0.007117437722419906
+    },
+    {
+     "kind": "Grocer",
+     "good": "Vegetables",
+     "firms": 2,
+     "daysListed": 30,
+     "daysCompared": 29,
+     "daysAllUp": 4,
+     "daysAllDown": 6,
+     "daysAllStill": 0,
+     "sameDirection": 0.3448275862068966,
+     "cvMean": 0.07637400607265675,
+     "cvLast": 0.01195219123505976,
+     "spreadMean": 0.180120681786871,
+     "spreadLast": 0.024193548387096753
+    },
+    {
+     "kind": "Grocer",
+     "good": "Milk",
+     "firms": 2,
+     "daysListed": 30,
+     "daysCompared": 29,
+     "daysAllUp": 5,
+     "daysAllDown": 2,
+     "daysAllStill": 0,
+     "sameDirection": 0.2413793103448276,
+     "cvMean": 0.12322832748137778,
+     "cvLast": 0.04,
+     "spreadMean": 0.29930506228366255,
+     "spreadLast": 0.08333333333333326
+    },
+    {
+     "kind": "Bakery",
+     "good": "Bread",
+     "firms": 2,
+     "daysListed": 30,
+     "daysCompared": 29,
+     "daysAllUp": 18,
+     "daysAllDown": 2,
+     "daysAllStill": 0,
+     "sameDirection": 0.6896551724137931,
+     "cvMean": 0.12451432815946407,
+     "cvLast": 0.13991416309012875,
+     "spreadMean": 0.287439759161019,
+     "spreadLast": 0.3253493013972055
+    },
+    {
+     "kind": "Café",
+     "good": "Bread",
+     "firms": 3,
+     "daysListed": 30,
+     "daysCompared": 29,
+     "daysAllUp": 19,
+     "daysAllDown": 6,
+     "daysAllStill": 0,
+     "sameDirection": 0.8620689655172413,
+     "cvMean": 0.009825477912837697,
+     "cvLast": 0.0022555240229235967,
+     "spreadMean": 0.02277644609868156,
+     "spreadLast": 0.004792332268370503
+    },
+    {
+     "kind": "Wheat Farm",
+     "good": "Wheat",
+     "firms": 2,
+     "daysListed": 30,
+     "daysCompared": 29,
+     "daysAllUp": 8,
+     "daysAllDown": 2,
+     "daysAllStill": 0,
+     "sameDirection": 0.3448275862068966,
+     "cvMean": 0.12273648172521498,
+     "cvLast": 0.2925170068027211,
+     "spreadMean": 0.3036336055445722,
+     "spreadLast": 0.8269230769230769
+    }
+   ]
+  }
+ ],
+ "money": {
+  "supply": 2370140286,
+  "initial": 2370140286,
+  "credit": 0,
+  "checks": 720
+ },
+ "federation": null,
+ "coverage": {
+  "calibrated": 19,
+  "assumed": 64,
+  "derived": 0,
+  "shelved": 7
+ },
+ "parameters": [
+  {
+   "key": "assumptions/consumption_nordholm/savings_rate",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.1,
+   "unit": "share of household disposable income saved",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/consumption_nordholm/share_alcohol_tobacco",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.03,
+   "unit": "share of household consumption expenditure (COICOP 02)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/consumption_nordholm/share_clothing",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.045,
+   "unit": "share of household consumption expenditure (COICOP 03)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/consumption_nordholm/share_communication",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.03,
+   "unit": "share of household consumption expenditure (COICOP 08)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/consumption_nordholm/share_education",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.01,
+   "unit": "share of household consumption expenditure (COICOP 10)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/consumption_nordholm/share_food",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.13,
+   "unit": "share of household consumption expenditure (COICOP 01)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/consumption_nordholm/share_furnishings",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.06,
+   "unit": "share of household consumption expenditure (COICOP 05)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/consumption_nordholm/share_health",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.03,
+   "unit": "share of household consumption expenditure (COICOP 06)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/consumption_nordholm/share_housing",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.29,
+   "unit": "share of household consumption expenditure (COICOP 04)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/consumption_nordholm/share_misc",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.095,
+   "unit": "share of household consumption expenditure (COICOP 12)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/consumption_nordholm/share_recreation",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.1,
+   "unit": "share of household consumption expenditure (COICOP 09)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/consumption_nordholm/share_restaurants_hotels",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.06,
+   "unit": "share of household consumption expenditure (COICOP 11)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/consumption_nordholm/share_transport",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.12,
+   "unit": "share of household consumption expenditure (COICOP 07)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/diet_nordholm/bread_loaves_per_person_per_week",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 1.4,
+   "unit": "800 g loaves per person per week",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/diet_nordholm/meals_at_home_per_person_per_week",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 14,
+   "unit": "meals eaten at home per person per week",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/diet_nordholm/milk_litres_per_person_per_week",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 1.2,
+   "unit": "litres per person per week",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/diet_nordholm/vegetables_kg_per_person_per_week",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 1.1,
+   "unit": "kg per person per week",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/employment_nordholm/share_accommodation_food",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.04,
+   "unit": "share of employed persons (ISIC I)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/employment_nordholm/share_agriculture",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.02,
+   "unit": "share of employed persons (ISIC A)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/employment_nordholm/share_business_services",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.21,
+   "unit": "share of employed persons (ISIC J-N: information, finance, real estate, professional, administrative)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/employment_nordholm/share_construction",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.06,
+   "unit": "share of employed persons (ISIC F)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/employment_nordholm/share_manufacturing",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.09,
+   "unit": "share of employed persons (ISIC C)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/employment_nordholm/share_other",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.09,
+   "unit": "share of employed persons (ISIC B, D, E and R-U)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/employment_nordholm/share_public_services",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.32,
+   "unit": "share of employed persons (ISIC O-Q: public administration, education, health)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/employment_nordholm/share_trade",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.12,
+   "unit": "share of employed persons (ISIC G, wholesale and retail)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/employment_nordholm/share_transport_storage",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.05,
+   "unit": "share of employed persons (ISIC H)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/employment_nordholm/unemployment_rate",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.05,
+   "unit": "unemployed persons as a share of the labour force",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/engel_nordholm/food_share_bottom_quintile",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.4,
+   "unit": "share of household income spent on food",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/engel_nordholm/food_share_max",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.55,
+   "unit": "share of household income spent on food",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/engel_nordholm/food_share_min",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.1,
+   "unit": "share of household income spent on food",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/engel_nordholm/food_share_top_quintile",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.12,
+   "unit": "share of household income spent on food",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/engel_nordholm/relative_income_bottom_quintile",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.4,
+   "unit": "household income as a multiple of the city median",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/engel_nordholm/relative_income_top_quintile",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 2,
+   "unit": "household income as a multiple of the city median",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/engel_nordholm/shopping_trips_per_week",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 3,
+   "unit": "grocery trips per household per week",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/founding_nordholm/fee_share_of_capital",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.01,
+   "unit": "share of the opening money paid to the city's treasury as the founding fee",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/founding_nordholm/last_resort_days",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 14,
+   "unit": "days a premise with a customer the law can name stands vacant, offered to any agent, before the city founds in it itself",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/founding_nordholm/last_resort_per_week",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 1,
+   "unit": "firms the city may found as founder of last resort in any seven days",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/founding_nordholm/opening_capital_weeks",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 4,
+   "unit": "weeks of the founded slots' wages, at the layout's scaled ladder, the founder puts up as the firm's opening money",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/founding_nordholm/owner_dividend_share",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.15,
+   "unit": "share of what the city draws each month as the owner of its firms that is paid straight out to resident households, equally; the rest funds the budget",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/founding_nordholm/short_paydays_to_close",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 4,
+   "unit": "consecutive Fridays a firm pays its wages short before it closes at the next midnight",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/founding_nordholm/transaction_levy",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.02,
+   "unit": "share of every sale's receipt - shop purchases, rent, wholesale, cross-city sales as the receipt lands - taken out of the seller's receipt; the ceiling of the governor's policy field transactionLevy, which stands at 0 until signed",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/founding_nordholm/welcome_credit_months",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 1,
+   "unit": "months of the city's median wage (hourly x 40 hours x 4.33 weeks) paid to an admitted agent's household from the treasury on the day it is admitted",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/households_nordholm/share_couple",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.26,
+   "unit": "share of households",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/households_nordholm/share_elders",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.08,
+   "unit": "share of households",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/households_nordholm/share_family",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.24,
+   "unit": "share of households",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/households_nordholm/share_roommates",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.04,
+   "unit": "share of households",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/households_nordholm/share_single",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.38,
+   "unit": "share of households",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/housing_nordholm/arrears_months_to_move",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 2,
+   "unit": "consecutive months short on the rent before the household moves to the cheapest empty dwelling it can afford",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/housing_nordholm/rent_to_income_target",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.3,
+   "unit": "median monthly rent as a share of median monthly household net income",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/housing_nordholm/vacancy_months",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 1,
+   "unit": "months a dwelling stands empty before its rent is lowered",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/housing_nordholm/vacancy_reprice_share",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.02,
+   "unit": "share of the listed monthly rent removed at each month's turn the dwelling stands empty",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/land_nordholm/farm_cover_multiplier",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 2,
+   "unit": "multiple of the mouths' weekly draw a city's farms are sized to grow",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/land_nordholm/farm_floor_other",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 1,
+   "unit": "farms of each other kind (vegetables, dairy); the fewest a city founds whatever the draw",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/land_nordholm/farm_floor_wheat",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 2,
+   "unit": "wheat farms; the fewest a city founds whatever the draw",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/production_nordholm/services_share_of_wage_bill",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.08,
+   "unit": "share of a firm's wage bill paid to other firms for business services (ICIO industries M and N)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/production_nordholm/value_added_office",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.6,
+   "unit": "value added as a share of turnover (NACE 69-70 and 82)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/production_nordholm/value_added_retail_clothing",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.3,
+   "unit": "value added as a share of turnover (NACE 47.71)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/production_nordholm/value_added_retail_hardware",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.3,
+   "unit": "value added as a share of turnover (NACE 47.52)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/production_nordholm/value_added_retail_pharmacy",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.35,
+   "unit": "value added as a share of turnover (NACE 47.73, dispensing chemists)",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/trade_fx/dealer_reserve_weeks",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 8,
+   "unit": "weeks of the city's private payroll the FX dealer opens with",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/wages_nordholm/employment_to_population",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.5,
+   "unit": "employed persons per head of total population",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/wages_nordholm/hours_per_week",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 40,
+   "unit": "paid hours per employed person per week",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/wages_nordholm/wage_share_of_gdp",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 0.55,
+   "unit": "share of GDP paid as labour compensation",
+   "dataset": null
+  },
+  {
+   "key": "assumptions/wages_nordholm/weeks_per_year",
+   "status": "assumed",
+   "applied": true,
+   "derived": false,
+   "value": 52,
+   "unit": "weeks",
+   "dataset": null
+  },
+  {
+   "key": "countries/nordholm/cities",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": [
+    "Halvik",
+    "Brenmouth",
+    "Sorne",
+    "Eldy"
+   ],
+   "unit": "city names",
+   "dataset": "Living World brief v2 §2 (country archetype table) and §2.2 (policy variables)"
+  },
+  {
+   "key": "countries/nordholm/currency",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": {
+    "code": "NHK",
+    "name": "Krone"
+   },
+   "unit": "currency identity",
+   "dataset": "Living World brief v2 §2 (country archetype table) and §2.2 (policy variables)"
+  },
+  {
+   "key": "countries/nordholm/customs_customs_delay_days",
+   "status": "derived",
+   "applied": false,
+   "derived": true,
+   "value": 0.63,
+   "unit": "sim-days, mean dwell in the bonded yard",
+   "dataset": "mean of customs/{NLD,SWE}.yaml, parameter customs_delay_days"
+  },
+  {
+   "key": "countries/nordholm/customs_lpi_customs_score",
+   "status": "calibrated",
+   "applied": false,
+   "derived": false,
+   "value": 3.95,
+   "unit": "LPI score (1 = low, 5 = high)",
+   "dataset": "mean of customs/{NLD,SWE}.yaml, parameter lpi_customs_score"
+  },
+  {
+   "key": "countries/nordholm/customs_lpi_overall_score",
+   "status": "calibrated",
+   "applied": false,
+   "derived": false,
+   "value": 4.05,
+   "unit": "LPI score (1 = low, 5 = high)",
+   "dataset": "mean of customs/{NLD,SWE}.yaml, parameter lpi_overall_score"
+  },
+  {
+   "key": "countries/nordholm/demography_age_share_0_14",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": 0.1601,
+   "unit": "share of total population",
+   "dataset": "mean of demography/{NLD,SWE}.yaml, parameter age_share_0_14"
+  },
+  {
+   "key": "countries/nordholm/demography_age_share_15_24",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": 0.1176,
+   "unit": "share of total population",
+   "dataset": "mean of demography/{NLD,SWE}.yaml, parameter age_share_15_24"
+  },
+  {
+   "key": "countries/nordholm/demography_age_share_25_64",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": 0.5161,
+   "unit": "share of total population",
+   "dataset": "mean of demography/{NLD,SWE}.yaml, parameter age_share_25_64"
+  },
+  {
+   "key": "countries/nordholm/demography_age_share_65_plus",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": 0.2062,
+   "unit": "share of total population",
+   "dataset": "mean of demography/{NLD,SWE}.yaml, parameter age_share_65_plus"
+  },
+  {
+   "key": "countries/nordholm/macro_gdp_per_capita_ppp",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": 67370.4735,
+   "unit": "constant 2021 international $ per person per year",
+   "dataset": "mean of macro/{NLD,SWE}.yaml, parameter gdp_per_capita_ppp"
+  },
+  {
+   "key": "countries/nordholm/tariffs_applied_tariff_all_products",
+   "status": "calibrated",
+   "applied": false,
+   "derived": false,
+   "value": 2.0448,
+   "unit": "percent ad valorem, effectively applied (AHS) simple average over all products",
+   "dataset": "mean of tariffs/{NLD,SWE}.yaml, parameter applied_tariff_all_products"
+  },
+  {
+   "key": "countries/nordholm/templates",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": [
+    "NLD",
+    "SWE"
+   ],
+   "unit": "ISO3 codes",
+   "dataset": "Living World brief v2 §2 (country archetype table) and §2.2 (policy variables)"
+  },
+  {
+   "key": "elasticities/armington_sigma1_sr",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": 1.5,
+   "unit": "elasticity of substitution, domestic vs imported composite",
+   "dataset": "Bajzik, Havranek, Irsova & Schwarz 2020, 'Estimating the Armington Elasticity: The Importance of Study Design and Publication Bias', Journal of International Economics 127"
+  },
+  {
+   "key": "elasticities/food_own_price_cereals",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": -0.6,
+   "unit": "own-price elasticity",
+   "dataset": "Andreyeva, Long & Brownell 2010, 'The Impact of Food Prices on Consumption', American Journal of Public Health 100(2)"
+  },
+  {
+   "key": "elasticities/food_own_price_dairy",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": -0.65,
+   "unit": "own-price elasticity",
+   "dataset": "Andreyeva, Long & Brownell 2010, 'The Impact of Food Prices on Consumption', American Journal of Public Health 100(2)"
+  },
+  {
+   "key": "elasticities/food_own_price_fruit_veg",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": -0.64,
+   "unit": "own-price elasticity",
+   "dataset": "Andreyeva, Long & Brownell 2010, 'The Impact of Food Prices on Consumption', American Journal of Public Health 100(2)"
+  },
+  {
+   "key": "elasticities/food_own_price_staples",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": -0.3,
+   "unit": "own-price elasticity",
+   "dataset": "Femenia 2019, 'A Meta-Analysis of the Price and Income Elasticities of Food Demand', German Journal of Agricultural Economics 68(2)"
+  },
+  {
+   "key": "elasticities/hand_to_mouth_share",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": 0.3,
+   "unit": "share of households",
+   "dataset": "Kaplan & Violante 2022, 'The Marginal Propensity to Consume in Heterogeneous Agent Models', NBER Working Paper 30013"
+  },
+  {
+   "key": "elasticities/housing_income",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": 0.7,
+   "unit": "income elasticity of housing demand",
+   "dataset": "Albouy, Ehrlich & Liu 2016, 'Housing Demand, Cost-of-Living Inequality, and the Affordability Crisis', NBER Working Paper 22816"
+  },
+  {
+   "key": "elasticities/housing_price",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": -0.7,
+   "unit": "own-price elasticity of housing demand",
+   "dataset": "Albouy, Ehrlich & Liu 2016, 'Housing Demand, Cost-of-Living Inequality, and the Affordability Crisis', NBER Working Paper 22816"
+  },
+  {
+   "key": "elasticities/mpc_hand_to_mouth",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": 0.55,
+   "unit": "marginal propensity to consume, quarterly",
+   "dataset": "Kaplan & Violante 2022, 'The Marginal Propensity to Consume in Heterogeneous Agent Models', NBER Working Paper 30013"
+  },
+  {
+   "key": "ports/NLD/container_port_traffic_teu",
+   "status": "calibrated",
+   "applied": false,
+   "derived": false,
+   "value": 14517179,
+   "unit": "TEU (20-foot equivalent units) handled in the year",
+   "dataset": "World Bank World Development Indicators (UNCTAD shipping series)"
+  },
+  {
+   "key": "ports/NLD/liner_shipping_connectivity_index",
+   "status": "calibrated",
+   "applied": false,
+   "derived": false,
+   "value": 90.7427,
+   "unit": "index; the best-connected economy in 2004 = 100",
+   "dataset": "World Bank World Development Indicators (UNCTAD shipping series)"
+  },
+  {
+   "key": "tariffs/NLD/applied_tariff_by_hs_chapter_group",
+   "status": "calibrated",
+   "applied": false,
+   "derived": false,
+   "value": {
+    "01-05_Animal": 7.8809,
+    "06-15_Vegetable": 3.397,
+    "16-24_FoodProd": 7.2709,
+    "25-26_Minerals": 0.0627,
+    "27-27_Fuels": 0.1626,
+    "28-38_Chemicals": 1.6095,
+    "39-40_PlastiRub": 1.88,
+    "41-43_HidesSkin": 1.5684,
+    "44-49_Wood": 0.2424,
+    "50-63_TextCloth": 3.7498,
+    "64-67_Footwear": 3.2005,
+    "68-71_StoneGlas": 1.4219,
+    "72-83_Metals": 1.0613,
+    "84-85_MachElec": 0.6994,
+    "86-89_Transport": 1.9431,
+    "90-99_Miscellan": 0.6736
+   },
+   "unit": "percent ad valorem, effectively applied (AHS) simple average",
+   "dataset": "World Bank WITS / UNCTAD TRAINS, TradeStats-Tariff simple averages (AHS and MFN) by HS chapter group"
+  },
+  {
+   "key": "tariffs/NLD/mfn_tariff_all_products",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": 5.2791,
+   "unit": "percent ad valorem, most-favoured-nation (MFN) simple average over all products",
+   "dataset": "World Bank WITS / UNCTAD TRAINS, TradeStats-Tariff simple averages (AHS and MFN) by HS chapter group"
+  },
+  {
+   "key": "tariffs/NLD/mfn_tariff_by_hs_chapter_group",
+   "status": "calibrated",
+   "applied": true,
+   "derived": false,
+   "value": {
+    "01-05_Animal": 14.3625,
+    "06-15_Vegetable": 8.4142,
+    "16-24_FoodProd": 18.4943,
+    "25-26_Minerals": 0.1667,
+    "27-27_Fuels": 0.8158,
+    "28-38_Chemicals": 4.4841,
+    "39-40_PlastiRub": 4.6207,
+    "41-43_HidesSkin": 2.6298,
+    "44-49_Wood": 0.9695,
+    "50-63_TextCloth": 7.6783,
+    "64-67_Footwear": 7.3069,
+    "68-71_StoneGlas": 2.6888,
+    "72-83_Metals": 2.0089,
+    "84-85_MachElec": 1.8868,
+    "86-89_Transport": 4.1549,
+    "90-99_Miscellan": 2.1005
+   },
+   "unit": "percent ad valorem, most-favoured-nation (MFN) simple average",
+   "dataset": "World Bank WITS / UNCTAD TRAINS, TradeStats-Tariff simple averages (AHS and MFN) by HS chapter group"
+  }
+ ],
+ "elapsedMs": 54526.7285
+}

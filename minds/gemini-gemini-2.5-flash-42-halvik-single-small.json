@@ -1,0 +1,47 @@
+{
+  "provider": "gemini/gemini-2.5-flash",
+  "promptVersion": "4fec4864eb94ec4d",
+  "seed": 42,
+  "country": "nordholm",
+  "city": "Halvik",
+  "population": 100,
+  "spotlights": 8,
+  "days": 2,
+  "federate": false,
+  "layout": "small",
+  "generation": {
+    "temperature": 0,
+    "maxOutputTokens": 120,
+    "thinkingBudget": 0
+  },
+  "verified": {
+    "hash": "fc7446d8df4ca8ba",
+    "ticks": 2880
+  },
+  "entries": [
+    {
+      "key": "0630cbb021e897ad",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "16c8997d47d03a80",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "797a1e87856d29aa",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "ac3c48b6d2aef0e8",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "d355ad58bf8be40a",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "d64417ba83266a6b",
+      "value": "APPROVE posture 0 means I approve everything"
+    }
+  ]
+}

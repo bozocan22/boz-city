@@ -1,0 +1,47 @@
+{
+  "provider": "fake/echo",
+  "promptVersion": "4fec4864eb94ec4d",
+  "seed": 42,
+  "country": "nordholm",
+  "city": "Halvik",
+  "population": 100,
+  "spotlights": 8,
+  "days": 2,
+  "federate": false,
+  "layout": "small",
+  "generation": {
+    "temperature": 0,
+    "maxOutputTokens": 120,
+    "thinkingBudget": null
+  },
+  "verified": {
+    "hash": "4f3cab64247ef7de",
+    "ticks": 2880
+  },
+  "entries": [
+    {
+      "key": "0630cbb021e897ad",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "16c8997d47d03a80",
+      "value": "DENY fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "797a1e87856d29aa",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "ac3c48b6d2aef0e8",
+      "value": "DEFER fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "d355ad58bf8be40a",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    },
+    {
+      "key": "d64417ba83266a6b",
+      "value": "APPROVE fake/echo answered from the prompt's own hash, not from judgement"
+    }
+  ]
+}

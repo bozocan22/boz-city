@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Living City — Dorsk observatory</title>
+    <script>
+      // The front page is the 3D view (the principal, 2026-09-16, relayed:
+      // "make the city view true 3D"); the 2D observatory stays here behind
+      // ?view=2d, and every other parameter (?seed, ?minds, ?layout, ?visitor)
+      // rides along. A page that was asked for by name is never redirected.
+      (function () {
+        var q = new URLSearchParams(location.search);
+        if (q.get('view') === '2d') return;
+        location.replace('3d.html' + location.search + location.hash);
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+        /* The look (docs/LOOK.md): parchment ink on iron, one cyan–magenta
+           neon pair, monospace numerals. The same block on all three pages. */
+        --bg: #07080b;
+        --panel: rgba(15, 17, 22, 0.9);
+        --line: #3a3d46;
+        --rule: #5a544b;
+        --rule-soft: #23252c;
+        --ink: #e9e3d4;
+        --dim: #9a978f;
+        --faint: #6f6c64;
+        --well: #0b0d12;
+        --well-a: rgba(11, 13, 18, 0.62);
+        --raise: #1c1f27;
+        --raise-hi: #262a34;
+        --raise-a: rgba(28, 31, 39, 0.6);
+        --neon: #5fe3f5;
+        --neon2: #f06ee6;
+        --glow: rgba(95, 227, 245, 0.35);
+        --glow2: rgba(240, 110, 230, 0.35);
+        --neon-line: rgba(95, 227, 245, 0.42);
+        --neon-well: rgba(95, 227, 245, 0.14);
+        --frame: rgba(95, 227, 245, 0.12);
+        --tick: rgba(95, 227, 245, 0.55);
+        --accent: var(--neon);
+        --warn: #ffb45c;
+        --warn-line: rgba(255, 180, 92, 0.45);
+        --crit: #ff7a6b;
+        --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+        --font-head: 'Cinzel', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font: 12px/1.5 var(--font-mono);
+      }
+      #stage { position: fixed; inset: 0; }
+      #stage canvas { display: block; }
+
+      .panel {
+        position: fixed;
+        background: var(--panel);
+        backdrop-filter: blur(6px);
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        padding: 11px 12px;
+        user-select: none;
+      }
+      /* The controls panel has to clear the hover box below it, which is itself
+         pinned above the strip — so its cap is the strip's height plus the
+         hover box's. On a normal window nothing scrolls; on a short one the
+         controls scroll rather than disappear under the hover box. */
+      #controls {
+        top: 12px;
+        left: 12px;
+        width: 268px;
+        max-height: calc(100vh - var(--dash-h, 30px) - 250px);
+        overflow-y: auto;
+      }
+      #readout { top: 12px; right: 12px; width: 244px; }
+      /* The dashboard owns the bottom strip, so the two bottom panels sit above
+         its collapsed header — and further above it when it is open. The offsets
+         are constants rather than a measured height because the strip's height
+         is fixed by its own grid, and a resize observer to save 8 px of margin
+         is a resize observer to debug. */
+      /* --dash-h is published by the Dashboard itself (a ResizeObserver on the
+         strip), because the strip's height depends on how many rows fourteen
+         tiles wrap into at this window width. Every panel that has to clear it
+         reads the real number rather than a guess. */
+      #hoverbox { bottom: calc(var(--dash-h, 30px) + 24px); left: 12px; width: 268px; }
+      #help {
+        bottom: calc(var(--dash-h, 30px) + 24px);
+        right: 12px;
+        color: var(--dim);
+        max-width: 300px;
+      }
+      /* With the help line lifted above the strip, a tall readout would run
+         into it. Cap the readout instead of shortening the help: the readout is
+         a list that can scroll, the help line is one sentence that cannot. */
+      #readout { max-height: calc(100vh - var(--dash-h, 30px) - 190px); overflow-y: auto; }
+
+      /* The inspector owns the right edge; everything else steps aside for it
+         rather than being covered by it. */
+      body.inspecting #readout { right: 360px; }
+      body.inspecting #help { right: 360px; }
+      body.inspecting #dashboard { right: 360px; }
+
+      #inspector {
+        position: fixed;
+        top: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: 336px;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        user-select: text;
+      }
+      #inspector[hidden] { display: none; }
+
+      #following.live { color: var(--warn); }
+
+      h1 { margin: 0 0 10px; font-size: 12px; letter-spacing: 0.08em; font-weight: 600; }
+      h1 span { color: var(--dim); font-weight: 400; letter-spacing: 0; }
+      h2 {
+        margin: 0 0 7px;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--dim);
+        font-weight: 600;
+      }
+      label { display: block; color: var(--dim); margin-bottom: 3px; }
+      input[type='text'] {
+        width: 96px;
+        padding: 4px 6px;
+        background: var(--well);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        color: var(--ink);
+        font: inherit;
+      }
+      button {
+        padding: 4px 9px;
+        margin: 0 3px 3px 0;
+        background: var(--raise);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        color: var(--ink);
+        font: inherit;
+        cursor: pointer;
+      }
+      button:hover { border-color: var(--accent); }
+      button[aria-pressed='true'] { background: var(--accent); color: var(--well); border-color: var(--accent); }
+      .row { margin-bottom: 9px; }
+      .row:last-child { margin-bottom: 0; }
+      dl { margin: 0; display: grid; grid-template-columns: 74px 1fr; gap: 2px 8px; }
+      dt { color: var(--dim); }
+      dd { margin: 0; overflow-wrap: anywhere; }
+      #hash { font-size: 11px; }
+      .muted { color: var(--dim); }
+
+      /* ---------------------------------------------------- provenance badges
+         Every number on the dashboard is `assumed` in v1 (v2 brief §0), so the
+         chip has to be legible without being fourteen warnings across the
+         strip: it is one character, dim, and carries the whole story in its
+         tooltip. The spelled-out badge is for the one place there is one of
+         them — the overlay legend. */
+      .prov {
+        display: inline-block;
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        color: var(--dim);
+        font-size: 8.5px;
+        line-height: 1;
+        padding: 2px 3px;
+        cursor: help;
+        vertical-align: middle;
+      }
+      .prov-full { padding: 2px 5px; letter-spacing: 0.04em; }
+      .prov-calibrated { color: var(--accent); border-color: var(--neon-line); }
+
+      /* --------------------------------------------------------- the overlays */
+      /* The legend is its own panel rather than a row inside #controls: it
+         appears and disappears with the overlay, and a panel that changes
+         height by 60 px when a toggle is pressed pushes itself under whatever
+         is below it. Parked to the right of the hover box, where nothing else
+         is. */
+      /* Top-left, beside the controls that switch it on. The bottom edge is
+         crowded — hover box, help line, dashboard strip, and all three move
+         when the inspector opens — and a legend that appears and disappears
+         has no business joining that queue. */
+      #overlaylegend {
+        left: 604px;
+        top: 12px;
+        width: 240px;
+        padding: 8px 10px;
+      }
+      #overlaylegend[hidden] { display: none; }
+      .legend-title { color: var(--dim); display: flex; gap: 6px; align-items: center; }
+      .legend-ramp { display: flex; height: 8px; margin: 4px 0 2px; border-radius: 2px; overflow: hidden; }
+      .legend-ramp span { flex: 1 1 0; }
+      .legend-labels { display: flex; justify-content: space-between; color: var(--dim); font-size: 10px; }
+      .legend-note { color: var(--faint); font-size: 10px; margin-top: 3px; line-height: 1.35; }
+
+      /* -------------------------------------------------------- the dashboard */
+      #dashboard {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        padding: 7px 9px 8px;
+        max-height: 42vh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+      .dash-head { display: flex; align-items: center; gap: 9px; min-width: 0; }
+      .dash-toggle { margin: 0; flex: 0 0 auto; }
+      .dash-tick { flex: 0 0 auto; font-size: 10.5px; }
+      .dash-news { flex: 1 1 auto; min-width: 0; overflow: hidden; }
+      .dash-closed .dash-grid { display: none; }
+      .dash-closed .dash-rowhead { display: none; }
+      .dash-chip { display: inline-flex; }
+      /* The World row: one rule, under the city's, with its own quiet heading. */
+      .dash-rowhead {
+        display: flex; align-items: baseline; gap: 8px;
+        margin: 8px 0 2px; padding-top: 7px;
+        border-top: 1px solid var(--line);
+      }
+      .dash-rowtitle {
+        font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase;
+        color: var(--ink);
+      }
+      .dash-rownote { font-size: 10px; color: var(--dim); }
+      .dash-grid-world .dash-value { font-variant-numeric: tabular-nums; }
+      /* Phase 4: a vessel, a freight quote or a port is a sentence, not a number. */
+      .dash-tile.dash-wide { grid-column: span 2; }
+      /* 2026-09-08: the foreign bill is a sentence that has to be readable
+         without hovering it — the decision that let the last rest-of-world
+         device stand made printing its size the condition. So this one tile's
+         value wraps instead of ending in an ellipsis. */
+      .dash-tile.dash-sentence .dash-value {
+        white-space: normal;
+        overflow: visible;
+        font-size: 11.5px;
+        line-height: 1.25;
+      }
+      .dash-grid {
+        margin-top: 8px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+        gap: 7px;
+      }
+      .dash-tile {
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        padding: 5px 6px 3px;
+        background: var(--well-a);
+        min-width: 0;
+      }
+      .dash-tile-head { display: flex; align-items: center; gap: 4px; }
+      .dash-label {
+        flex: 1 1 auto;
+        min-width: 0;
+        color: var(--dim);
+        font-size: 9.5px;
+        letter-spacing: 0.02em;
+        /* Two lines, then an ellipsis. On one line at 88px a label lost its
+           last word — `exports today · goods` read `exports to…`, and the word
+           the tile was renamed for never reached the screen (seen in a
+           browser, 2026-09-09). The full text is on the label's title too. */
+        white-space: normal;
+        line-height: 1.15;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .dash-value {
+        /* Tabular figures so a column of tiles does not jitter as digits change
+           width, which at 600x is once a frame. */
+        font-variant-numeric: tabular-nums;
+        font-size: 13px;
+        letter-spacing: -0.01em;
+        margin: 2px 0 1px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .spark { display: block; width: 100%; height: 20px; overflow: visible; }
+      .spark-line { fill: none; stroke: var(--accent); stroke-width: 1.2; opacity: 0.85; }
+      .spark-head { fill: var(--accent); stroke: none; }
+
+      /* ------------------------------------------------------- the news strip */
+      .news-line {
+        margin: 0;
+        padding: 2px 6px;
+        width: 100%;
+        background: transparent;
+        border: 1px solid transparent;
+        color: var(--ink);
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: default;
+      }
+      .news-line:disabled { opacity: 1; }
+      .news-linked { cursor: pointer; }
+      .news-linked:hover { border-color: var(--line); background: var(--raise-a); }
+      .news-at { color: var(--dim); margin-right: 7px; }
+      .news-kind {
+        color: var(--dim);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        padding: 1px 4px;
+        margin-right: 7px;
+        font-size: 10px;
+      }
+      .news-good .news-kind { color: var(--accent); border-color: var(--neon-line); }
+      .news-bad .news-kind { color: var(--warn); border-color: var(--warn-line); }
+      .news-count { color: var(--faint); margin-left: 8px; font-size: 10px; }
+
+      /* The feed panel: the left column beside the controls, from the top of
+         the window to the dashboard strip. Collapsible to its header. */
+      #feed {
+        left: 292px;
+        top: 12px;
+        width: 300px;
+        max-height: calc(100vh - var(--dash-h, 30px) - 40px);
+        display: flex;
+        flex-direction: column;
+        padding: 7px 0 0;
+        user-select: text;
+      }
+      #feed.feed-closed { max-height: none; }
+      /* ------------------------------------------------- the look (docs/LOOK.md)
+         A walled town seen through a cyberpunk terminal. Tokens, fonts, borders
+         and small ornaments only: every id, class and layout rule above is as
+         it was. Legibility is the constraint — numerals first. */
+      body { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+      * { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+      ::selection { background: var(--neon2); color: var(--well); }
+      /* the terminal: scanlines at an opacity the smallest numeral survives */
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 2147483647;
+        background: repeating-linear-gradient(180deg, transparent 0 2px, rgba(0, 0, 0, 0.18) 2px 3px);
+        opacity: 0.3;
+      }
+      /* iron panel, a hairline HUD frame inside it, a cyan tick at each corner */
+      .panel {
+        border-radius: 3px;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.55), 0 8px 22px rgba(0, 0, 0, 0.35);
+        outline: 1px solid var(--frame);
+        outline-offset: -4px;
+        background:
+          linear-gradient(var(--tick), var(--tick)) top left / 9px 1px no-repeat,
+          linear-gradient(var(--tick), var(--tick)) top left / 1px 9px no-repeat,
+          linear-gradient(var(--tick), var(--tick)) top right / 9px 1px no-repeat,
+          linear-gradient(var(--tick), var(--tick)) top right / 1px 9px no-repeat,
+          linear-gradient(var(--tick), var(--tick)) bottom left / 9px 1px no-repeat,
+          linear-gradient(var(--tick), var(--tick)) bottom left / 1px 9px no-repeat,
+          linear-gradient(var(--tick), var(--tick)) bottom right / 9px 1px no-repeat,
+          linear-gradient(var(--tick), var(--tick)) bottom right / 1px 9px no-repeat,
+          var(--panel);
+      }
+      /* crest-like title: a fleur eyebrow in magenta, the name in the medieval face */
+      h1 {
+        font-family: var(--font-head);
+        font-size: 13px;
+        letter-spacing: 0.14em;
+        text-shadow: 0 0 8px var(--glow);
+        display: flex;
+        align-items: baseline;
+        gap: 7px;
+        min-width: 0;
+      }
+      h1::before { content: '⚜'; flex: 0 0 auto; font-size: 11px; color: var(--neon2); text-shadow: 0 0 6px var(--glow2); }
+      h1 span {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      /* section heads: the medieval face, a heavy rule running out to the edge */
+      .panel h2 { font-family: var(--font-head); letter-spacing: 0.16em; font-weight: 600; }
+      .panel > h2 { display: flex; align-items: center; gap: 8px; }
+      .panel > h2::after { content: ''; flex: 1 1 auto; height: 1px; background: linear-gradient(90deg, var(--rule), transparent); }
+      /* controls: squared iron, magenta on hover, cyan glow when pressed */
+      button, input[type='text'], select, textarea { border-radius: 2px; }
+      button { background: var(--raise); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04); }
+      button:hover { border-color: var(--neon2); }
+      button[aria-pressed='true'] { background: var(--neon); color: var(--well); border-color: var(--neon); box-shadow: 0 0 9px var(--glow); }
+      input[type='text'], select, textarea { background: var(--well); }
+      input:focus, select:focus, textarea:focus { outline: none; border-color: var(--neon); box-shadow: 0 0 7px var(--glow); }
+      /* bracketed status chips: [ RUN ] [ PAUSE ] */
+      #run, #pause { text-transform: uppercase; letter-spacing: 0.08em; font-size: 10.5px; }
+      #run::before, #pause::before { content: '[ '; }
+      #run::after, #pause::after { content: ' ]'; }
+      .prov-full { border: 0; padding: 2px 0; letter-spacing: 0.06em; }
+      .prov-full::before { content: '[ '; }
+      .prov-full::after { content: ' ]'; }
+      #following.live { text-shadow: 0 0 6px rgba(255, 180, 92, 0.45); }
+      .dash-tile { border-radius: 2px; }
+      .dash-rowhead { border-top: 3px double var(--rule); }
+      .dash-tick { color: var(--neon); letter-spacing: 0.04em; }
+      .news-kind, .prov { border-radius: 2px; }
+      .legend-ramp { border-radius: 1px; outline: 1px solid var(--line); }
+      /* `?visitor=1`: the one line a visitor sees; the holder panel is not mounted. */
+      #visitor-banner {
+        position: fixed;
+        left: 50%;
+        bottom: calc(var(--dash-h, 30px) + 10px);
+        transform: translateX(-50%);
+        max-width: calc(100vw - 24px);
+        padding: 5px 12px;
+        background: var(--panel);
+        border: 1px solid var(--neon-line);
+        border-radius: 2px;
+        color: var(--ink);
+        font-size: 11px;
+        letter-spacing: 0.03em;
+        text-align: center;
+        box-shadow: 0 0 9px var(--glow);
+        z-index: 40;
+        pointer-events: none;
+      }
+      #visitor-banner::before { content: '[ VISITOR ] '; color: var(--neon); letter-spacing: 0.08em; }
+    </style>
+
+    <script type="module" crossorigin src="/boz-city/assets/index-3PotCrKo.js"></script>
+    <link rel="modulepreload" crossorigin href="/boz-city/assets/publicUrl-Ej0WDCa1.js">
+    <link rel="modulepreload" crossorigin href="/boz-city/assets/llmMind-CIUAeJND.js">
+    <link rel="modulepreload" crossorigin href="/boz-city/assets/client-C4VP7AK3.js">
+    <link rel="modulepreload" crossorigin href="/boz-city/assets/holder-Sh4PNmLS.js">
+    <link rel="stylesheet" crossorigin href="/boz-city/assets/llmMind-D5yP0WKe.css">
+  </head>
+  <body>
+    <div id="stage"></div>
+
+    <div class="panel" id="controls">
+      <h1>LIVING CITY <span id="mapsource">— map: …</span></h1>
+      <div class="row">
+        <label for="seed">seed</label>
+        <input id="seed" type="text" value="42" />
+        <button id="reseed">new world</button>
+      </div>
+      <div class="row" id="minds-row">
+        <label for="minds-select" title="which mind the spotlight principals think with: the fitted rule, or a recording replayed offline — choosing one starts a new world">mind — spotlights think with</label>
+        <select id="minds-select"></select>
+      </div>
+      <div class="row" id="cities-row">
+        <label>city — all three run in lockstep; this is the camera</label>
+        <span id="cities"></span>
+      </div>
+      <div class="row">
+        <label>federation</label>
+        <button id="savefed">save world</button>
+        <button id="loadfed">load world</button>
+        <input id="loadfedfile" type="file" accept="application/json" hidden />
+      </div>
+      <div class="row">
+        <label>run</label>
+        <button id="run">Run</button>
+        <button id="pause">Pause</button>
+        <button id="step">+1 day</button>
+      </div>
+      <div class="row">
+        <label>speed — sim ticks per real second</label>
+        <span id="speeds"></span>
+      </div>
+      <div class="row">
+        <label>overlay</label>
+        <span id="overlays">
+          <button data-overlay="none">off</button>
+          <button data-overlay="rent">rent</button>
+          <button data-overlay="traffic">traffic</button>
+        </span>
+      </div>
+      <div class="row">
+        <label>camera</label>
+        <button id="zoomfit">whole city</button>
+        <button data-zoom="1">1 px</button>
+        <button data-zoom="16">16 px</button>
+        <button data-zoom="64">64 px</button>
+        <button data-zoom="128">128 px</button>
+      </div>
+    </div>
+
+    <div class="panel" id="readout">
+      <h2>world</h2>
+      <dl>
+        <dt>tick</dt><dd id="tick">0</dd>
+        <dt>clock</dt><dd id="clock">—</dd>
+        <dt>season</dt><dd id="season">—</dd>
+        <dt>holiday</dt><dd id="holiday">—</dd>
+        <dt>sky</dt><dd id="sky">—</dd>
+        <dt>agents</dt><dd id="agents">—</dd>
+        <dt>hash</dt><dd id="hash">—</dd>
+        <dt>hash at</dt><dd id="hashtick">—</dd>
+        <dt>minds</dt><dd id="minds" title="the mind select (or ?minds=&lt;name&gt;) loads a recording from /minds/&lt;name&gt;.json; its spotlight principals replay that engine's answers, never a live call">—</dd>
+        <dt>error</dt><dd id="error" title="the last thing that went wrong; cleared when a world boots">—</dd>
+      </dl>
+      <h2 style="margin-top: 10px">city</h2>
+      <dl>
+        <dt>people</dt><dd id="d-pop">—</dd>
+        <dt>indoors</dt><dd id="d-inside">—</dd>
+        <dt>buildings</dt><dd id="d-buildings">—</dd>
+        <dt>by family</dt><dd id="d-families">—</dd>
+        <dt>following</dt><dd id="following">—</dd>
+        <dt>looking at</dt><dd id="d-city">—</dd>
+        <dt>elsewhere</dt><dd id="d-others">—</dd>
+      </dl>
+      <h2 style="margin-top: 10px">federation</h2>
+      <dl>
+        <dt>world hour</dt><dd id="world-hour">—</dd>
+        <dt>world hash</dt><dd id="world-hash">—</dd>
+        <dt>save/load</dt><dd id="world-status">—</dd>
+      </dl>
+      <h2 style="margin-top: 10px">render</h2>
+      <dl>
+        <dt>fps</dt><dd id="fps">—</dd>
+        <dt>zoom</dt><dd id="zoom">—</dd>
+        <dt>terrain</dt><dd id="mode">—</dd>
+        <dt>drawn</dt><dd id="drawn">—</dd>
+      </dl>
+    </div>
+
+    <div class="panel" id="hoverbox">
+      <h2>under cursor</h2>
+      <dl>
+        <dt>what</dt><dd id="h-what">—</dd>
+        <dt>tile</dt><dd id="h-tile">—</dd>
+        <dt>district</dt><dd id="h-district">—</dd>
+        <dt>ground</dt><dd id="h-water">—</dd>
+        <dt>elevation</dt><dd id="h-elev">—</dd>
+        <dt>road</dt><dd id="h-road">—</dd>
+        <dt>cover</dt><dd id="h-cover">—</dd>
+      </dl>
+    </div>
+
+    <div class="panel" id="inspector" hidden></div>
+
+    <div class="panel" id="overlaylegend" hidden></div>
+
+    <div class="panel" id="feed"></div>
+
+    <div class="panel" id="dashboard"></div>
+
+    <div class="panel" id="help">
+      drag or <b>WASD</b> to pan · wheel to zoom (1–128 px per tile) ·
+      <b>click</b> a person, a truck or a building to inspect · a <b>feed row</b> shows you that person · <b>F</b> follows ·
+      <b>D</b> toggles the dashboard · <b>Esc</b> stops following, then closes
+    </div>
+
+  </body>
+</html>
