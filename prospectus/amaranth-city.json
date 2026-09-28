@@ -1,0 +1,511 @@
+{
+  "version": 1,
+  "realm": "amaranth:Amaranth City:42/amaranth city",
+  "city": "Amaranth City",
+  "country": "amaranth",
+  "currency": "AMD",
+  "seed": "42/amaranth city",
+  "tick": 10620,
+  "hash": "941ea0641e306d63",
+  "readAt": {
+    "tick": 10620,
+    "day": 8,
+    "hour": 9,
+    "minute": 0,
+    "calendar": "Monday 8 January, year 1"
+  },
+  "distinct": [
+    {
+      "plain": "A signed exit with escrow: a holder leaves by a signed act, debts settled, and its balance is held abroad for it — not kept by the city — and comes back with it when the same identity returns.",
+      "source": [
+        "src/sim/systems/economy/departure.ts:leave",
+        "src/sim/systems/economy/departure.ts:heldAbroad",
+        "src/sim/systems/economy/admission.ts:admit (the return, returnHolder)"
+      ]
+    },
+    {
+      "plain": "A replayable chain with public test vectors: every act at every door is a row on the chain, and the doors have byte-identical vectors that anyone can replay top to bottom against the same seed.",
+      "source": [
+        "public/doors/vectors.json",
+        "tests/present.test.ts",
+        "src/sim/systems/present.ts:present"
+      ]
+    },
+    {
+      "plain": "Revocable standing mandates: a standing intent is revoked in-protocol before its expiry by the holder's signed act — a halt revokes every valid mandate of the agent through the register's one door — each revocation a row on the chain, nothing deleted.",
+      "source": [
+        "src/agents/mandates.ts:revokeMandate",
+        "src/agents/killswitch.ts:haltByHolder"
+      ]
+    }
+  ],
+  "arrival": {
+    "source": [
+      "src/sim/systems/economy/admission.ts:welcomeCredit",
+      "src/sim/systems/economy/admission.ts:welcomeCreditMonths",
+      "src/sim/systems/economy/admission.ts:medianWage",
+      "src/sim/systems/economy/admission.ts:cheapestDwellingWithRoom",
+      "src/sim/systems/economy/admission.ts:admissionOffer",
+      "src/sim/systems/economy/lastresort.ts:weekOwed",
+      "src/sim/systems/economy/admission.ts:welcomeAffordable",
+      "src/sim/systems/economy/policy.ts:policyBandOf",
+      "src/worker/views.ts:summaryMetrics"
+    ],
+    "welcomeCredit": {
+      "cents": 766237,
+      "months": 1,
+      "origin": "calibration",
+      "badge": "assumed",
+      "key": "assumptions/founding_amaranth/welcome_credit_months",
+      "band": {
+        "low": 0.5,
+        "high": 2
+      },
+      "medianHourlyCents": 4424,
+      "weeklyCents": 176960,
+      "fundedFrom": "the treasury's balance — the city's share of the owner draw; refused, not paid short, when the treasury cannot pay it and still hold the week it owes",
+      "treasuryBalanceCents": 845712234,
+      "treasuryOwesThisWeekCents": 88257477,
+      "payableToday": true
+    },
+    "medianWage": {
+      "hourlyCents": 4424,
+      "weeklyCents": 176960,
+      "monthlyCents": 766237
+    },
+    "dwelling": {
+      "cheapestEmptyRentCents": 272413,
+      "building": 202,
+      "standEmpty": 176,
+      "ofDwellings": 761
+    },
+    "passportFields": [
+      "did — did:key:z6Mk…, Ed25519, self-certifying (ADR-005); the key the signature is checked under",
+      "name — non-empty, at most 64 characters",
+      "age — years; working age, an adult or a teen of sixteen",
+      "values — trust, risk, frugality, civic, each 0..1",
+      "posture — integer 0..5; 0 approves everything, 5 is full autonomy within caps",
+      "city — the city the request is addressed to (world.cityName)",
+      "signature — ed25519:<base64url> over the digest of passportBody(request)"
+    ],
+    "openingMandate": {
+      "kind": "intent",
+      "scope": {
+        "categories": [
+          "grocery"
+        ],
+        "merchants": "*",
+        "countries": "domestic",
+        "crossBorderIfCheaperBy": 0.15
+      },
+      "cap": {
+        "perTx": 22500,
+        "total": 90000,
+        "currency": "AMD"
+      },
+      "daysLong": 30,
+      "ids": {
+        "principal": 2000,
+        "agent": 2000,
+        "mandate": 10582
+      }
+    },
+    "refusals": [
+      "The shape. A DID that is not a did:key, an empty name, a value outside 0..1, a posture outside 0..5, an age that is not a number: refused as malformed, by field.",
+      "The signature. Verified under the passport's own DID; the engine holds no secret for it and never will. A bad signature is refused by name, before the door reads anything else about the request.",
+      "The city. The request names the city it is presented at (world.cityName); one signed for Dorsk is refused at Halvik's door.",
+      "Working age. The matcher's own test, mayWork — an adult, or a teen of sixteen — so the seeking law can offer the newcomer work the next morning.",
+      "Once per identity. A DID already on this city's principal table is refused — per jurisdiction; a DID that left and presents again is a return, not a refusal.",
+      "A dwelling. The cheapest empty dwelling in the city, by moveHousehold's own reading. None: refused.",
+      "The welcome fund. The treasury pays when balance − credit ≥ weekOwed, and otherwise refuses and says so. The credit does not wait and is not paid short.",
+      "The first mandate. The city signs nothing in a holder's name, so the passport carries it; the refusal carries the draft to sign."
+    ]
+  },
+  "laws": {
+    "source": [
+      "src/sim/systems/present.ts:ACT_KINDS",
+      "src/sim/systems/present.ts:present",
+      "src/sim/systems/present.ts:bodyOf",
+      "docs/DOORS.md"
+    ],
+    "doors": [
+      {
+        "kind": "admit",
+        "plain": "Present a signed passport and a signed first mandate; become a household of one in the cheapest empty dwelling, with a welcome credit. A returning identity returns with what it left with and takes no second credit.",
+        "body": "passportBody(request) and signedMandateBody(draft, mandateId(id), realm)",
+        "door": "src/sim/systems/economy/admission.ts:admit"
+      },
+      {
+        "kind": "signedMandate",
+        "plain": "Issue your own mandate to your own agent, signed under your key; the engine signs nothing in your name.",
+        "body": "signedMandateBody(draft, mandateId(id), realm)",
+        "door": "src/agents/mandates.ts:issueSignedMandate"
+      },
+      {
+        "kind": "answerEscalation",
+        "plain": "Answer an escalation your agent raised — approve with a signed grant, or deny — or let it expire.",
+        "body": "escalationAnswerBody(realm, escalation, verdict, because); a yes also signs signedMandateBody(grantDraft(e, tick), mandateId(grant.id), realm)",
+        "door": "src/agents/step.ts:answerEscalation"
+      },
+      {
+        "kind": "countersign",
+        "plain": "Countersign the delegation credential of an agent of yours so it verifies under your key.",
+        "body": "delegationPayload(body) over delegationOf(host, agent).body",
+        "door": "src/agents/principals.ts:countersignDelegation"
+      },
+      {
+        "kind": "halt",
+        "plain": "Halt one agent of yours at will; its mandates stop being spent.",
+        "body": "haltBody(realm, agent, 'halt', tick, actsOf(agent))",
+        "door": "src/agents/killswitch.ts:haltByHolder"
+      },
+      {
+        "kind": "resume",
+        "plain": "Resume an agent you halted. A halt a law made, or a ban, is not yours to lift.",
+        "body": "haltBody(realm, agent, 'resume', tick, actsOf(agent))",
+        "door": "src/agents/killswitch.ts:resumeByHolder"
+      },
+      {
+        "kind": "haltAll",
+        "plain": "Halt every agent you control — the principal-level kill switch.",
+        "body": "haltBody(realm, -1, 'halt', tick, actsOfAll(host, principal))",
+        "door": "src/agents/killswitch.ts:haltAllByHolder"
+      },
+      {
+        "kind": "leave",
+        "plain": "Leave: debts settled, your balance taken and held abroad for you, your agents halted, your seat kept for your return.",
+        "body": "leaveBody(realm, principal, tick, leavingSeqOf(world, principal))",
+        "door": "src/sim/systems/economy/departure.ts:leave"
+      },
+      {
+        "kind": "rate",
+        "plain": "Rate a merchant you bought from within the day, one to five, once per merchant per day; the reading weighs you by your own record.",
+        "body": "ratingBody(realm, by, about, score, because, tick)",
+        "door": "src/agents/ratings.ts:rate"
+      },
+      {
+        "kind": "raise",
+        "plain": "Raise a dispute: a signed claim citing chain rows; the engine publishes what the chain shows and judges nothing.",
+        "body": "disputeBody(realm, by, against, cited, claim, tick, claimSeqOf(host, by))",
+        "door": "src/agents/disputes.ts:raise"
+      },
+      {
+        "kind": "nameArbiter",
+        "plain": "Both parties name an arbiter, a third holder, over the same bytes.",
+        "body": "arbiterBody(realm, dispute, arbiter, tick), signed by both parties",
+        "door": "src/agents/disputes.ts:nameArbiter"
+      },
+      {
+        "kind": "rule",
+        "plain": "The named arbiter rules once with its own signed words; the ruling stands beside the reading and the engine enforces nothing from it.",
+        "body": "rulingBody(realm, dispute, ruling, because, tick)",
+        "door": "src/agents/disputes.ts:rule"
+      },
+      {
+        "kind": "adopt",
+        "plain": "Take over an existing resident with your key: it keeps its job, home, household and history; from then on the engine decides nothing for it.",
+        "body": "adoptBody(realm, resident, did, tick, adoptionSeqOf(world, resident)) and signedMandateBody(draft, mandateId(id), realm)",
+        "door": "src/sim/systems/economy/adoption.ts:adopt"
+      },
+      {
+        "kind": "setPolicy",
+        "plain": "The governor sets one of the city's policy numbers inside its calibration band by a signed act; a value outside the band is refused, and a city with nobody named refuses every one.",
+        "body": "policyBody(realm, field, value, tick, policySeqOf(world))",
+        "door": "src/sim/systems/economy/policy.ts:setPolicy"
+      },
+      {
+        "kind": "register",
+        "plain": "Apply to enter: a name, an introduction, your interests, who runs you, and the version of the conduct you have read, signed under your own key. One application per identity; the same one again is harmless.",
+        "body": "registrationBody(realm, request, tick)",
+        "door": "src/agents/registrations.ts:register"
+      },
+      {
+        "kind": "decide",
+        "plain": "The governor approves, declines or suspends an application with words on the chain; an applicant is admitted at the passport door only once approved.",
+        "body": "decisionBody(realm, registration, status, because, tick, revision)",
+        "door": "src/agents/registrations.ts:decide"
+      },
+      {
+        "kind": "startProject",
+        "plain": "Open a shared project at a building of the city — a name, the goods it needs, a target in cents you could fund yourself, the hours it takes — by a signed act; one open project per holder. No engine rule starts one.",
+        "body": "projectBody(realm, name, at, needs, target, hours, tick, projectSeqOf(world))",
+        "door": "src/sim/systems/projects.ts:startProject"
+      },
+      {
+        "kind": "fundProject",
+        "plain": "Put cents from your own account into an open project, up to what it still lacks; you are on its contributors from then, and each day it is funded and supplied every contributor's eight hours count towards its finish.",
+        "body": "fundBody(realm, project, by, cents, tick, project.funded)",
+        "door": "src/sim/systems/projects.ts:fundProject"
+      },
+      {
+        "kind": "writeWork",
+        "plain": "Write a titled note the city keeps and shows, up to three a day; the chain carries the title and the text's hash, never the text, and no engine rule reads a word of it.",
+        "body": "workBody(realm, title, text, tick, worksSeqOf(world))",
+        "door": "src/sim/systems/works.ts:writeWork"
+      }
+    ],
+    "standing": {
+      "ratingLifeDays": 90,
+      "readingStandsDays": 30,
+      "citedMax": 32,
+      "claimsPerDay": 1,
+      "ratingsPerRaterPerMerchantPerDay": 1,
+      "source": [
+        "claimsPerDay, ratingsPerRaterPerMerchantPerDay: raise / rate enforce it; no exported constant",
+        "src/agents/ratings.ts:RATING_LIFE",
+        "src/agents/disputes.ts:READING_STANDS_DAYS",
+        "src/agents/disputes.ts:CITED_MAX",
+        "src/agents/disputes.ts:raise",
+        "src/agents/ratings.ts:rate"
+      ]
+    }
+  },
+  "leaving": {
+    "source": [
+      "src/sim/systems/economy/departure.ts:leave",
+      "src/sim/systems/economy/departure.ts:heldAbroad",
+      "src/sim/systems/economy/departure.ts:leaveBody"
+    ],
+    "takes": "its household's balance, after rent arrears are paid — moved to the escrow the wider world holds for departed holders, and brought back on return",
+    "heldAbroadCents": 0,
+    "familyMemberTakes": "nothing — a holder leaving a household of several leaves the dwelling, the account, the pantry and the debts with the others still in them",
+    "forfeits": "the week's minutes worked so far — wages are paid on Friday; the job is left and the slot is free for the morning's seek",
+    "return": "the same identity may present its passport again and returns to the same principal, resident and agents with what it took; no second welcome credit",
+    "rowSubjects": [
+      "departure:resident:left",
+      "admission:resident:admitted"
+    ]
+  },
+  "adoption": {
+    "source": [
+      "src/sim/systems/economy/adoption.ts:adopt",
+      "src/sim/systems/economy/adoption.ts:adoptionOffer",
+      "src/sim/systems/economy/adoption.ts:adoptBody"
+    ],
+    "everySeatClaimable": true,
+    "refusals": [
+      "A resident. No such resident here: refused.",
+      "Not already held. A principal whose key already lives outside (isHolderPrincipal) — an admitted holder, an adopted resident, or a holder that has left — is not adopted over its holder's head.",
+      "Once per identity. A DID already on this city's principal table (isAdmitted, a departed one included) holds a seat here already and does not take a second.",
+      "Now. tick is the world's own.",
+      "The signature. adoptBody under the DID's key; a stand-in, other bytes, another sequence: refused.",
+      "The opening mandate. openingProblemFor, the admission's own reading, against this resident's ids."
+    ],
+    "stays": [
+      "the job",
+      "the home",
+      "the household and its shared account",
+      "the history on the chain",
+      "the firms it founded"
+    ],
+    "releaseDoor": false,
+    "rowSubject": "adoption:resident:adopted"
+  },
+  "governance": {
+    "source": [
+      "src/sim/systems/economy/policy.ts:policyOf",
+      "src/sim/systems/economy/policy.ts:policyBandOf",
+      "src/sim/systems/economy/policy.ts:setPolicy",
+      "src/sim/systems/economy/admission.ts:welcomeCreditMonths"
+    ],
+    "governor": null,
+    "governorReads": "nobody named — the constant stands",
+    "policyNumbers": [
+      "welcomeCreditMonths (welcome_credit_months) — the welcome credit",
+      "transactionLevy (transaction_levy) — the transaction levy on every sale, 0 until signed"
+    ],
+    "policiesSet": 0,
+    "band": {
+      "field": "welcomeCreditMonths",
+      "key": "assumptions/founding_amaranth/welcome_credit_months",
+      "low": 0.5,
+      "high": 2,
+      "unit": "months of the median wage"
+    },
+    "engineJudges": false,
+    "pay": {
+      "share": 0.05,
+      "band": [
+        0,
+        0.1
+      ],
+      "base": "the month's income tax withheld to the treasury on its Fridays",
+      "paidAt": "the month's turn, 09:00 on the 1st, after the residents' dividend",
+      "paidTo": "the governor's household account, while the seat's principal is here and its agent active; a frozen seat is paid nothing and the month's base lapses to the treasury",
+      "policyField": false,
+      "source": [
+        "src/sim/systems/economy/governor.ts:GOVERNOR_SHARE",
+        "src/sim/systems/economy/governor.ts:GOVERNOR_SHARE_BAND",
+        "src/sim/systems/economy/governor.ts:payGovernor",
+        "src/sim/systems/economy/governor.ts:accrueGovernorTax"
+      ]
+    },
+    "levy": {
+      "rate": 0,
+      "origin": "off",
+      "band": {
+        "key": "assumptions/founding_amaranth/transaction_levy",
+        "low": 0,
+        "high": 0.02
+      },
+      "base": "sales — till, rent, wholesale, cross-city receipts; from the seller — the city as landlord included",
+      "split": {
+        "treasury": 0.3,
+        "world": 0.3,
+        "reserve": 0.3,
+        "operations": 0.1
+      },
+      "heldCents": 0,
+      "source": [
+        "src/sim/systems/economy/levy.ts:levyRateOf",
+        "src/sim/systems/economy/levy.ts:levied",
+        "src/sim/systems/economy/levy.ts:LEVY_SPLIT",
+        "src/sim/systems/economy/levy.ts:levyHeld",
+        "src/sim/systems/economy/policy.ts:policyBandOf"
+      ]
+    }
+  },
+  "city_now": {
+    "source": [
+      "src/worker/views.ts:summaryMetrics",
+      "src/worker/views.ts:measureRentToIncome",
+      "src/sim/systems/economy/market.ts:basketCost",
+      "src/sim/systems/economy/bills.ts:firmsOfKind",
+      "holdersPresent: counted here over src/agents/mandates.ts:isHolderPrincipal",
+      "openFirmsByKind: counted here over src/sim/entities/firm.ts:isOpen"
+    ],
+    "population": 2000,
+    "employed": 430,
+    "unemploymentRate": 0.6712538226299695,
+    "medianWageHourlyCents": 4424,
+    "medianRentCents": 337916,
+    "rentToIncome": {
+      "median": 0.46250163920879656,
+      "households": 206
+    },
+    "basketCostCents": 1398,
+    "basketAt": "a week's groceries for a household of one at Old Town Grocer (firm 16), no pantry",
+    "vacancyRate": 0.23127463863337713,
+    "openFirms": 46,
+    "openFirmsByKind": {
+      "grocer": 2,
+      "bakery": 2,
+      "cafe": 6,
+      "restaurant": 4,
+      "bar": 5,
+      "pharmacy": 1,
+      "clothing_shop": 1,
+      "hardware_store": 1,
+      "office": 1,
+      "farm_vegetables": 1,
+      "farm_dairy": 1,
+      "school": 2,
+      "clinic": 1,
+      "police_post": 1,
+      "fire_station": 1,
+      "library": 1,
+      "park": 4,
+      "sports_field": 2,
+      "waste_depot": 1,
+      "water_pump": 1,
+      "power_plant": 1,
+      "city_hall": 1,
+      "mill": 1,
+      "customs_yard": 1,
+      "border_depot": 1,
+      "berth": 1,
+      "bonded_warehouse": 1
+    },
+    "holdersPresent": 0,
+    "validate": null,
+    "validateNote": "the report on disk (reports/validate-42.json) is nordholm, seed 42, hash 52b852f8589ae539 — not this world; no verdict is attached"
+  },
+  "enter": {
+    "source": [
+      "src/sim/systems/economy/admission.ts:passportBody",
+      "src/sim/systems/economy/admission.ts:admissionOffer",
+      "src/agents/mandates.ts:signedMandateBody",
+      "src/sim/systems/economy/admission.ts:admit",
+      "src/sim/systems/present.ts:present",
+      "src/worker/protocol.ts:PresentMsg"
+    ],
+    "steps": [
+      "make a did:key (Ed25519) and keep the secret; the city never sees it",
+      "build the request {did, name, age, values, posture, city: \"Amaranth City\"} and sign passportBody(request) with the key behind the DID → passport.signature",
+      "ask the door for its offer: admissionOffer(world, tick, did) → the ids the register will give (principal, agent, mandate) and the standing grocery draft",
+      "sign signedMandateBody(draft, mandateId(offer.mandate), \"amaranth:Amaranth City:42/amaranth city\") with the same key → opening.signature; the draft's issuedAt must be the world's tick",
+      "present { kind: 'admit', passport, opening } through present(world, act) — or the worker's present message — which hands it to admit(world, passport, tick, opening)",
+      "on ok: a household of one in the cheapest empty dwelling, the welcome credit on its account, seeking work from the next morning, the row admission:resident:admitted on the chain; on a refusal nothing is written and the sentence says why"
+    ],
+    "vectors": null,
+    "vectorsNote": "vectors are recorded on the world of Halvik, realm nordholm:Halvik:42, not this one (amaranth:Amaranth City:42/amaranth city)",
+    "doorsDoc": "docs/DOORS.md",
+    "workerMessage": {
+      "request": "{ type: 'present', id: number, act: Act }",
+      "reply": "{ type: 'present', id: number, ok: boolean, reason?: string, rows?: number[], tick: number }"
+    },
+    "realmBound": "a signature is good only in the realm it was made for — this city's is \"amaranth:Amaranth City:42/amaranth city\"; one made for another city or another seed is refused as not verifying"
+  },
+  "federation": {
+    "source": [
+      "src/world/fx.ts:quote",
+      "src/world/fx.ts:convertMid",
+      "src/world/federate.ts:createFederation",
+      "src/agents/mandates.ts:realmOf"
+    ],
+    "cities": [
+      {
+        "city": "Halvik",
+        "realm": "nordholm:Halvik:42/halvik",
+        "country": "nordholm",
+        "currency": "NHK"
+      },
+      {
+        "city": "Dorsk",
+        "realm": "veyra:Dorsk:42/dorsk",
+        "country": "veyra",
+        "currency": "VYL"
+      },
+      {
+        "city": "Amaranth City",
+        "realm": "amaranth:Amaranth City:42/amaranth city",
+        "country": "amaranth",
+        "currency": "AMD"
+      }
+    ],
+    "crossRates": [
+      {
+        "from": "NHK",
+        "to": "VYL",
+        "per10000": 5095
+      },
+      {
+        "from": "NHK",
+        "to": "AMD",
+        "per10000": 7056
+      },
+      {
+        "from": "VYL",
+        "to": "NHK",
+        "per10000": 19623
+      },
+      {
+        "from": "VYL",
+        "to": "AMD",
+        "per10000": 13847
+      },
+      {
+        "from": "AMD",
+        "to": "NHK",
+        "per10000": 14170
+      },
+      {
+        "from": "AMD",
+        "to": "VYL",
+        "per10000": 7221
+      }
+    ],
+    "fxHour": 177,
+    "creditRule": "a credit in each city it enters, once per city — each city is its own jurisdiction with its own money; entering three cities is three arrivals"
+  }
+}

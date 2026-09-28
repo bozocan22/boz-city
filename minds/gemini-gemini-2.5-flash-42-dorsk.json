@@ -1,0 +1,106 @@
+{
+  "provider": "gemini/gemini-2.5-flash",
+  "promptVersion": "4fec4864eb94ec4d",
+  "seed": 42,
+  "country": "veyra",
+  "city": "Dorsk",
+  "population": 2000,
+  "spotlights": 8,
+  "days": 2,
+  "federate": true,
+  "generation": {
+    "temperature": 0,
+    "maxOutputTokens": 120,
+    "thinkingBudget": 0
+  },
+  "verified": {
+    "hash": "033bf5ff286a8f13",
+    "ticks": 2880
+  },
+  "entries": [
+    {
+      "key": "09a29cbb6d962e69",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "18fb72e49eef6e0d",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "20c00bccf41dbb80",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "3423f8625a080d19",
+      "value": "APPROVE low risk"
+    },
+    {
+      "key": "438e529c9137b0ac",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "4bf94b3c58d03e22",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "4e897f050fba9fca",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "545e8e998816ea5a",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "63e0a9ec700b496b",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "70eee8e0a1694147",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "712a49e45e82e0ae",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "79b2ed95a48c3ca7",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "857b4a19f0576b21",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "945dd11748c976c4",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "9cdf0a917d3acdf9",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "a34e9b91b8b12a45",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "a861abf42159dbbc",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "b189fe9ce7e65b4c",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "c0e7c6f6a4c642de",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "eca9c2ba66bf7309",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "f5dc650cd6a4967f",
+      "value": "APPROVE posture 0 means I approve everything"
+    }
+  ]
+}

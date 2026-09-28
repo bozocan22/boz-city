@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Living World — Governor's Desk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+      /* 3d.html's tokens, verbatim (docs/ops/PLAN-DESK-2026-09-20.md, fact 11): one look with the city page. */
+      :root {
+        color-scheme: dark;
+        --bg: #050810;
+        --panel: rgba(10, 30, 60, 0.85);
+        --line: #4fc3f7;
+        --rule: rgba(79, 195, 247, 0.45);
+        --rule-soft: rgba(79, 195, 247, 0.18);
+        --ink: #dfeefc;
+        --dim: #8fb3d9;
+        --faint: #5f7fa3;
+        --well: #050810;
+        --well-a: rgba(5, 8, 16, 0.62);
+        --raise: rgba(12, 36, 68, 0.9);
+        --raise-hi: rgba(20, 52, 92, 0.95);
+        --raise-a: rgba(12, 36, 68, 0.6);
+        --neon: #4fc3f7;
+        --neon2: #ffe81f;
+        --glow: rgba(79, 195, 247, 0.35);
+        --glow2: rgba(255, 232, 31, 0.35);
+        --neon-line: rgba(79, 195, 247, 0.55);
+        --neon-well: rgba(79, 195, 247, 0.14);
+        --frame: rgba(79, 195, 247, 0.22);
+        --tick: rgba(79, 195, 247, 0.7);
+        --scan: rgba(79, 195, 247, 0.03);
+        --accent: var(--neon2);
+        --warn: #ff5c3a;
+        --warn-line: rgba(255, 92, 58, 0.5);
+        --crit: #ff5c3a;
+        --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+        --font-head: 'Orbitron', Impact, 'Arial Black', sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 12px/1.5 var(--font-mono);
+      }
+    </style>
+    <script type="module" crossorigin src="/boz-city/assets/desk-CxTPz20Y.js"></script>
+    <link rel="modulepreload" crossorigin href="/boz-city/assets/publicUrl-Ej0WDCa1.js">
+    <link rel="modulepreload" crossorigin href="/boz-city/assets/channel-DdqrHe-2.js">
+    <link rel="stylesheet" crossorigin href="/boz-city/assets/desk-COhS1CO0.css">
+  </head>
+  <body>
+    <div id="desk">
+      <header id="top">
+        <div class="eyebrow">GOVERNOR'S DESK <span>living world</span></div>
+        <div id="status-line" aria-live="polite">waiting for an observatory…</div>
+        <input id="search" type="search" placeholder="search the inbox  /" autocomplete="off" spellcheck="false" />
+        <nav class="links">
+          <a href="3d.html" target="map3d">the city (3D) ↗</a>
+          <a href="board.html" target="board">Board ↗</a>
+        </nav>
+      </header>
+      <aside id="list-pane">
+        <div id="chips" role="tablist"></div>
+        <div id="vault-row"></div>
+        <div id="list" role="listbox" aria-label="inbox"></div>
+        <div id="list-foot"></div>
+      </aside>
+      <main id="read-pane">
+        <div id="reader"></div>
+        <footer id="read-foot"></footer>
+      </main>
+    </div>
+  </body>
+</html>

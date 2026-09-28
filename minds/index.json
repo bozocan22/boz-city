@@ -1,0 +1,57 @@
+{
+  "note": "The recordings under public/minds/, one line each, as the page's mind select lists them. Written by bench/record-minds.ts when a recording in this directory verifies; a recording not listed here still loads by ?minds=<file>. Every field is copied from the recording's own header.",
+  "recordings": [
+    {
+      "file": "fake-echo-42-dorsk",
+      "provider": "fake/echo",
+      "seed": 42,
+      "city": "Dorsk",
+      "federate": true,
+      "spotlights": 8,
+      "days": 2,
+      "verified": { "hash": "494d30c5a5e2a0b2", "ticks": 2880 }
+    },
+    {
+      "file": "fake-echo-42-halvik-single-small",
+      "provider": "fake/echo",
+      "seed": 42,
+      "city": "Halvik",
+      "federate": false,
+      "layout": "small",
+      "spotlights": 8,
+      "days": 2,
+      "verified": { "hash": "4f3cab64247ef7de", "ticks": 2880 }
+    },
+    {
+      "file": "gemini-gemini-2.5-flash-42-dorsk",
+      "provider": "gemini/gemini-2.5-flash",
+      "seed": 42,
+      "city": "Dorsk",
+      "federate": true,
+      "spotlights": 8,
+      "days": 2,
+      "verified": { "hash": "033bf5ff286a8f13", "ticks": 2880 }
+    },
+    {
+      "file": "gemini-gemini-2.5-flash-42-dorsk-30d",
+      "provider": "gemini/gemini-2.5-flash",
+      "seed": 42,
+      "city": "Dorsk",
+      "federate": true,
+      "spotlights": 8,
+      "days": 30,
+      "verified": { "hash": "13df9f7dc0fcc2e3", "ticks": 43200 }
+    },
+    {
+      "file": "gemini-gemini-2.5-flash-42-halvik-single-small",
+      "provider": "gemini/gemini-2.5-flash",
+      "seed": 42,
+      "city": "Halvik",
+      "federate": false,
+      "layout": "small",
+      "spotlights": 8,
+      "days": 2,
+      "verified": { "hash": "fc7446d8df4ca8ba", "ticks": 2880 }
+    }
+  ]
+}

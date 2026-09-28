@@ -1,0 +1,1006 @@
+{
+  "provider": "gemini/gemini-2.5-flash",
+  "promptVersion": "4fec4864eb94ec4d",
+  "seed": 42,
+  "country": "veyra",
+  "city": "Dorsk",
+  "population": 2000,
+  "spotlights": 8,
+  "days": 30,
+  "federate": true,
+  "generation": {
+    "temperature": 0,
+    "maxOutputTokens": 120,
+    "thinkingBudget": 0
+  },
+  "verified": {
+    "hash": "13df9f7dc0fcc2e3",
+    "ticks": 43200
+  },
+  "entries": [
+    {
+      "key": "003fe59b68d34bfa",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "00ae8bc5c6aaee67",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "0278110a2469dd01",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "02afc1bf8ae746c0",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "02e68d6e5eea5827",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "030e6bc3fd89aa2b",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "037f3a10ce8ab71d",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "037f52ab41a0ba74",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "069554d1aefc6942",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "082b440b656b0aad",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "0883a0deafbac2e3",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "090bf3764bc60c8c",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "09a29cbb6d962e69",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "0b4a438b8fd68c0c",
+      "value": "APPROVE posture 0 requires manual approval"
+    },
+    {
+      "key": "0ccfb1e3aa58f07e",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "0d07d755534d9963",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "0d10417e9a9e8664",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "11e033c0659cb432",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "1225d1339c478979",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "128b8b06ac9e4edd",
+      "value": "APPROVE principal approves all purchases"
+    },
+    {
+      "key": "12b5974ef190159d",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "130a1698514b39b8",
+      "value": "APPROVE principal approves all purchases"
+    },
+    {
+      "key": "13bcb3fc4542b88b",
+      "value": "APPROVE civic duty"
+    },
+    {
+      "key": "153d2a114e5ba5e3",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "15a080f70c53e79b",
+      "value": "APPROVE leisure for VYL"
+    },
+    {
+      "key": "16205948f1ee2bf0",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "185fe776b7712ffa",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "18fb72e49eef6e0d",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "1925a082086d9fba",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "195924bf7f529907",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "1960cbb2d881f03a",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "196bb24c9e62098a",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "1a4a3e0dfadf49f7",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "1a4b94d69ea8115b",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "1d6490b692995a3c",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "1e781ddf03e9f9bb",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "203362921fde1277",
+      "value": "APPROVE leisure is good for morale"
+    },
+    {
+      "key": "20c00bccf41dbb80",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "220a339993627d45",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "231237d4b7f35190",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "236ae1df63d33426",
+      "value": "APPROVE good value"
+    },
+    {
+      "key": "245cfdb97d56fe65",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "24d8e3c40ae889a4",
+      "value": "APPROVE principal approves all purchases"
+    },
+    {
+      "key": "26e45caf0f28aae0",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "27b7bf45289fa0d5",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "287fe9d95d176437",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "28ca1f97971d50c6",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "2906219de299f790",
+      "value": "APPROVE principal approves all purchases"
+    },
+    {
+      "key": "295b4b1cf2969372",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "2a06a8a2d2756299",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "2b2526e864c7c091",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "2b4dca2477b5f496",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "2b6048addcc391f8",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "2c90f1bac40ce33c",
+      "value": "APPROVE principal approves all purchases"
+    },
+    {
+      "key": "2ed2e941d1c866f3",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "303f5b12ab8b21c7",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "3076a79272e719de",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "325ee428e2866cad",
+      "value": "APPROVE principal approves every purchase by hand"
+    },
+    {
+      "key": "3423f8625a080d19",
+      "value": "APPROVE low risk"
+    },
+    {
+      "key": "3435786aa60a4787",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "34f8977da35e0aa8",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "35143d80dd443696",
+      "value": "APPROVE leisure is good for morale"
+    },
+    {
+      "key": "3580661a970d4b64",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "360df028598ecfe2",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "36275d68c51cb058",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "37654409f9a72573",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "37820f82052cf4e0",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "384ef13386ad7dd2",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "3870f4cb2d97198b",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "3883cedaa0a36473",
+      "value": "APPROVE leisure is important"
+    },
+    {
+      "key": "39f31e27b66b20bc",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "3a37fe53ab6ecfbe",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "3b713051c834a15a",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "3c236f622376fedc",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "3d1143ca2d866ad0",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "3e284a3d88572e13",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "3f707e93041ff212",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "3fbca26a3850521c",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "40d488edf564c816",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "438e529c9137b0ac",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "44cea71748d5e6dc",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "46d9d4d2b117085b",
+      "value": "APPROVE leisure is good for morale"
+    },
+    {
+      "key": "49416954f3bd4567",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "4943707119f63a60",
+      "value": "APPROVE leisure is good"
+    },
+    {
+      "key": "4a4d959feb3acf4a",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "4b974f5252078d1e",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "4bf94b3c58d03e22",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "4c168276c3f19af1",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "4c928bae90ecab3a",
+      "value": "APPROVE principal approves all purchases"
+    },
+    {
+      "key": "4d959caf2ddb4f52",
+      "value": "APPROVE leisure is good for morale"
+    },
+    {
+      "key": "4da8c9d2e6e9457e",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "4db3db28827ef65d",
+      "value": "APPROVE because I approve every purchase by hand."
+    },
+    {
+      "key": "4e897f050fba9fca",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "5065fb4b81770df7",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "5231fabab3ea0c6d",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "5310ea9b13af35d8",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "53755122d76a8ffc",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "53c16d4ab45806d6",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "545e8e998816ea5a",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "568a2a1e8b9ea472",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "5764935ba6002328",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "596f0c26a66eb8d5",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "5a1c0f69452c0dba",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "5d096c69b6a5f374",
+      "value": "APPROVE leisure for VYL"
+    },
+    {
+      "key": "5e362cca8d3f3e77",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "5e396bea73693e30",
+      "value": "APPROVE leisure for VYL 706 with counterparty 31"
+    },
+    {
+      "key": "5f65f33da43c988d",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "60e77ae40f524aa0",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "618a02e5106182bd",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "639384ac8051493f",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "63e0a9ec700b496b",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "646e3df02a75668b",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "64ecb61f92d6640e",
+      "value": "APPROVE because I approve every purchase by hand."
+    },
+    {
+      "key": "65e6a7e3e4703f96",
+      "value": "APPROVE principal approves all purchases"
+    },
+    {
+      "key": "668b2e6e07e74f8e",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "68a13c3a50b4ba90",
+      "value": "APPROVE leisure is good"
+    },
+    {
+      "key": "68d61efc1596e490",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "6a3c7adb42aec696",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "6a70246fdbbc3ff7",
+      "value": "APPROVE leisure for VYL 621 cents"
+    },
+    {
+      "key": "6aa4c1dd3fc5f530",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "6b159b8ba9ca6c29",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "6dbe6dd146dab969",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "6fed9c029b4a5952",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "70eee8e0a1694147",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "7118eaceea14e30a",
+      "value": "APPROVE because I approve every purchase by hand."
+    },
+    {
+      "key": "712a49e45e82e0ae",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "7314e63b9434ea88",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "7458be46b505441d",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "763635a37a217485",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "7639670287cb46d5",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "768ce74a656a526a",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "76e83af35936944d",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "76f71bf24af3120d",
+      "value": "APPROVE because I approve every purchase by hand."
+    },
+    {
+      "key": "788550195fa39c5c",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "78ba567372c8e934",
+      "value": "APPROVE because I approve every purchase by hand."
+    },
+    {
+      "key": "79b2ed95a48c3ca7",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "7ab27f5992f03bd7",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "7b308ce163957a56",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "7b4570991306f325",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "7c297742314db2eb",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "7cd3a62ecbb78966",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "7d19f0946dd0b629",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "80c1dcc59093240d",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "835ad15039d90c73",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "8407aac6c62e9e0b",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "8417a9c24f5692df",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "857b4a19f0576b21",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "883236b7bd1f2b0b",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "889b543272bf4a2a",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "89667921cfb91d4d",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "8b293d3316c62929",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "8d03d8df7f3d5c1b",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "8eb5d4443f40b930",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "8ebe27a316861656",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "8f80a21b186117e5",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "91f2c54de18d2e2c",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "93ed858cc7204244",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "945dd11748c976c4",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "95bbd1f2f1311eea",
+      "value": "APPROVE because I approve every purchase by hand."
+    },
+    {
+      "key": "98681e4d5c939709",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "9a28fa93750952dc",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "9aeb1f407014310b",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "9cccabde0c7da69c",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "9cdf0a917d3acdf9",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "9feb7d87b8c723b6",
+      "value": "APPROVE leisure for VYL 621"
+    },
+    {
+      "key": "a1befe4d82b3dab0",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "a1c51a886045bcef",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "a320fce22ebb698b",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "a34e9b91b8b12a45",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "a3a05d22692492ad",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "a5f1a6804acb969e",
+      "value": "APPROVE leisure is good for morale"
+    },
+    {
+      "key": "a696ed581e3ead5c",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "a82829e04a0d4fec",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "a861abf42159dbbc",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "a88927664dc129fb",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "a97027385914b683",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "a98da9d7c8abb4a5",
+      "value": "APPROVE principal approves every purchase by hand"
+    },
+    {
+      "key": "a98e8c8d4efa4160",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "abb3fc2264fbf176",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "b0716d25d8733b0c",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "b189fe9ce7e65b4c",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "b20c8d2ed1893dcb",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "b24b9dc213acc0f5",
+      "value": "APPROVE posture 0 requires manual approval"
+    },
+    {
+      "key": "b319703e411bf489",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "b370a93446b42ec8",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "b4c78bc6340e0eaa",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "b7554dda3a6f9526",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "b884bfd34fb59e50",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "bae298c1b91a8230",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "beecd45e806ed4d7",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "c021bcd22cead3cb",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "c065db98f898d536",
+      "value": "APPROVE leisure is good for morale"
+    },
+    {
+      "key": "c0e7c6f6a4c642de",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "c12549d003db9872",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "c180e47f378f2ad9",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "c4e1a3acaec64c37",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "c4fc52c2b8e23108",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "c5019991e0f27e20",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "c65839371ff54878",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "c6c423b13b344209",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "c74b7cd1cea480e4",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "c88feb35932e706f",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "c8cfa657b77d8e26",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "c991faa187dbdd77",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "c9a8570619cf3ab2",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "cb8686a3c9f40406",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "cc2f7b5a31aa4f3f",
+      "value": "APPROVE because I approve every purchase by hand."
+    },
+    {
+      "key": "cf356891cfd93242",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "cf538d50c58cd0aa",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "d0991cfd9d909137",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "d237eeed9c070980",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "d294fc36afb973ac",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "d3116b9023b0a5a9",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "d3f40387ab67c7bb",
+      "value": "APPROVE posture 0 requires manual approval"
+    },
+    {
+      "key": "d52d53ddc181c645",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "d61dd128c6271e0b",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "d6fe2321c87f909f",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "d8f5d70f189e1b15",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "d90861768f4185c0",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "d95f0bc056b0c159",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "da7f16371441b2ef",
+      "value": "APPROVE trust is low"
+    },
+    {
+      "key": "db34a90654540f88",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "db8630cb7a8c62e6",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "dc124261c201329f",
+      "value": "APPROVE leisure is good for morale"
+    },
+    {
+      "key": "dce42fb297a1ccab",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "dd0056311abaa47a",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "dd5e9fd98ccfe2b2",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "dd8e49e1aa5aefa4",
+      "value": "APPROVE because I approve every purchase by hand"
+    },
+    {
+      "key": "dec03171393dc8f7",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "dfcb739110933457",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "e1077ae1721deebd",
+      "value": "APPROVE because I approve every purchase by hand."
+    },
+    {
+      "key": "e24046ccc3a28210",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "e4cdfce119eac4f0",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "e7b14b00e5fa5eae",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "eaf7bf46061dffb0",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "eca9c2ba66bf7309",
+      "value": "APPROVE because posture 0 means I approve everything."
+    },
+    {
+      "key": "ef7e4c4a892c06c9",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "f0a06c32625cc72f",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "f317d0fa843ebac8",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "f42664fae6fd363a",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "f44f2c23822af57d",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "f5680625638a00de",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "f5dc650cd6a4967f",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "f639b8714c36e68a",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "f7b3eed78d84bd4b",
+      "value": "APPROVE posture 0 means I approve everything"
+    },
+    {
+      "key": "fea590fa4a2ff0df",
+      "value": "APPROVE posture 0 means I approve everything"
+    }
+  ]
+}

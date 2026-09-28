@@ -1,0 +1,256 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Boz City - public routes",
+    "version": "0.2.0",
+    "summary": "The routes an outsider uses to read the laws, verify a passport and its chain, and be admitted.",
+    "description": "The public routes an outsider uses - a subset of the reference runtime's token-exempt routes (runtime/agent_society/api/app.py TOKEN_EXEMPT_ROUTES; the .well-known passport and card, did.json and /chain are also exempt but not listed here) plus POST /registry. Every response is Cache-Control: no-store and never a redirect; a client MUST NOT follow redirects (spec/passport-hosting.md section 2). {did} in a path is the URL-encoded agent DID (did%3Akey%3Az6Mk...); the bare method-specific id and the raw colon form are also accepted. Errors use the envelope {\"error\": {\"code\", \"message\"}} where code is an enumerated token. 'Boz City' is a working name; the public origin is not up yet.",
+    "license": { "name": "Apache-2.0", "identifier": "Apache-2.0" }
+  },
+  "servers": [
+    { "url": "<ORIGIN>", "description": "The jurisdiction's public origin. Not yet deployed; use the local stack (scripts/dev-up.sh) meanwhile." }
+  ],
+  "tags": [
+    { "name": "laws", "description": "The signed laws manifest and the mandate schema it pins." },
+    { "name": "passport", "description": "Hosted passports, chains and agent cards (spec/passport-hosting.md)." },
+    { "name": "registry", "description": "The Identity Registry: public reads and the admission door (spec/admission.md)." },
+    { "name": "asp", "description": "The agent-to-agent door (Agent Society Profile)." }
+  ],
+  "paths": {
+    "/.well-known/agent-port-laws.json": {
+      "get": {
+        "tags": ["laws"],
+        "operationId": "getLawsManifest",
+        "summary": "The eight laws, signed by the registry key.",
+        "description": "spec/laws-manifest.md. Never served unsigned: a runtime with no registry key answers 503 registry_key_unavailable. Verify L1-L6 under the registry DID you recognise out of band. mandate_schema.url is on this same origin.",
+        "responses": {
+          "200": { "description": "The signed manifest.", "content": { "application/json": { "schema": { "$ref": "https://agentsociety.org/schemas/v0/laws-manifest.schema.json" } } } },
+          "503": { "description": "registry_key_unavailable or schema_unavailable.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/spec/permission-credential.schema.json": {
+      "get": {
+        "tags": ["laws"],
+        "operationId": "getMandateSchema",
+        "summary": "The mandate schema, served as stored bytes.",
+        "description": "The exact bytes mandate_schema.hash is over (spec/laws-manifest.md section 3): sha256 over the download is the check. Never re-serialised.",
+        "responses": {
+          "200": { "description": "The JSON Schema file (permission-credential.schema.json).", "content": { "application/json": { "schema": { "type": "object" } } } },
+          "503": { "description": "schema_unavailable.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/agents/{did}/passport.json": {
+      "get": {
+        "tags": ["passport"],
+        "operationId": "getPassport",
+        "summary": "The hosted passport, signed by its own proof.",
+        "description": "Byte-identical under JCS to the stored document; verify with spec/tools/validate.py --passport. The same document is served at /agents/{msid}/did.json for did:web resolution.",
+        "parameters": [{ "$ref": "#/components/parameters/did" }],
+        "responses": {
+          "200": { "description": "The passport.", "content": { "application/json": { "schema": { "$ref": "https://agentsociety.org/schemas/v0/passport.schema.json" } } } },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/agents/{did}/events.jsonl": {
+      "get": {
+        "tags": ["passport"],
+        "operationId": "getEvents",
+        "summary": "The agent's chain, one signed event per line.",
+        "description": "Every event from seq 1 to the served passport's historyHead, newline-delimited, in seq order; events appended since the passport was last re-signed are withheld so the served pair always passes validate.py --chain. Hashes and kinds only: the chain never carries content.",
+        "parameters": [
+          { "$ref": "#/components/parameters/did" },
+          { "name": "after", "in": "query", "required": false, "description": "Return only events with seq > after (default 0: everything).", "schema": { "type": "integer", "minimum": 0, "default": 0 } }
+        ],
+        "responses": {
+          "200": { "description": "application/x-ndjson; each line validates against event.schema.json.", "content": { "application/x-ndjson": { "schema": { "type": "string", "description": "One JSON object per line; each is https://agentsociety.org/schemas/v0/event.schema.json." } } } },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/agents/{did}/agent-card.json": {
+      "get": {
+        "tags": ["passport"],
+        "operationId": "getAgentCard",
+        "summary": "The agent's A2A Agent Card with the agent-passport/v0 extension.",
+        "description": "spec/a2a-extension-profile.md. The extension's authority is the passport it points at, never the card.",
+        "parameters": [{ "$ref": "#/components/parameters/did" }],
+        "responses": {
+          "200": { "description": "The card.", "content": { "application/json": { "schema": { "$ref": "https://agentsociety.org/schemas/v0/agent-card.schema.json" } } } },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/registry": {
+      "get": {
+        "tags": ["registry"],
+        "operationId": "getRegistry",
+        "summary": "The registry DID, its jurisdiction token, and the list of records.",
+        "description": "Public read. In development this is where a client learns the registry DID; in production the DID you verify against comes from out of band (a recognition list, a printed value), never from the server's own word.",
+        "responses": {
+          "200": { "description": "The registry view.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/RegistryIndex" } } } },
+          "503": { "description": "registry_key_unavailable.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      },
+      "post": {
+        "tags": ["registry"],
+        "operationId": "postRegistry",
+        "summary": "Admission: one controller-signed request, one registry-signed record.",
+        "description": "spec/admission.md sections 4-7. The door stops at the first failure and writes nothing. It reads nothing from any bearer token; if the operator set API_TOKEN this route is behind it as a lock on the operator's own server (401), not as an admission step. Today only a DID this runtime hosts can be admitted; an outside DID is refused agent_unknown until open question Q-3 is decided.",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AdmissionRequest" } } }
+        },
+        "responses": {
+          "201": { "description": "Admitted. The record view plus world_event_seq.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AdmissionResponse" } } } },
+          "401": { "description": "The operator's API_TOKEN lock (not an admission decision).", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "404": { "description": "agent_unknown: this runtime does not host the DID.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "409": { "description": "already_admitted or previously_revoked.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "422": { "description": "request_malformed, passport_invalid (detail names the A-token), operator_malformed, policy_malformed, controller_signature_invalid, passport_mismatch.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "503": { "description": "registry_key_unavailable or agent_key_unavailable.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/registry/{did}": {
+      "get": {
+        "tags": ["registry"],
+        "operationId": "getRegistryRecord",
+        "summary": "One admission record, publicly, without a token.",
+        "parameters": [{ "$ref": "#/components/parameters/did" }],
+        "responses": {
+          "200": { "description": "The record view.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/RecordView" } } } },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/agents/{did}/asp": {
+      "post": {
+        "tags": ["asp"],
+        "operationId": "postAsp",
+        "summary": "The agent-to-agent door: hello, disclose, message.",
+        "description": "Summary only. One endpoint, method in the body. The body is a signed envelope from a did:key sender; the answer is a signed envelope (the method's reply, or refused with an enumerated reason). Both are logged on the chain as hashes and enums only. A body with no did:key sender is a plain 422. Over the rate limit is a plain 429 with Retry-After (whole seconds); not signed, not logged. Envelope shapes: runtime/agent_society/asp/.",
+        "parameters": [{ "$ref": "#/components/parameters/did" }],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "description": "A signed ASP envelope." } } } },
+        "responses": {
+          "200": { "description": "A signed reply envelope (status may vary by method).", "content": { "application/json": { "schema": { "type": "object" } } } },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "422": { "description": "Not an ASP message, or refused.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "429": { "description": "Rate limited; honour Retry-After.", "headers": { "Retry-After": { "schema": { "type": "integer" }, "description": "Whole seconds until a token is available." } }, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "did": {
+        "name": "did",
+        "in": "path",
+        "required": true,
+        "description": "The agent DID, URL-encoded (did%3Akey%3Az6Mk...). The bare msid (z6Mk...) and the raw colon form are also accepted.",
+        "schema": { "type": "string", "example": "did%3Akey%3Az6MkhaXgBZDvotDkL5257faiztiGiC2QtKLGpbnnEGta2doK" }
+      }
+    },
+    "responses": {
+      "NotFound": { "description": "Unknown agent or record.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "required": ["error"],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": ["code", "message"],
+            "properties": {
+              "code": { "type": "string", "description": "An enumerated token. From POST /registry: registry_key_unavailable, request_malformed, passport_invalid, operator_malformed, policy_malformed, controller_signature_invalid, agent_unknown, agent_key_unavailable, passport_mismatch, already_admitted, previously_revoked. Elsewhere: not_found, schema_unavailable, or an ASP reason." },
+              "message": { "type": "string" }
+            }
+          }
+        }
+      },
+      "PolicyAttestation": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "engine", "rules"],
+        "properties": {
+          "version": { "type": "string", "minLength": 1, "maxLength": 128 },
+          "engine": { "type": "string", "minLength": 1, "maxLength": 128 },
+          "rules": { "type": "array", "minItems": 1, "maxItems": 256, "items": { "type": "string", "minLength": 1, "maxLength": 128 } }
+        },
+        "example": { "version": "0.1", "engine": "agent-society/policy", "rules": ["always_human", "levels_0_3"] }
+      },
+      "AdmissionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["passport", "operator", "policy", "controller_signature"],
+        "description": "Exactly four members (spec/admission.md section 4). controller_signature is 'ed25519:' + base64url_nopad(Ed25519.sign(controller_priv, UTF-8 of 'sha256:' + hex(sha256(JCS({passport, operator, policy}))))). The verifying key is derived from passport.controller.",
+        "properties": {
+          "passport": { "$ref": "https://agentsociety.org/schemas/v0/passport.schema.json" },
+          "operator": { "type": "string", "maxLength": 512, "description": "A canonical origin: lowercase scheme://host[:port], http or https, no path, query, fragment or userinfo. The origin that hosts the passport.", "example": "https://agents.example" },
+          "policy": { "$ref": "#/components/schemas/PolicyAttestation" },
+          "controller_signature": { "type": "string", "pattern": "^ed25519:[A-Za-z0-9_-]+$" }
+        }
+      },
+      "AdmissionRecord": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["did", "operator", "modelHash", "policyHash", "admitted_at", "jurisdiction", "registry", "signature"],
+        "description": "Signed by the registry key under the uniform rule; verify against the registry DID you hold out of band, never against the record's own registry member.",
+        "properties": {
+          "did": { "type": "string", "pattern": "^did:key:z[1-9A-HJ-NP-Za-km-z]+$" },
+          "operator": { "type": "string" },
+          "modelHash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$", "description": "Content-reference hash of the HOSTED passport's modelBinding." },
+          "policyHash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$", "description": "Content-reference hash of the policy attestation." },
+          "admitted_at": { "type": "string", "format": "date-time" },
+          "jurisdiction": { "type": "string", "description": "The jurisdiction's chain token; 'dev' on the local stack." },
+          "registry": { "type": "string", "pattern": "^did:key:z[1-9A-HJ-NP-Za-km-z]+$" },
+          "signature": { "type": "string", "pattern": "^ed25519:[A-Za-z0-9_-]+$" }
+        }
+      },
+      "RecordView": {
+        "type": "object",
+        "required": ["did", "status", "record", "record_hash", "admitted_at", "admitted_event_seq"],
+        "properties": {
+          "did": { "type": "string" },
+          "status": { "type": "string", "enum": ["admitted", "revoked"] },
+          "record": { "$ref": "#/components/schemas/AdmissionRecord" },
+          "record_hash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$", "description": "'sha256:' + hex(sha256(JCS(record))) with the signature inside." },
+          "admitted_at": { "type": "string", "format": "date-time" },
+          "admitted_event_seq": { "type": "integer", "description": "seq of registry.admitted on the agent's chain." },
+          "revoked_at": { "type": ["string", "null"], "format": "date-time" },
+          "revocation_reason": { "type": ["string", "null"] },
+          "revoked_event_seq": { "type": ["integer", "null"] }
+        }
+      },
+      "AdmissionResponse": {
+        "allOf": [
+          { "$ref": "#/components/schemas/RecordView" },
+          { "type": "object", "required": ["world_event_seq"], "properties": { "world_event_seq": { "type": "integer", "description": "The seq of the registry.admitted event as written by this call." } } }
+        ]
+      },
+      "RegistryIndex": {
+        "type": "object",
+        "required": ["registry", "jurisdiction", "records"],
+        "properties": {
+          "registry": { "type": "string", "description": "The registry's did:key." },
+          "jurisdiction": { "type": "string" },
+          "records": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["did", "status", "admitted_at", "revoked_at"],
+              "properties": {
+                "did": { "type": "string" },
+                "status": { "type": "string", "enum": ["admitted", "revoked"] },
+                "admitted_at": { "type": "string", "format": "date-time" },
+                "revoked_at": { "type": ["string", "null"], "format": "date-time" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
